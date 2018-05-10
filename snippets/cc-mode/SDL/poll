@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: poll
+# key: poll
+# --
+SDL_PollEvent(&$1)

@@ -1,0 +1,4 @@
+#name : style-background-color
+#key :color
+# --
+style="background-color:$1;"

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: angular-component
+# key: component
+# --
+angular.
+    module('$1').
+    component('$1', {
+        templateUrl: '$2.template.html',
+        controller: function $3Controller() {
+            this.${4:propiedad} = $0
+        }
+    });

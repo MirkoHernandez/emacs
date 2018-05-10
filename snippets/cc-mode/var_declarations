@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: var_declarations
+# key: vd
+# type: command
+# --
+(let ((yas-good-grace nil)
+      (variable (read-string "Type: "))
+      )
+  (yas-expand-snippet
+   (concat
+    
+    (mapconcat
+     (lambda (num)
+       (format "%s ${%d:ele};"variable (1+ num)  ))
+     (number-sequence 1 count nil)
+     "\n")
+    "\n$0"))
+
+  )

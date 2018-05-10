@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: display-format
+# key: display
+# --
+SDL_DisplayFormat(${1:surface});

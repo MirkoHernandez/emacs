@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: isrunning
+# key: isrun
+# --
+
+bool ProgramIsRunning(void) {
+          SDL_Event event;
+          bool running = true;
+          while(SDL_PollEvent(&event)) {
+                  if(event.type == SDL_QUIT)
+                          running = false;
+          }
+          return running;
+}

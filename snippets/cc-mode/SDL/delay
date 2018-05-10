@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: delay
+# key: delay
+# --
+SDL_Delay($1);

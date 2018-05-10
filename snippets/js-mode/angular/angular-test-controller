@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: test-c
+# key: test
+# --
+describe('$1Controller', function() {
+
+  beforeEach(module('${module}'));
+
+  it('${descripcion}', inject(function($controller) {
+    var scope = {};
+    var ctrl = $controller('$1Controller', {$scope: scope});
+
+    expect(scope.${propiedad}).toBe(${descripcion});
+  }));
+
+});

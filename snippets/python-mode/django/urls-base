@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: urls
+# key: urls
+# --
+from django.conf.urls import  url
+from . import views
+
+urlpatterns = [
+    url(r'^$',views.$1, name='$2'),
+]

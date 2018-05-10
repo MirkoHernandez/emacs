@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: surface
+# key: sur
+# --
+SDL_Surface *$0;

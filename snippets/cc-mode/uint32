@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Uint32
+# key: 32
+# --
+Uint32 $1

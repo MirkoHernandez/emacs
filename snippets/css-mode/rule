@@ -1,0 +1,6 @@
+#name : css-rule
+#key:r
+# --
+$1 {
+$2
+}

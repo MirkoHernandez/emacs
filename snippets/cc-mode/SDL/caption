@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: caption
+# key: caption  
+# --
+SDL_WM_SetCaption("$1", NULL);
+

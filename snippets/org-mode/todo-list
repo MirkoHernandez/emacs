@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: todo-list
+# key: tl
+# type: command
+# --
+(let ((yas-good-grace nil)
+      (number (read-number "Number: "))
+      (counter 0)
+      )
+    (while (> number 0)
+      (yas-expand-snippet "- [-]\n")
+      (setq number (1- number)))
+    counter)

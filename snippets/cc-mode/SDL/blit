@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: blit
+# key: blit
+# --
+SDL_BlitSurface($1, NULL, $2, NULL);

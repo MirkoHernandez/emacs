@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: load-image
+# key: load
+# --
+SDL_Surface *LoadImage(char *filename)
+{
+        SDL_Surface *image = NULL;
+        SDL_Surface *processed_image = NULL;
+
+        image = SDL_LoadBMP(filename);
+
+        if (image) {
+                processed_image = SDL_DisplayFormat(image);
+                SDL_FreeSurface(image);
+                if (processed_image) {
+                        Uint32 colorkey = SDL_MapRGB(processed_image->format, 255, 0, 255);
+                        SDL_SetColorKey(processed_image, SDL_SRCCOLORKEY, colorkey);
+                }
+        }
+        return processed_image;
+}

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: function_definition
+# key: f
+# --
+${1:void} $2(${3:void})
+{
+        $4
+}
