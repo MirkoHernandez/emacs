@@ -1,0 +1,7 @@
+#name : func
+#key :func
+# --
+$1: ${2:$$(when (and yas-modified-p
+            yas-moving-away-p
+            (not (eql (string-to-number yas-text) 0))) 
+             (concat  yas-text "px"))};

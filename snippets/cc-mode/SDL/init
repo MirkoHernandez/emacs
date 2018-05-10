@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: init
+# key: init
+# --
+if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {                      
+                  printf("SDL failed to initialize!");
+                  SDL_Quit();
+                  return 0;
+}

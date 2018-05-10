@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: rect
+# key: rect
+# --
+SDL_Rect $1;

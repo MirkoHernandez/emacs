@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: function_prototype
+# key: fp
+# --
+${1:void}  $2(${3:void});

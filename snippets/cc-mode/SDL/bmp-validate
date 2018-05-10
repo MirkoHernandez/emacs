@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: bmp-validate
+# key: bmpv
+# --
+if (!$1) {
+   printf("BMP failed to load\n");
+   SDL_Quit();
+   return 1;
+}
+

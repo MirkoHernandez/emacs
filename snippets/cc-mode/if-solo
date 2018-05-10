@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name : if solo
+# key: ifs
+# --
+if (${1:condition})
+   $2

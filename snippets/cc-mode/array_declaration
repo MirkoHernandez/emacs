@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: array_declaration
+# key: ad
+# --
+${1:int} $2[$3];
+

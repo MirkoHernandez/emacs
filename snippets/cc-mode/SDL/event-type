@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: event-type
+# key: etype
+# --
+$1.type

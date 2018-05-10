@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bmp
+# key: bmp
+# --
+$1 = SDL_LoadBMP("$2");
+
+

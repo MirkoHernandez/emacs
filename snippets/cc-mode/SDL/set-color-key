@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: set-color-key
+# key: sck
+# --
+SDL_SetColorKey(${1:surface}, SDL_SRCCOLORKEY, ${2:colorkey});

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: unlock
+# key: unlock
+# --
+SDL_UnlockSurface($1)

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: maprgb
+# key: rgb
+# --
+SDL_MapRGB(${1:surface}, ${2:r}, ${3:g}, ${4:b});

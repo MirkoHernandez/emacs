@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: clause
+# key: c
+# --
+((${1:condition}) $2)

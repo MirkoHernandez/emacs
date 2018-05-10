@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: angular-module
+# key: module
+# --
+var $1 = angular.module('$1', []);

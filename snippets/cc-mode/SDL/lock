@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lock
+# key: lock
+# --
+SDL_LockSurface($1)

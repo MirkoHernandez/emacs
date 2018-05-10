@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: setvideo
+# key: setvideo
+# --
+$1 = SDL_SetVideoMode(800, 600, 32, SDL_SWSURFACE$2);
+

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name : daconta-comment
+# key: dc
+# --
+/* **************************************************
+FUNCTION NAME:$1
+PURPOSE:$2
+INPUT:$3
+OUTPUT:$4
+NOTE:$5
+AUTHOR: Mirko Hernandez
+**************************************************  */

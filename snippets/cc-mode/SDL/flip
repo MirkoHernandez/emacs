@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: flip
+# key: flip
+# --
+SDL_Flip($1);

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fill-rect
+# key: fill
+# --
+SDL_FillRect(${1:surface}, &${2:rect}, ${3:color})

@@ -1,0 +1,24 @@
+#name : sticky-column-in-table
+#key:sticky-column
+# --
+.table-container {
+    overflow-x:scroll;
+    margin-left:265px; 
+}
+.headcol1 {
+    position:absolute;
+    width:135px;
+    left:10px;
+}
+
+.headcol2 {
+    position:absolute;
+    width:50px;
+    left:145px;
+}
+
+.headcol3 {
+    position:absolute;
+    width:70px;
+    left:195px;
+}

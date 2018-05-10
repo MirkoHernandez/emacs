@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: debug-printf-strings_
+# key: dpfs
+# type:command
+# --
+(yas-expand-snippet
+
+ (let ((string (read-string "argumentos: "))
+       (print-my-string "")
+       (args-string ""))
+
+   (mapconcat (lambda (x)
+                (setq print-my-string (concat print-my-string x " %s "))
+                (setq args-string (concat args-string x ","))
+                )
+              (split-string string)
+              "")
+   (concat "printf(\"" print-my-string "\"," args-string ")")
+   )
+ )

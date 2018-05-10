@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: var_assignments
+# key: vars
+# type: command
+# --
+(let ((yas-good-grace nil)
+      (count (read-number "Number of elements: "))
+      (variable (read-string "Nombre de variable: "))
+      )
+  (yas-expand-snippet
+   (concat
+    
+    (mapconcat
+     (lambda (num)
+       (format "%s ${%d:ele} = ${0};"variable (1+ num) ))
+     (number-sequence 1 count nil)
+     "\n")
+    "\n$0"))
+
+  )

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : variable-as-function
+#key: vf
+# --
+var ${1:i} = function ($2) {
+  $0
+};

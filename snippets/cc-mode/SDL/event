@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: event
+# key: event
+# --
+SDL_Event $1;
