@@ -12,7 +12,23 @@
 
 ;; (fullscreen)
 ;; (if (display-graphic-p)
-    ;; (fullscreen)))
+;; (fullscreen)))
+
+
+;;@============================= CURSOR
+(blink-cursor-mode 0) 
+
+;;@============================= STARTUP
+(setq ring-bell-function #'ignore
+      inhibit-startup-screen t
+      echo-keystrokes 0.1
+      linum-format " %d"
+      initial-scratch-message "For a moment, nothing happened. Then,
+      after a second or so, nothing continued to happen.\n")
+
+(setq inhibit-startup-message t);; no startup message
+(fset 'yes-or-no-p #'y-or-n-p)
+
 ;;@============================= HIGHLIGHT NOTES, TODOS
  (setq fixme-modes '(c++-mode c-mode emacs-lisp-mode go-mode
 			      python-mode js2-mode html-mode))

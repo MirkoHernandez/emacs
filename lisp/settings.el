@@ -97,6 +97,11 @@
 (setq default-justification 'full)
 (setq kill-whole-line t)
 
+;; Emacs  defaults  (In  order  to remember  the  default  values  and
+;; experiment with variations)
+(delete-selection-mode 1)
+(transient-mark-mode 1)
+
 ;;@============================= DESKTOP
 ;; (desktop-change-dir (concat emacs-root "emacs/tmp/desktop"))
 (setq desktop-dirname             (concat emacs-root "emacs/tmp/desktop") 

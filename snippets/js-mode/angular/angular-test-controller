@@ -6,11 +6,11 @@ describe('$1Controller', function() {
 
   beforeEach(module('${module}'));
 
-  it('${descripcion}', inject(function($controller) {
+  it('${description}', inject(function($controller) {
     var scope = {};
     var ctrl = $controller('$1Controller', {$scope: scope});
 
-    expect(scope.${propiedad}).toBe(${descripcion});
+    expect(scope.${property}).toBe(${description});
   }));
 
 });

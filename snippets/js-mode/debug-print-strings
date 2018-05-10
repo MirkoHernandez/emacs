@@ -4,8 +4,7 @@
 # type:command
 # --
 (yas-expand-snippet
-
- (let ((string (read-string "argumentos: "))
+ (let ((string (read-string "arguments: "))
        (print-my-string "")
        (args-string ""))
 
