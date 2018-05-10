@@ -4,5 +4,5 @@
 # --
 ${1:module}.controller('$2Controller', function
                   $2Controller($scope) {
-                      $scope.${3:propiedad} = $0;
+                      $scope.${3:property} = $0;
                   });
