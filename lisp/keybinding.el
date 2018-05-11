@@ -11,23 +11,20 @@
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
 (global-set-key (kbd "C-x t") 'end-of-buffer)
 
-(global-set-key (kbd "C-i") 'backward-up-list)
-(global-set-key (kbd "C-o") 'up-list)
+(global-set-key (kbd "C-o") 'backward-up-list)
+(global-set-key (kbd "C-o") 'down-list)
 (global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key [f7] 'next-error)
 (global-set-key "\C-w" 'backward-kill-word-or-selection)
+
+(global-set-key (kbd "M-o") 'query-replace-regexp)
+(global-set-key (kbd "M-k") 'kill-sexp)
+(global-set-key (kbd "<M-backspace>") 'backward-kill-sexp)
 
 (global-set-key "\C-xp" 'fill-paragraph)
-
-
-
+(global-set-key [f7] 'next-error)
 (global-set-key "\C-w" 'backward-kill-word-or-selection)
-
-
 (global-set-key [f5] 'compile-or-delete-window)
 (global-set-key [f6]  'comment-line)
-(global-set-key [f9]  'refactor-line-or-selection-identifiers-only)
-(global-set-key (kbd "<S-f9>")  'refactor-line-or-selection-any)
 (global-set-key [f8] 'switch-to-previous-buffer)
 
 ;;@============================= ORG

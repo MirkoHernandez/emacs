@@ -39,19 +39,13 @@
   (end-of-line)
   (newline-and-indent))
 
-(defun run-current-file ()
-  "Runs the executable file generated after compilation. An executable with the same name as the buffer is assumed."
-  (interactive)
-  (async-shell-command (concat "." (file-name-sans-extension buffer-file-name))))
-
-
 (defun c-hungry-delete-forward-and-indent ()
-" c-hungry-delete-forward with added intent command."
+"c-hungry-delete-forward and indent"
   (interactive)
   (c-hungry-delete-forward)
   ( indent-for-tab-command))
 
-;; PROTECT ABBREVS
+;; Protect abbrevs
 (defun protect-underscore ()
  (interactive)
  (insert "_"))
@@ -63,6 +57,11 @@
  (insert "="))
 
 ;;@============================= OTHER
+(defun run-current-file ()
+  "Runs the executable file generated after compilation. An executable with the same name as the buffer is assumed."
+  (interactive)
+  (async-shell-command (concat "." (file-name-sans-extension buffer-file-name))))
+
 (defun nautilus()
     (interactive)
   (start-process "nautilus" nil "nautilus" (buffer-file-name)))

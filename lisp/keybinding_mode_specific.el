@@ -2,7 +2,6 @@
 (global-set-key (kbd "M-i") 'helm-imenu)
 
 ;; MULTIPLE CURSORS:
-(global-set-key "\C-o" 'mc/mark-next-word-like-this)
 (global-set-key (kbd "C-S-o") 'mc/mark-next-word-like-this)
 
 ;;@============================= YASNIPPETS
