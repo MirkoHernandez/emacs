@@ -9,16 +9,14 @@
          (concat
           "go build " file )))))
 
-;; Autoindentation and check errors on save.
+;; Autoindentation and checking errors on save.
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; https://github.com/dougm/goflymake
-(add-to-list 'load-path (concat emacs-root "emacs/packages/goflymake2/"))
+(add-to-list 'load-path (concat emacs-root "emacs/packages/goflymake"))
 
-(if (not (require 'go-flycheck nil t))
+(if (not (require 'go-flymake nil t))
     (message "`goflymake' not found"))
-
-(require 'go-flymake)
 
 ;; NOTE: Remember to install gocode and set the path of the go
 ;; binaries e.i. export PATH=${PATH}:${GOPATH}/bin)
