@@ -172,7 +172,7 @@ profile, windows, libraries (sdl sdl2 allegro opengl)" )
              (set (make-local-variable 'compile-command)
 	     (create-compile-string
 	      (buffer-name-no-extension)
-	       (mapcar (lambda (a) (intern a)) (split-string (concat "c " ALLEGRO)))))))
+	       (mapcar (lambda (a) (intern a)) (split-string (concat "c " SDL)))))))
 
 
 

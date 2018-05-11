@@ -24,16 +24,15 @@
 (load-library "packages-setup")
 
 ;;@============================= Load Modes config
-
-(load-library "fonts-and-theme")
+(load-library "look")
 (load-library "modes-config")
 (load-library "c-config")
 (load-library "c-compilation-config")
+(load-library "go-config")
 (load-library "efuncs")
 (load-library "site-efuncs")
 (load-library "keybinding_mode_specific")
 (load-library "keychords")
-
 ;;@============================= Misc
 (load-library "misc")
 

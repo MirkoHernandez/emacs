@@ -1,7 +1,4 @@
 ;;@============================= MISC
-
-
-
 ;; xcscope
 ;; (require 'xcscope)
 ;; (cscope-setup)

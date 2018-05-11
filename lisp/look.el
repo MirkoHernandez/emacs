@@ -45,3 +45,7 @@
 
 ;;@============================= THEME
 (load-theme 'zenburn t)
+
+;;@============================= HL-LINE
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "midnight blue")

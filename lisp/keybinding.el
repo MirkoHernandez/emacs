@@ -1,9 +1,7 @@
 ;;; ekeys.el ---
 
 ;;; Code:
-
-;;@============================= GLOBAL
-;; Rebind  some emacs default keybindings
+;;@============================= REBIND EMACS DEFAULTS
 (global-set-key (kbd "C-S-p") 'backward-paragraph)
 (global-set-key (kbd "C-S-n") 'forward-paragraph)
 (global-set-key (kbd "<apps>") 'execute-extended-command) ;; Windows
@@ -11,15 +9,26 @@
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
 (global-set-key (kbd "C-x t") 'end-of-buffer)
 
-(global-set-key (kbd "C-o") 'backward-up-list)
+(global-set-key (kbd "C-i") 'backward-up-list)
 (global-set-key (kbd "C-o") 'down-list)
+(global-set-key (kbd "C-8") 'backward-sexp)
+(global-set-key (kbd "C-9") 'forward-sexp)
+(global-set-key (kbd "C-1") 'widen)
+(global-set-key (kbd "C-2") 'narrow-to-defun)
+(global-set-key (kbd "C-3") 'narrow-to-region)
+
+(global-set-key (kbd "M-s") 'set-selective-display)
+(global-set-key (kbd "M-a") 'align-regexp)
+(global-set-key (kbd "M-,") 'find-tag)
+(global-set-key (kbd "M-.") 'pop-tag-mark)
+
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key "\C-w" 'backward-kill-word-or-selection)
-
 (global-set-key (kbd "M-o") 'query-replace-regexp)
 (global-set-key (kbd "M-k") 'kill-sexp)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-sexp)
 
+;;@============================= GENERAL KEYBINDINGS
 (global-set-key "\C-xp" 'fill-paragraph)
 (global-set-key [f7] 'next-error)
 (global-set-key "\C-w" 'backward-kill-word-or-selection)
