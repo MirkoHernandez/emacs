@@ -1,11 +1,12 @@
 
 ;;; editing.el --- Some of my editing functions.
 ;;; Commentary:
-
-;; Here are some of the functions that I find useful when editing, the
-;; only dependency  for using them  is yasnippet.   I use some  of the
-;; snippets with either  an abbrev or a key-chord;  since the snippets
-;; can be nested this facilitates  fast text insertion and movement in
+;; TODO: Refactor into a reusable snippets framework. Find reasonable
+;; abbrev replacement for much of the functions.
+;; Here are some of the functions that I find useful when I'm editing,
+;; the only dependency for using them is yasnippet.  I use some of the
+;; snippets with either an abbrev or a key-chord; since the snippets
+;; can be nested this facilitates fast text insertion and movement in
 ;; and out of strings and parentheses; the goal is to minimize the use
 ;; of the movement keys as much as possible.
 
@@ -56,8 +57,8 @@ elements are not going to be replaced."
 ;;@============================= EDITING FUNCTIONS
 
 (defun refactor-line-or-selection-any (beg end )
-  "Replace the selected text (or the  line at point if no region
-is active) with  the exact same text but the  elements inside the
+  "Replace the selected text (or the line at point if no region
+is active) with the exact same text but the elements inside the
 selection are replaced with yasnippet templates."
   (interactive (if (use-region-p)
                    (list (region-beginning) (region-end))
@@ -116,7 +117,7 @@ to the next line."
   "Prompt for a list of  elements separated by a whitespace, then
 a  string  is  created  and  inserted  with  each  element  as  a
 single-quote string and a '+' character after each element except
-the last."
+for the last one."
   (interactive)
   (let  ((string (read-string "Strings: ")))
     (setq string (modify-string-enclose-words string " " "'" "'" ))
@@ -127,7 +128,7 @@ the last."
 (defun  insert-sum-elements ()
   "Prompt for a list of  elements separated by a whitespace, then
 a string is created and inserted  with a '+' character after each
-element except the last."
+element except the last one."
   (interactive)
   (let  ((string (read-string "Elements: ")))
     (setq string (modify-string-add-separator string " " " +" ))
@@ -163,17 +164,17 @@ element except the last."
 ;; by   toggling   the   amount   of   spaces   before   calling   the
 ;; snippets.
 
-(defvar yastext-spaces-for-commas  nil)
+(defvar my-text-spaces-for-commas  nil)
 
 (defun toggle-one-or-two-spaces-for-commas ()
   "Set yastext-spaces-for-commas to use either one or two spaces for commas."
   (interactive)
-  (setf yastext-spaces-for-commas
+  (setf my-text-spaces-for-commas
         (concat
          "$$(when (and yas-modified-p
                 yas-moving-away-p)
        (replace-regexp-in-string"
-         (if (string-match "\" \"" (if yastext-spaces-for-commas yastext-spaces-for-commas ""))
+         (if (string-match "\" \"" (if my-text-spaces-for-commas my-text-spaces-for-commas ""))
              "\"  \""
            "(if (string-match \"(.+)\" yas-text)  \"  \"   \" \")" )
          "\", \"  yas-text))")))
@@ -182,20 +183,20 @@ element except the last."
 ;; ;; Set one space as the  default.
 (toggle-one-or-two-spaces-for-commas)
 
-(defun yas-argments-with-commas ()
+(defun my-argments-with-commas ()
   (interactive)
   (yas-expand-snippet (concat  "${1:"
-                               yastext-spaces-for-commas
+                               my-text-spaces-for-commas
                                "}"
                                ))
   (signal 'quit nil))
 
 
-(defun  yas-add-assignment-and-semicolon ()
+(defun my-add-assignment-and-semicolon ()
   (interactive)
   (yas-expand-snippet "${1:foo} = $2;"))
 
-(defun yas-single-quote ()
+(defun my-single-quote ()
   (interactive)
   (yas-expand-snippet (concat  "'$1'"
                                (if (equal ")" (char-to-string (following-char)))
@@ -203,22 +204,22 @@ element except the last."
                                  " ")))
   (signal 'quit nil))
 
-(defun yas-parens ()
+(defun my-parens ()
   (interactive)
   (yas-expand-snippet (concat  "(${1:"
-                               yastext-spaces-for-commas
+                               my-text-spaces-for-commas
                                "})"
                                (if (equal ")" (char-to-string (following-char)))
                                    ""
                                  " ")))
   (signal 'quit nil))
 
-(defun yas-brackets ()
+(defun my-brackets ()
   (interactive)
   (if (string-match-p " " (char-to-string (preceding-char)) )
       (backward-char nil))
   (yas-expand-snippet (concat  "[${1:"
-                               yastext-spaces-for-commas
+                               my-text-spaces-for-commas
                                "}]"
                                (if (or (equal ")" (char-to-string (following-char)) )
                                        (equal "]" (char-to-string (following-char)) ))
@@ -227,22 +228,22 @@ element except the last."
   (signal'quit nil))
 
 
-(defun yas-function ()
+(defun my-function ()
   (interactive)
   (yas-expand-snippet (concat "$1(${2:"
-                              yastext-spaces-for-commas
+                              my-text-spaces-for-commas
                               "})$0"))
   (signal'quit nil))
 
 ;;@============================= LISP
-(defun yas-cl-setf ()
+(defun my-cl-setf ()
   (interactive)
   (yas-expand-snippet "(setf $1)")
   (signal 'quit nil))
 
 
 ;;@============================= YASNIPPET ORG
-(defun  yas-org-new-task ()
+(defun  my-org-new-task ()
   "Prompts for a schedule or deadline, inserts a timestamp at
 current time. Then inserts a template for a todo item."
   (interactive)
@@ -258,7 +259,7 @@ current time. Then inserts a template for a todo item."
                          (concat \":\"  yas-text \":\"))}$0" ))
 
 ;;@============================= YASNIPPET CSS
-(defun yas-css-property ()
+(defun my-css-property ()
   "Insert snippet for a CSS property and value, px is appended to numeric values."
   (interactive)
   (yas-expand-snippet "$1: ${2:$$(when (and yas-modified-p
@@ -269,9 +270,7 @@ current time. Then inserts a template for a todo item."
 
 ;;@============================= YASNIPPET JAVASCRIPT
 
-
-
-(defvar  yastext-js-math-replacements
+(defvar  my-text-js-math-replacements
   "$$(when (and yas-modified-p  yas-moving-away-p)
       (cond
        ((string-match   \"^f\\$\"  yas-text) \"floor\")
@@ -283,45 +282,45 @@ current time. Then inserts a template for a todo item."
        ((string-match   \"^t\\$\"  yas-text) \"tan\")
        ))")
 
-(defun yas-js-math ()
+(defun my-js-math ()
   (interactive)
   (yas-expand-snippet (concat "Math.${1:"
-                              yastext-js-math-replacements
+                              my-text-js-math-replacements
                               "}(${2:"
-                              yastext-spaces-for-commas
+                              my-text-spaces-for-commas
                               "})$0"))
   (signal'quit nil))
 
 
-(defun  yas-js-multiple-assignment ()
+(defun  my-js-multiple-assignment ()
   (interactive)
   (let  ((string (read-string "Variables: ")))
     (setq string (modify-string-add-separator string  " " " = ${},\n" t ))
     (yas-expand-snippet string)))
 
-(defun yas-js-this ()
+(defun my-js-this ()
   (interactive)
   (yas-expand-snippet "this.$1")
   (signal 'quit nil))
 
-(defun yas-js-var ()
+(defun my-js-var ()
   (interactive)
   (yas-expand-snippet "var $1 = $2;")
   (signal 'quit nil))
 
-(defun yas-js-object-item ()
+(defun my-js-object-item ()
   (interactive)
   (yas-expand-snippet (concat "$1 : $2")))
 
 
-(defun yas-js-object-item-same-name ()
+(defun my-js-object-item-same-name ()
   (interactive)
   (yas-expand-snippet "$1 : $1,"))
 
-(defun yas-js-object-function ()
+(defun my-js-object-function ()
   (interactive)
   (yas-expand-snippet (concat "$1 : function(${2:"
-                              yastext-spaces-for-commas
+                              my-text-spaces-for-commas
                               "}) {
 $3
 },")))
