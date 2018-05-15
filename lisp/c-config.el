@@ -47,8 +47,6 @@
              (setq outline-regexp "\\(@\\* \\|@\\*\\* \\|@\\*\\*\\* \\|@ \\| @ \\)" )))
 
 
-
-
 (defun my-autoindent-c ()
   (interactive)
   (when (executable-find "indent")
