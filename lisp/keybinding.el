@@ -11,8 +11,10 @@
 
 (global-set-key (kbd "C-i") 'backward-up-list)
 (global-set-key (kbd "C-o") 'down-list)
+(global-set-key (kbd "C-7") 'backward-up-list)
 (global-set-key (kbd "C-8") 'backward-sexp)
 (global-set-key (kbd "C-9") 'forward-sexp)
+(global-set-key (kbd "C-0") 'up-list)
 (global-set-key (kbd "C-1") 'widen)
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)

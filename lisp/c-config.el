@@ -45,3 +45,13 @@
 		   c-basic-offset 8
 		   company-backends '(company-gtags company-c-headers))
              (setq outline-regexp "\\(@\\* \\|@\\*\\* \\|@\\*\\*\\* \\|@ \\| @ \\)" )))
+
+
+
+
+(defun my-autoindent-c ()
+  (interactive)
+  (when (executable-find "indent")
+    (shell-command (concat "indent -kr -cli0 -cbi0 -ss -i8 -ip8 -ppi 2 "
+			   (buffer-file-name) ))))
+	  
