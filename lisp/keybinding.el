@@ -21,7 +21,7 @@
 
 (global-set-key (kbd "M-s") 'set-selective-display)
 (global-set-key (kbd "M-a") 'align-regexp)
-(global-set-key (kbd "M-,") 'find-tag)
+(global-set-key (kbd "M-,") 'ggtags-find-tag-dwim)
 (global-set-key (kbd "M-.") 'pop-tag-mark)
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
