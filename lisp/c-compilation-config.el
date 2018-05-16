@@ -81,8 +81,7 @@
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
   "Sets compile-command by selecting among a list of options."
-  (interactive "P\nsCompile command: c, cpp, cweb, multiple, debug,
-profile, windows, libraries (sdl sdl2 allegro opengl)" ) 
+  (interactive "P\nsCompile command: c, cpp, cweb, multiple, debug,profile, windows, libraries (sdl sdl2 allegro opengl)" ) 
     (set (make-local-variable 'compile-command)
          (create-compile-string (buffer-name-no-extension) (mapcar (lambda (a) (intern a)) (split-string config))))) 
 
@@ -172,7 +171,15 @@ profile, windows, libraries (sdl sdl2 allegro opengl)" )
              (set (make-local-variable 'compile-command)
 	     (create-compile-string
 	      (buffer-name-no-extension)
-	       (mapcar (lambda (a) (intern a)) (split-string (concat "c " SDL)))))))
+	      (mapcar (lambda (a) (intern a)) (split-string
+					       (concat "c " SDL)))))))
 
 
-
+(add-hook 'c++-mode-hook
+          (lambda ()
+             (set (make-local-variable 'compile-command)
+	     (create-compile-string
+	      (buffer-name-no-extension)
+	      (mapcar (lambda (a) (intern a)) (split-string
+					       (concat "cpp windows
+          run " )))))))
