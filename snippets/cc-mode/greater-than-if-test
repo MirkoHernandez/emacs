@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name :greater than if test 
+# key: gt
+# --
+if ($1 > $2)
+   $3
