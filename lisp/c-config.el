@@ -22,19 +22,13 @@
              (setq outline-regexp "\\(@\\* \\|@\\*\\* \\|@\\*\\*\\* \\|@ \\| @ \\)" )))
 
 
+(defun my-autoindent-c ()
+  (interactive)
+  (when (executable-find "indent")
+    (shell-command (concat "indent -kr -cli0 -cbi0 -ss -i8 -ip8 -ppi 2 "
+			   (buffer-file-name) ))))
+	  
 
 ;;@============================= FONTIFICATION
 (font-lock-add-keywords 'c-mode
                         '(("@.+" . font-lock-keyword-face)))
-(font-lock-add-keywords 'org-mode
-                        '(("@.+" . font-lock-keyword-face)))
-
-;;@============================= OTHER
-(defun c-lineup-arglist-tabs-only (ignored)
-  "Line up argument lists by tabs, not spaces."
-  (let* ((anchor (c-langelem-pos c-syntactic-element))
-         (column (c-langelem-2nd-pos c-syntactic-element))
-         (offset (- (1+ column) anchor))
-         (steps (floor offset c-basic-offset)))
-    (* (max steps 1)
-       c-basic-offset)))

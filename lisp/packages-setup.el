@@ -28,6 +28,8 @@
 	flycheck
 	smex
 	helm
+	;; C
+	ggtags
 	xcscope
 	;; lisp
 	paredit

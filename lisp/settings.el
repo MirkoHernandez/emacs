@@ -2,7 +2,7 @@
 ;;@============================= GENERAL SETTINGS
 (setq undo-limit 20000000)
 (setq undo-strong-limit 40000000)
-
+(global-auto-revert-mode t)
 
 ;;@============================= EMACS SPECIFIC FOLDERS
 (setq temporary-file-directory (concat emacs-root "emacs/tmp"))

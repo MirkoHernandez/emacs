@@ -2,5 +2,5 @@ org
 tmp
 packages
 
-emacs/misc.el
-emacs/custom.el
+lisp/misc.el
+lisp/custom.el
