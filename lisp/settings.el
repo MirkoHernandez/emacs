@@ -1,4 +1,7 @@
-
+;;@============================= HELPERS
+(defun load-if-exists (f)
+  (if (file-readable-p f)
+      (load-file f)))
 ;;@============================= GENERAL SETTINGS
 (setq undo-limit 20000000)
 (setq undo-strong-limit 40000000)
@@ -20,7 +23,8 @@
 
 ;;@============================= EMACS CUSTOMIZE FILE
 (setq custom-file (concat emacs-root "emacs/lisp/custom.el"))
-(load custom-file)
+(load-if-exists custom-file)
+
 ;;@============================= HS-MINOR-MODE
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 ;;@============================= AUTO-FILL-MODE  
@@ -136,6 +140,11 @@
 ;;@============================= GPG
 (require 'epa-file)
 (epa-file-enable)
+
+;;@============================= WINDOWS COMPATIBILITY
+(when (string-equal system-type "windows-nt")
+  (setq gnu-bin (getenv "GNUBIN")))
+
 ;;@============================= TEMPLATES
 (auto-insert-mode) 
 (setq auto-insert-directory (concat emacs-root "emacs/templates/"))
