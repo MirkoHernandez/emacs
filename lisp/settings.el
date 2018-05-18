@@ -109,7 +109,7 @@
 
 ;;@============================= DESKTOP
 ;; (desktop-change-dir (concat emacs-root "emacs/tmp/desktop"))
-(setq desktop-dirname             (concat emacs-root "emacs/tmp/desktop") 
+(setq desktop-dirname             (concat emacs-root "emacs/desktop") 
       desktop-base-file-name      "emacs.desktop"
       desktop-base-lock-name      "lock"
       desktop-path                (list desktop-dirname)
@@ -125,6 +125,7 @@
   (let ((desktop-load-locked-desktop "ask"))
     (desktop-read)
     (desktop-save-mode 1)))
+(desktop-read)
 
 ;;@============================= TERMINAL
 ;; (unless  (display-graphic-p)
