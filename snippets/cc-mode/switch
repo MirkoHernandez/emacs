@@ -3,9 +3,10 @@
 # key: switch
 # --
 switch (${1:expr}) {
-case ${2:constexpr}:${3: \{}
+case ${2:constexpr}:
+     {
     $0
-    break;
+    } break;
 ${3:$(if (string-match "\{" yas-text) "\}\n" "")}default:
     
 }
