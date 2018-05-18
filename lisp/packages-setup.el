@@ -28,6 +28,7 @@
 	flycheck
 	smex
 	helm
+	magit
 	;; C
 	ggtags
 	xcscope
