@@ -1,8 +1,11 @@
 
 ;;; editing.el --- Some of my editing functions.
 ;;; Commentary:
-;; TODO: Refactor into a reusable snippets framework. Find reasonable
-;; abbrev replacement for much of the functions.
+
+;; TODO: - Refactor into a reusable snippets framework.
+;;       - Find reasonable abbrev replacement for most of the
+;;         related functions.
+
 ;; Here are some of the functions that I find useful when I'm editing,
 ;; the only dependency for using them is yasnippet.  I use some of the
 ;; snippets with either an abbrev or a key-chord; since the snippets
@@ -246,6 +249,7 @@ element except the last one."
 (defun  my-org-new-task ()
   "Prompts for a schedule or deadline, inserts a timestamp at
 current time. Then inserts a template for a todo item."
+
   (interactive)
   (insert "Added: ")
   (org-insert-time-stamp nil t t)

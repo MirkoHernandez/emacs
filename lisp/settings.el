@@ -24,8 +24,9 @@
 ;;@============================= HS-MINOR-MODE
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 ;;@============================= AUTO-FILL-MODE  
-(add-hook 'prog-mode-hook #'auto-fill-mode)
-(setq default-justification 'full)
+(defun my-prog-mode-hook ()
+  (setq default-justification 'full))
+(add-hook 'prog-mode-hook #'my-prog-mode-hook)
 
 ;;@============================= IDO
 (setq ido-enable-flex-matching t)
