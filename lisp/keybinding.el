@@ -31,6 +31,11 @@
 (global-set-key (kbd "<M-backspace>") 'backward-kill-sexp)
 
 ;;@============================= GENERAL KEYBINDINGS
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "<M-S-down>") 'move-text-down)
+(global-set-key (kbd "<M-S-up>") 'move-text-up)
+
 (global-set-key "\C-xp" 'fill-paragraph)
 (global-set-key [f7] 'next-error)
 (global-set-key "\C-w" 'backward-kill-word-or-selection)
