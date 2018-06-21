@@ -1,6 +1,6 @@
 ;;@============================= LIBRARIES
 
-(defconst SDL2 " `sdl2-config --cflags --libs`  ")
+(defconst SDL2 " `sdl2-config --cflags --libs` -lSDL2_image -lpng -lz")
 (defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
 (defconst OPENGL " -IGL -IGLUT -lglut -lGLEW -lGL " )
 (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz -laldmd -ldumbd ")
@@ -72,7 +72,7 @@
 		 (setq compile-string (concat compile-string "../" buffername  file-extension " -o " buffername )))
 	       (setq compile-string (concat compile-string (libraries-string options) " "))
 	       (when run
-		 (setq compile-string (concat compile-string  " && " (if vs (concat default-directory "build/")  "./build/") buffername)))))))
+		 (setq compile-string (concat compile-string  " && " (if vs (concat default-directory "build/") (concat  default-directory "build/")) buffername)))))))
     compile-string))
 
 ;;(create-compile-string "buffername" '(c ))
