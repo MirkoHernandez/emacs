@@ -49,3 +49,6 @@
 ;;@============================= HL-LINE
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "midnight blue")
+
+;;@============================= FONT
+(set-frame-font "Liberation Mono-12" nil t)

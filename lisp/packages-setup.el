@@ -29,6 +29,7 @@
 	smex
 	helm
 	magit
+	move-text
 	;; C
 	ggtags
 	xcscope

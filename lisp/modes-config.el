@@ -1,7 +1,3 @@
-;;@============================= HELPERS
-(defun load-if-exists (f)
-  (if (file-readable-p f)
-      (load-file f)))
 ;;@=============================IDO-UBIQUITOUS
 (ido-ubiquitous-mode 1)
 
