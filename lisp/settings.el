@@ -123,7 +123,7 @@
       desktop-load-locked-desktop nil
       desktop-auto-save-timeout   30)
 
-(desktop-save-mode 1)
+(desktop-save-mode 0)
 
 (defun load-my-desktop ()
   (interactive)
