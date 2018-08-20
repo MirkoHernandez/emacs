@@ -61,12 +61,9 @@
   (local-set-key [C-S-backspace] 'delete)  (local-set-key [M-right] 'show-subtree))
 
 ;;@============================= JAVASCRIPT
-
 (add-hook 'js2-mode-hook (lambda ()
                            (define-key js2-mode-map  (kbd "C-x C-e") 'js-send-last-sexp)))
-
 ;;@============================= PYTHON
-
 (add-hook 'python-mode-hook (lambda ()
                            (define-key python-mode-map  (kbd "C-x C-e") 'python-shell-send-defun)))
 ;;@============================= C-MODE
@@ -100,3 +97,4 @@
 (global-set-key (kbd "<tab>") 'indent-for-tab-command)
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 (global-set-key (kbd "\C-x3") 'split-window-right-other-window)
+

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: function_recipe1
+# key: f1
+# --
+${1:void}  $2(${3:void}) {
+	   $1 result;
+	   return result;
+}
