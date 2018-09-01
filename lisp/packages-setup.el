@@ -35,6 +35,7 @@
 	xcscope
 	;; lisp
 	paredit
+	racket-mode
 	;; go
 	go-mode
 	go-eldoc
