@@ -123,7 +123,7 @@
       desktop-load-locked-desktop nil
       desktop-auto-save-timeout   30)
 
-(desktop-save-mode 1)
+(desktop-save-mode 0)
 
 (defun load-my-desktop ()
   (interactive)
@@ -150,6 +150,5 @@
 ;;@============================= TEMPLATES
 (auto-insert-mode) 
 (setq auto-insert-directory (concat emacs-root "emacs/templates/"))
-(setq auto-insert-query nil) 
-(define-auto-insert  ".*\\.c" "main.c")
-
+(setq auto-insert-query t) 
+(define-auto-insert "\.c" "main.c")

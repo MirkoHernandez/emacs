@@ -113,7 +113,7 @@ to the next line."
   (if  (equal ";" (char-to-string (preceding-char)))
       nil
     (insert ";"))
-  (end-of-line-and-indented-new-line))
+  (next-line))
 
 
 (defun  insert-concat-strings ()

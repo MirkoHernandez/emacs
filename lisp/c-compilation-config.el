@@ -3,7 +3,9 @@
 (defconst SDL2 " `sdl2-config --cflags --libs` -lSDL2_image -lpng -lz")
 (defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
 (defconst OPENGL " -IGL -IGLUT -lglut -lGLEW -lGL " )
-(defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz -laldmd -ldumbd ")
+;; (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz -laldmd -ldumbd ldumb")
+(defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz")
+
 (defconst ALLEGRO5" `allegro-config --libs` `pkg-config --cflags --libs allegro-5.0  ` -lldpng  -lpng -lz ")
 (defconst SRGP " -L/usr/X11R6/lib -lsrgp -lX11] ")
 (defconst WINLIBS " user32.lib gdi32.lib winmm.lib ")
@@ -16,13 +18,14 @@
   (file-name-sans-extension (file-name-nondirectory (buffer-name))))
 
 ;;@============================= COMPILATION COMMANDS
-(defun compile-or-delete-window ()
+(defun compile-or-delete-window (arg)
   "Delete the *compilation* window or call the compile command if the window does not exist.
   Every program is compiled and executed inside a build folder."
-  (interactive)
+  (interactive "p")
   (if (get-buffer "*compilation*")
       (progn
-        (delete-windows-on (get-buffer "*compilation*"))
+	(unless current-prefix-arg
+        (delete-windows-on (get-buffer "*compilation*")))
         (kill-buffer "*compilation*"))
     (progn
       (save-buffer)

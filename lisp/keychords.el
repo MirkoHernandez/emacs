@@ -42,6 +42,7 @@
 (key-chord-define lisp-mode-map "kk"  'slime-eval-last-expression)
 (key-chord-define emacs-lisp-mode-map "kk"  'eval-last-sexp)
 (key-chord-define lisp-mode-map "ii"  'slime-eval-defun)
+(key-chord-define c-mode-map "nn"  'add-semicolon)
 
 
 (key-chord-define lisp-mode-map "dd"  'slime-describe-symbol)
