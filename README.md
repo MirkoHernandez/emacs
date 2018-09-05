@@ -19,7 +19,7 @@ keybindings.
 ## Installation
 
 To install, clone this repository to a specific directory -  I use  `~/emacs` in Linux or  `C:/<username>/emacs` for a Windows installation.
-I usually symlink the .emacs file to my home folder in Linux or Users/<username>/AppData/Roaming/  in Windows.
+I usually symlink the .emacs file to my home folder in Linux or Users/`<username>`/AppData/Roaming/  in Windows.
 
 ## License
 MIT
