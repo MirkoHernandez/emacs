@@ -29,6 +29,7 @@
 (key-chord-define-global "db"   'delete-blank-lines)
 (key-chord-define-global "wr"   'kill-region)
 (key-chord-define-global "wt"   'yank)
+(key-chord-define-global "yy"   'helm-ag)
 (key-chord-define-global "qq"   'toggle-one-or-two-spaces-for-commas)
 (key-chord-define-global "ww"   'jump-to-register)
 ;; (key-chord-define-global "kn"   'hs-hide-all)
