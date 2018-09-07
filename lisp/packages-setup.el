@@ -30,6 +30,8 @@
 	helm
 	magit
 	move-text
+	ag
+	helm-ag
 	;; C
 	ggtags
 	xcscope
