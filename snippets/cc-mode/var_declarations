@@ -14,6 +14,4 @@
        (format "%s ${%d:ele};"variable (1+ num)  ))
      (number-sequence 1 count nil)
      "\n")
-    "\n$0"))
-
-  )
+    "\n$0")))
