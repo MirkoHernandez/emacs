@@ -64,18 +64,41 @@
 	     (command-string (if c  (if vs "cl -Zi " "gcc -std=c99 ")
 			       (if vs "cl -Zi " " g++ "))))
 	(progn (when cweb  
-		 (setq compile-string (concat "ctangle ../" buffername cweb-extension " && ")))
-	       (setq compile-string (concat compile-string command-string))
+		 (setq compile-string (concat "ctangle ../"
+					      buffername
+					      cweb-extension
+					      " && ")))
+	       (setq compile-string (concat compile-string
+					    command-string))
 	       (when profile
-		 (setq compile-string (concat compile-string "-pg ")))
+		 (setq compile-string (concat
+				       compile-string
+				       "-pg ")))
 	       (when debug
-		 (setq compile-string (concat compile-string "-g ")))
+		 (setq compile-string (concat
+				       compile-string
+				       "-g ")))
 	       (if multiple
-		   (setq compile-string (concat compile-string  " -c ../*/*" file-extension " -o main"))
-		 (setq compile-string (concat compile-string "../" buffername  file-extension " -o " buffername )))
-	       (setq compile-string (concat compile-string (libraries-string options) " "))
+		   (setq compile-string (concat
+					 compile-string
+					 "  ../*"
+					 file-extension
+					 " -o main"))
+		 (setq compile-string (concat compile-string
+					      "../"
+					      buffername
+					      file-extension
+					      " -o "
+					      buffername )))
+	       (setq compile-string (concat
+				     compile-string
+				     (libraries-string options)
+				     " "))
 	       (when run
-		 (setq compile-string (concat compile-string  " && " (if vs (concat default-directory "build/") (concat  default-directory "build/")) buffername)))))))
+		 (setq compile-string (concat compile-string
+					      " && " (if vs (concat default-directory "build/")
+						       (concat  default-directory "build/"))
+					      buffername)))))))
     compile-string))
 
 ;;(create-compile-string "buffername" '(c ))
@@ -87,7 +110,6 @@
   (interactive "P\nsCompile command: c, cpp, cweb, multiple, debug,profile, windows, libraries (sdl sdl2 allegro opengl)" ) 
     (set (make-local-variable 'compile-command)
          (create-compile-string (buffer-name-no-extension) (mapcar (lambda (a) (intern a)) (split-string config))))) 
-
 
 ;;@=============================  CHICKEN
 (defun chicken-compile ()
