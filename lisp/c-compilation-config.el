@@ -29,7 +29,11 @@
         (kill-buffer "*compilation*"))
     (progn
       (save-buffer)
-      (call-process-shell-command "mkdir -p build" nil 0)
+      (call-process-shell-command (concat "mkdir " (when (string-equal
+							  system-type
+							  "gnu/linux")
+						     "-p")
+					  " build" ) nil 0)
       (let ((default-directory (concat default-directory "build")))
         (compile compile-command)))))
 
