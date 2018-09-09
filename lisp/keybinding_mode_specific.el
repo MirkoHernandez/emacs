@@ -59,6 +59,10 @@
   (local-set-key [M-down] 'outline-forward-same-level)
   (local-set-key [M-left] 'hide-subtree)
   (local-set-key [C-S-backspace] 'delete)  (local-set-key [M-right] 'show-subtree))
+;;@============================= ORG
+(define-key org-mode-map (kbd "C-c b") (lambda ()  (interactive)
+					 (org-emphasize ?\*)))
+
 
 ;;@============================= JAVASCRIPT
 (add-hook 'js2-mode-hook (lambda ()
