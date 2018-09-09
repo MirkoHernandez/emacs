@@ -62,3 +62,10 @@
 (add-hook 'python-mode-hook (lambda ()
 			   (abbrev-mode t)
 			   (hs-minor-mode t)))
+
+;;@============================= ORG
+(set-face-attribute 'bold nil :height 130 :foreground "deep sky blue")
+
+(add-hook 'org-mode-hook (lambda ()
+			   (org-bullets-mode 1)))
+
