@@ -1,7 +1,6 @@
 
 ;;@============================= ORG KEYCHORDS
 (add-hook 'org-mode-hook (lambda ()
-                           (ac-html-bootstrap+)
                            (key-chord-define org-mode-map "xz"   'yas-org-new-task)
                            (key-chord-define org-mode-map "sx"   'org-time-stamp-inactive)))
 

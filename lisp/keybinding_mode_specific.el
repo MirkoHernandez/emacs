@@ -60,8 +60,10 @@
   (local-set-key [M-left] 'hide-subtree)
   (local-set-key [C-S-backspace] 'delete)  (local-set-key [M-right] 'show-subtree))
 ;;@============================= ORG
+(add-hook 'org-mode-hook (lambda ()
+
 (define-key org-mode-map (kbd "C-c b") (lambda ()  (interactive)
-					 (org-emphasize ?\*)))
+					 (org-emphasize ?\*)))))
 
 ;;@============================= JAVASCRIPT
 (add-hook 'js2-mode-hook (lambda ()
@@ -78,9 +80,7 @@
                                 (define-key c-mode-base-map  (kbd "C-<backspace>") 'backward-kill-word-or-selection)))
 
 ;;@============================= DIRED
-
 ;;(define-key dired-mode-map (kbd "C-q") 'dired-toggle-read-only)
-
 
 ;;@============================= COMPANY MODE 
 
