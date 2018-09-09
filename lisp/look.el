@@ -52,3 +52,6 @@
 
 ;;@============================= FONT
 (set-frame-font "Liberation Mono-12" nil t)
+
+;;@============================= FRINGES
+(fringe-mode (quote (1 . 1))) ;; Set fringe style to 'minimal
