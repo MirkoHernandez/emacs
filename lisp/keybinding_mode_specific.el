@@ -63,7 +63,6 @@
 (define-key org-mode-map (kbd "C-c b") (lambda ()  (interactive)
 					 (org-emphasize ?\*)))
 
-
 ;;@============================= JAVASCRIPT
 (add-hook 'js2-mode-hook (lambda ()
                            (define-key js2-mode-map  (kbd "C-x C-e") 'js-send-last-sexp)))
