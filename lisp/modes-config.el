@@ -64,8 +64,65 @@
 			   (hs-minor-mode t)))
 
 ;;@============================= ORG
+(setq org-directory (concat emacs-root "emacs/org"))
+(setq org-modules '(org-bbdb org-bibtex org-docview org-gnus org-habit org-drill org-info org-irc org-mhe org-rmail org-w3m))
+
+(eval-after-load "org" '(add-to-list 'org-modules 'org-timer))
+
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-agenda-files (list  (concat org-directory)))
+
+(setq org-capture-templates
+      '(
+	("n"
+	 "Note"
+	 entry
+	 (file+headline (concat org-directory "/notes.org") "Notes")
+	 "*  %?\n")
+	("t"
+	 "Daily task"
+	 entry
+	 (file+headline (concat org-directory "/daily-tasks.org") "Tasks")
+	 "* TODO %?\n %U\n")
+	("p"
+	 "Practice"
+	 entry
+	 (file+headline (concat org-directory "/practice.org") "Practice")
+	 "\n\n* ZERO %? :practice:\nSCHEDULED:<%(org-read-date nil nil \"+1d\")  +1d>\n:PROPERTIES:\n:STYLE: habit\n:LOGGING: 3TIMES(!) 6TIMES(!) 10TIMES(!) FINISHED(!)\n:END:")
+	("7"
+	 "Practice a few days during the week."
+	 entry
+	 (file+headline (concat org-directory "/practice.org") "Practice")
+	 "\n\n* TODO  %? :practice:\nSCHEDULED:<%(org-read-date nil nil \"+1d\")  .+2d/3d>")
+	("j"
+	 "Journal"
+	 entry
+	 (file+olp+datetree  (concat org-directory "/journal.org"))
+	 "* %?\nEntered on %U\n ")))
+
+(setq org-agenda-custom-commands
+      '(("p" "Practice"
+	 ((agenda ""))
+	 ((org-agenda-show-log t)
+	  (org-agenda-ndays 7)
+	  (org-agenda-log-mode-items '(state))
+	  (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregex ":practice:"))))))
+
+(setq org-todo-keywords ;; with utf8 characters.
+      '((sequence "☛ TODO" "|" "✔ DONE")
+	(sequence "⚑ WAITING(w)" "|")
+	(sequence "ε 3" "|" "ε 6" "|" "ε 10" "|" "FINISHED")
+	(sequence "|" "✘ CANCELED")))
+
+(setq org-log-into-drawer t)
+
+;; LOOKS
 (set-face-attribute 'bold nil :height 130 :foreground "deep sky blue")
 
+
 (add-hook 'org-mode-hook (lambda ()
+			   (set-face-attribute 'org-level-1 t :height 1.5 )
+ (set-face-attribute 'org-level-2 t :height 1.3 )
+
 			   (org-bullets-mode 1)))
 
