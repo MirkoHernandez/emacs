@@ -7,6 +7,8 @@
 (setq undo-strong-limit 40000000)
 (global-auto-revert-mode t)
 
+(setq create-lockfiles nil) ;; prevent the automatic creation of symbolic links
+
 ;;@============================= EMACS SPECIFIC FOLDERS
 (setq temporary-file-directory (concat emacs-root "emacs/tmp"))
 (setq my-backup-dir (concat emacs-root "emacs/tmp/backup"))
@@ -75,8 +77,6 @@
 	 entry
 	 (file+olp+datetree  (concat org-directory "/journal.org"))
 	 "* %?\nEntered on %U\n ")))
-
-
 
 (setq org-agenda-custom-commands
       '(("p" "Practice"

@@ -6,8 +6,9 @@
                            (eq system-type 'gnu/linux)
                            (eq system-type 'linux))
                        (concat "/home/" (getenv "USER") "/" )
-                       (concat "c:/" (getenv "USERNAME") "/")))
-		       
+                     (concat "c:/" (getenv "USERNAME") "/")))
+
+       
 ;;@============================= Set paths
 (cl-labels ((add-path (p)
 		      (add-to-list 'load-path
@@ -37,6 +38,4 @@
 (load-library "misc")
 ;;@============================= Shell
 ;; (shell)
-
-
 
