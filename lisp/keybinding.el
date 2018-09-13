@@ -6,8 +6,15 @@
 (global-set-key (kbd "C-S-n") 'forward-paragraph)
 (global-set-key (kbd "<apps>") 'execute-extended-command) ;; Windows
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
+;; (global-set-key (kbd "C-m") 'smex)
+
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
 (global-set-key (kbd "C-x t") 'end-of-buffer)
+
+(global-set-key (kbd "C-f") 'forward-word)
+(global-set-key (kbd "C-b") 'backward-word)
+(global-set-key (kbd "M-f") 'forward-sexp)
+(global-set-key (kbd "M-b") 'backward-sexp)
 
 (global-set-key (kbd "C-i") 'backward-up-list)
 (global-set-key (kbd "C-o") 'down-list)
@@ -18,6 +25,7 @@
 (global-set-key (kbd "C-1") 'widen)
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)
+
 
 (global-set-key (kbd "M-s") 'set-selective-display)
 (global-set-key (kbd "M-a") 'align-regexp)

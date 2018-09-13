@@ -34,6 +34,7 @@
   (setq default-justification 'full))
 (add-hook 'prog-mode-hook #'my-prog-mode-hook)
 
+
 ;;@============================= IDO
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -84,7 +85,6 @@
 ;;(send-string-to-terminal "\033]12;red\007")
 ;; Make it so that emacsclient can talk to this Emacs instance
 ;; (unless (daemonp) (server-mode 1))
-
 ;;@============================= GPG
 (require 'epa-file)
 (epa-file-enable)

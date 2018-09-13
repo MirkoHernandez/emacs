@@ -26,8 +26,10 @@
 (define-key global-map (kbd "C-;") 'iedit-mode)
 ;;@============================= autocomplete
 
-;; (define-key ac-menu-map (kbd "M-n") 'ac-next)
-;; (define-key ac-menu-map (kbd "M-p") 'ac-previous)
+
+
+(define-key ac-menu-map (kbd "M-n") 'ac-next)
+(define-key ac-menu-map (kbd "M-p") 'ac-previous)
 
 ;;(define-key ac-menu-map (kbd "<tab>") nil)
 ;;(define-key ac-menu-map (kbd "<S-tab>") nil)
