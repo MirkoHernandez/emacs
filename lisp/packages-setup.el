@@ -32,10 +32,13 @@
 	move-text
 	ag
 	helm-ag
+	diff-hl
+	keyfreq
 	;; C
 	ggtags
 	xcscope
 	;; lisp
+	ac-slime
 	paredit
 	racket-mode
 	;; go

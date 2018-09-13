@@ -7,7 +7,6 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(require 'smex)
 
 ;;@============================= PROJECTILE
 (projectile-global-mode t)
@@ -34,6 +33,18 @@
 
 ;;@============================= COMMON LISP
 (setq inferior-lisp-program "sbcl")
+
+;;@============================= EMACS LISP
+(require 'ac-slime)
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+				  ;; enable autocomplete
+				  (require 'auto-complete-config)
+				  (ac-config-default)
+				  (global-auto-complete-mode t)
+				  (auto-complete-mode t)
+				  (diff-hl-mode t)))
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+
 
 ;;@=============================  KEYCHORD
 (key-chord-mode 1)
@@ -125,4 +136,10 @@
  (set-face-attribute 'org-level-2 t :height 1.3 )
 
 			   (org-bullets-mode 1)))
+
+;;@============================= KEYFREQ
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
 

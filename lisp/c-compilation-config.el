@@ -1,5 +1,4 @@
 ;;@============================= LIBRARIES
-
 (defconst SDL2 " `sdl2-config --cflags --libs` -lSDL2_image -lpng -lz")
 (defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
 (defconst OPENGL " -IGL -IGLUT -lglut -lGLEW -lGL " )
@@ -36,6 +35,8 @@
 					  " build" ) nil 0)
       (let ((default-directory (concat default-directory "build")))
         (compile compile-command)))))
+
+
 
 ;;@============================= GENERATING COMPILE STRINGS
 (defun libraries-string (l)
