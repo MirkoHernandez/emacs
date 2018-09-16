@@ -77,6 +77,9 @@
 
 (add-hook 'c-mode-common-hook (lambda ()
                                 (define-key c-mode-base-map  (kbd "C-<backspace>") 'backward-kill-word-or-selection)))
+;; (add-hook 'compilation-mode-hook (lambda ()
+				;; (define-key compilation-mode-map  "q" 'kill-buffer-and-window )))
+
 ;;@============================= GO-MODE
 (add-hook 'c-mode-common-hook (lambda ()
                                 (define-key c-mode-base-map  (kbd "C-<backspace>") 'backward-kill-word-or-selection)))
