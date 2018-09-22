@@ -8,7 +8,6 @@
                        (concat "/home/" (getenv "USER") "/" )
                      (concat "c:/" (getenv "USERNAME") "/")))
 
-       
 ;;@============================= Set paths
 (cl-labels ((add-path (p)
 		      (add-to-list 'load-path
