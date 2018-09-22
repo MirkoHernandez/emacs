@@ -3,7 +3,12 @@
 (defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
 (defconst OPENGL " -IGL -IGLUT -lglut -lGLEW -lGL " )
 ;; (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz -laldmd -ldumbd ldumb")
-(defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz")
+
+(if (eq system-type 'windows-nt)
+    (progn 
+      (defconst ALLEGRO " -lallegro-4.4.2-mt"))
+  (progn 
+    (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz")))
 
 (defconst ALLEGRO5" `allegro-config --libs` `pkg-config --cflags --libs allegro-5.0  ` -lldpng  -lpng -lz ")
 (defconst SRGP " -L/usr/X11R6/lib -lsrgp -lX11] ")
@@ -112,7 +117,7 @@
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
   "Sets compile-command by selecting among a list of options."
-  (interactive "P\nsCompile command: c, cpp, cweb, multiple, debug,profile, windows, libraries (sdl sdl2 allegro opengl)" ) 
+  (interactive "P\nsCompile command: c, cpp, cweb, multiple, debug,profile, windows, libraries (sdl sdl2 allegro opengl): " ) 
     (set (make-local-variable 'compile-command)
          (create-compile-string (buffer-name-no-extension) (mapcar (lambda (a) (intern a)) (split-string config))))) 
 
@@ -203,8 +208,6 @@
 	      (buffer-name-no-extension)
 	      (mapcar (lambda (a) (intern a)) (split-string
 					       (concat "c " SDL)))))))
-
-
 (add-hook 'c++-mode-hook
           (lambda ()
              (set (make-local-variable 'compile-command)
