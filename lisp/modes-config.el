@@ -127,15 +127,15 @@
 
 (setq org-log-into-drawer t)
 
+(add-hook 'org-mode-hook (lambda ()
+			   (setq default-justification 'full)
+			   (turn-on-auto-fill)
+			   ;; LOOKS
+			   (set-face-attribute 'org-level-1 t :height 1.9 )
+			   (set-face-attribute 'org-level-2 t :height 1.3 )
+			   (org-bullets-mode 1)))
 ;; LOOKS
 (set-face-attribute 'bold nil :height 130 :foreground "deep sky blue")
-
-
-(add-hook 'org-mode-hook (lambda ()
-			   (set-face-attribute 'org-level-1 t :height 1.5 )
- (set-face-attribute 'org-level-2 t :height 1.3 )
-
-			   (org-bullets-mode 1)))
 
 ;;@============================= KEYFREQ
 (require 'keyfreq)
