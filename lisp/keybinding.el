@@ -6,7 +6,8 @@
 (global-set-key (kbd "C-S-n") 'forward-paragraph)
 (global-set-key (kbd "<apps>") 'execute-extended-command) ;; Windows
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
-;; (global-set-key (kbd "C-m") 'smex)
+(define-key input-decode-map [?\C-m] [C-m])
+(global-set-key (kbd "<C-m>") 'execute-extended-command)
 
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
 (global-set-key (kbd "C-x t") 'end-of-buffer)
@@ -68,6 +69,7 @@
 (define-key global-map "ñ" 'Control-X-prefix)
 
 
+
 ;;@================== INFO MODE
 (defun Info-bindings ()
   "sets shortcut bindings for Info  mode"
@@ -90,4 +92,8 @@
   (local-set-key [M-up] 'outline-backward-same-level)
   (local-set-key [M-down] 'outline-forward-same-level))
 
-(define-key minibuffer-inactive-mode-map (kbd "C-p") 'previous-line-or-history-element)
+
+;;@============================= MINIBUFFER
+
+(define-key minibuffer-local-map (kbd "C-p") 'previous-history-element)
+(define-key minibuffer-local-map (kbd "C-n") 'next-history-element)
