@@ -19,6 +19,7 @@
 (blink-cursor-mode 0) 
 
 ;;@============================= STARTUP
+(setq initial-major-mode 'emacs-lisp-mode)
 (setq ring-bell-function #'ignore
       inhibit-startup-screen t
       echo-keystrokes 0.1
