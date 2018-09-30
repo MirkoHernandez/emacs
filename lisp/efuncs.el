@@ -17,6 +17,17 @@
       (dabbrev-expand nil)
     (indent-for-tab-command)))
 
+(defun  add-semicolon ()
+  "Go to  the end of  the line,  delete any extra  whitespace and
+add a semicolon  (if there isn't one already in  place), then go
+to the next line."
+  (interactive)
+  (move-end-of-line 1)
+  (delete-horizontal-space)
+  (if  (equal ";" (char-to-string (preceding-char)))
+      nil
+    (insert ";"))
+  (next-line))
 
 (defun yas-dabbrev-or-next-field ()
   "Executes dabbrev when expanding a yasnippet field."
