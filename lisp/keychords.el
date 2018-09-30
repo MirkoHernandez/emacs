@@ -27,8 +27,8 @@
 ;; misc
 (key-chord-define-global "kk"  'projectile-find-file)
 (key-chord-define-global "yy"   'helm-ag)
-(key-chord-define-global "qq"   'toggle-one-or-two-spaces-for-commas)
-(key-chord-define-global "ww"   'jump-to-register)
+(key-chord-define-global "qq"   'outline-hide-sublevels)
+(key-chord-define-global "ww"   'outline-show-all)
 (key-chord-define-global "bb"   'bookmark-jump)
 
 ;;@============================= C
