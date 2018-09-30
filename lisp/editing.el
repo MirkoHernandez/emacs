@@ -1,4 +1,3 @@
-
 ;;; editing.el --- Some of my editing functions.
 ;;; Commentary:
 
@@ -103,17 +102,7 @@ change so that only identifiers should be available for editing."
         nil ))))
 
 
-(defun  add-semicolon ()
-  "Go to  the end of  the line,  delete any extra  whitespace and
-add a semicolon  (if there isn't one already in  place), then go
-to the next line."
-  (interactive)
-  (move-end-of-line 1)
-  (delete-horizontal-space)
-  (if  (equal ";" (char-to-string (preceding-char)))
-      nil
-    (insert ";"))
-  (next-line))
+
 
 
 (defun  insert-concat-strings ()
