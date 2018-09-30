@@ -6,6 +6,7 @@
 (global-set-key (kbd "<apps>") 'smex) ;; Windows
 (define-key input-decode-map [?\C-m] [C-m])
 (global-set-key (kbd "<C-m>") 'smex)
+(global-set-key (kbd "M-u") 'undo)
 
 ;; Narrow
 (global-set-key (kbd "M-s") 'set-selective-display)
@@ -48,6 +49,8 @@
 ;; Editing
 (global-set-key (kbd "M-a") 'align-regexp)
 (global-set-key (kbd "M-o") 'query-replace-regexp)
+(global-set-key (kbd "M-U") 'upcase-word)
+
 
 ;;@============================= GENERAL KEYBINDINGS
 (global-set-key (kbd "C--") 'text-scale-decrease)

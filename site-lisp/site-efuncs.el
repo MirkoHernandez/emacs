@@ -60,6 +60,15 @@
 
 
 ;;============================  EDITING 
+(defun backward-kill-sexp-or-selection(beg end)
+  "message region or \"empty string\" if none highlighted"
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list nil nil)))
+  (if (and beg end)
+      (kill-region beg end)
+    (call-interactively  'backward-kill-sexp)))
+
 (defun backward-kill-word-or-selection(beg end)
   "message region or \"empty string\" if none highlighted"
   (interactive (if (use-region-p)
@@ -68,6 +77,8 @@
   (if (and beg end)
       (kill-region beg end)
     (call-interactively  'backward-kill-word)))
+
+
 
 (defun copy-line (arg)
       "Copy lines (as many as prefix argument) in the kill ring"
