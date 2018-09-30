@@ -24,7 +24,6 @@
 	key-chord
 	ido-completing-read+
 	projectile
-	multiple-cursors
 	expand-region
 	flycheck
 	smex
@@ -35,6 +34,8 @@
 	helm-ag
 	diff-hl
 	keyfreq
+	iedit
+	smartscan
 	;; C
 	ggtags
 	xcscope
