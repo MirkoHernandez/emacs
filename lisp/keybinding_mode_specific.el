@@ -2,7 +2,6 @@
 (global-set-key (kbd "M-i") 'helm-imenu)
 
 ;; MULTIPLE CURSORS:
-(global-set-key (kbd "C-S-o") 'mc/mark-next-word-like-this)
 
 ;;@============================= YASNIPPETS
 (global-set-key (kbd "C-x y v") 'yas-visit-snippet-file)
@@ -13,21 +12,17 @@
 (global-set-key (kbd "C-x y a") 'aya-create)
 (global-set-key (kbd "C-x y e") 'aya-expand)
 ;;@============================= Expand Region
-(global-set-key (kbd "C-ñ") 'er/expand-region)
-(global-set-key (kbd "C-Ñ") 'er/contract-region)
-;;@============================= Multiple Cursors
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
+(global-set-key (kbd "C-:") 'er/expand-region)
+;; (global-set-key (kbd "C") 'er/contract-region)
 
 ;;@============================= iedit
-(define-key global-map (kbd "C-;") 'iedit-mode)
+;; (define-key global-map (kbd "C-;") 'iedit-mode)
+
+;;@============================= smartscan
+(define-key global-map (kbd "M-p") 'smartscan-symbol-go-backward)
+(define-key global-map (kbd "M-n") 'smartscan-symbol-go-forward)
+
 ;;@============================= autocomplete
-
-
-
 (define-key ac-menu-map (kbd "M-n") 'ac-next)
 (define-key ac-menu-map (kbd "M-p") 'ac-previous)
 
@@ -51,10 +46,10 @@
   (local-set-key [C-return] 'end-of-line-and-indented-new-line)
   (local-set-key [?\C-,] 'hide-sublevels)
   (local-set-key [?\C-.] 'show-all)
-  (local-set-key [?\M-p] 'outline-previous-visible-heading)
+  ;; (local-set-key [?\M-p] 'outline-previous-visible-heading)
+  ;; (local-set-key [?\M-n] 'outline-next-visible-heading)
   (local-set-key [M-S-up] 'outline-move-subtree-up)    
   (local-set-key [M-S-down] 'outline-move-subtree-down)
-  (local-set-key [?\M-n] 'outline-next-visible-heading)
   (local-set-key [C-S-left] 'hide-subtree)
   (local-set-key [C-S-right] 'show-onelevel)
   (local-set-key [M-up] 'outline-backward-same-level   )

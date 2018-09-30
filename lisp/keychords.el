@@ -4,32 +4,36 @@
 
 
 ;;@============================= GLOBAL
+;; editing
 (key-chord-define-global ",."     "[]\C-b")
 (key-chord-define-global "dt"    'duplicate-line)
-(key-chord-define-global "qw"   ' c-beginning-of-statement)
 (key-chord-define-global "kl"   'dabbrev-expand)
 (key-chord-define-global "KL"   'dabbrev-expand)
 (key-chord-define-global "jk"   'yas-expand)
 (key-chord-define-global "JK"   'yas-expand)
 (key-chord-define-global "jl"   'hippie-expand)
+;; movement
+(key-chord-define-global "qw"   ' c-beginning-of-statement)
+;;delete 
 (key-chord-define-global "dg"   'c-hungry-delete-forward-and-indent)
 (key-chord-define-global "DG"   'c-hungry-delete-forward-and-indent)
 (key-chord-define-global "db"   'delete-blank-lines)
 (key-chord-define-global "wf"   'kill-region)
 (key-chord-define-global "wg"   'yank)
+
+;; narrow
+(key-chord-define-global "hh"   'hs-hide-level)
+;; (key-chord-define-global "km"   'hs-show-all)
+;; misc
+(key-chord-define-global "kk"  'projectile-find-file)
 (key-chord-define-global "yy"   'helm-ag)
 (key-chord-define-global "qq"   'toggle-one-or-two-spaces-for-commas)
 (key-chord-define-global "ww"   'jump-to-register)
-;; (key-chord-define-global "kn"   'hs-hide-all)
-;; (key-chord-define-global "km"   'hs-show-all)
-(key-chord-define-global "ññ"   'self-insert-command)
-(key-chord-define-global "hh"   'insert-register)
-(key-chord-define-global "pp"  'projectile-find-file)
+(key-chord-define-global "bb"   'bookmark-jump)
 
 ;;@============================= C
-
 (add-hook 'org-mode-hook (lambda ()
-			   (key-chord-define c-mode-map "nn"  'add-semicolon)
+			   (key-chord-define c-mode-map ";;"  'add-semicolon)
 			   ))
 ;;@============================= ORG 
 (add-hook 'org-mode-hook (lambda ()
