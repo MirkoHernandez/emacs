@@ -70,6 +70,8 @@
 ;;@============================= C-MODE
 
 (add-hook 'c-mode-common-hook (lambda ()
+				(define-key c-mode-base-map  (kbd "C-j") 'newline)
+				(define-key c-mode-base-map  (kbd "<C-return>") 'electric-newline-and-maybe-indent)
                                 (define-key c-mode-base-map  (kbd "C-<backspace>") 'backward-kill-word-or-selection)))
 ;; (add-hook 'compilation-mode-hook (lambda ()
 				;; (define-key compilation-mode-map  "q" 'kill-buffer-and-window )))
@@ -89,14 +91,4 @@
 ;; (define-key company-active-map (kbd "C-n") 'company-select-next-or-abort)
 ;; (define-key company-active-map (kbd "C-N") 'company-select-next-or-abort)
 ;; (define-key html-mode-map (kbd "C-'") 'company-web-html)
-
-
-;;@============================= MY  FUNCTIONS 
-(global-set-key (kbd "C-S-l") 'kill-whole-line)
-(global-set-key (kbd "<backtab>") 'yas-expand-indent)
-(global-set-key  "\C-c+" 'increment-number-at-point)
-(global-set-key [f8] 'switch-to-previous-buffer)
-(global-set-key (kbd "<tab>") 'indent-for-tab-command)
-(global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
-(global-set-key (kbd "\C-x3") 'split-window-right-other-window)
 

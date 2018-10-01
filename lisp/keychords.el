@@ -32,8 +32,9 @@
 (key-chord-define-global "bb"   'bookmark-jump)
 
 ;;@============================= C
-(add-hook 'org-mode-hook (lambda ()
-			   (key-chord-define c-mode-map ";;"  'add-semicolon)
+(add-hook 'c-mode-hook (lambda ()
+			 (key-chord-define c-mode-map ";;"  'add-semicolon)
+			 (key-chord-define c-mode-map "ii"  'c-indent-defun)
 			   ))
 ;;@============================= ORG 
 (add-hook 'org-mode-hook (lambda ()
@@ -42,9 +43,9 @@
 
 ;;@============================= LISP KEYCHORDS
 
-(key-chord-define lisp-mode-map "kk"  'slime-eval-last-expression)
-(key-chord-define emacs-lisp-mode-map "kk"  'eval-last-sexp)
-(key-chord-define lisp-mode-map "ii"  'slime-eval-defun)
+;; (key-chord-define lisp-mode-map "kk"  'slime-eval-last-expression)
+;; (key-chord-define emacs-lisp-mode-map "kk"  'eval-last-sexp)
+;; (key-chord-define lisp-mode-map "ii"  'slime-eval-defun)
 
 
 (key-chord-define lisp-mode-map "dd"  'slime-describe-symbol)
