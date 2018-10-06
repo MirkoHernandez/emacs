@@ -34,7 +34,6 @@
 ;; (global-set-key (kbd "C-9") 'forward-sexp)
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 
-
 ;; Tags
 (global-set-key (kbd "M-.") 'ggtags-find-tag-dwim)
 (global-set-key (kbd "M-,") 'pop-tag-mark)
@@ -46,6 +45,8 @@
 (global-set-key "\C-w" 'backward-kill-word-or-selection)
 
 ;; Editing
+(global-set-key (kbd "<M-SPC>") 'mark-sexp)
+(global-set-key (kbd "<C-M-SPC>") 'just-one-space)
 (global-set-key (kbd "M-a") 'align-regexp)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-U") 'upcase-word)
