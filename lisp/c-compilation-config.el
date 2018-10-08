@@ -1,13 +1,16 @@
 ;;@============================= LIBRARIES
-(defconst SDL2 " `sdl2-config --cflags --libs` -lSDL2_image -lpng -lz")
-(defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
+
 (defconst OPENGL " -IGL -IGLUT -lglut -lGLEW -lGL " )
 ;; (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz -laldmd -ldumbd ldumb")
 
 (if (eq system-type 'windows-nt)
-    (progn 
+    (progn
+      (defconst SDL2 " -lSDL2_image -lpng -lz")
+      (defconst SDL " -lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer ")
       (defconst ALLEGRO " -lallegro-4.4.2-mt"))
-  (progn 
+  (progn
+    (defconst SDL2 " `sdl2-config --cflags --libs` -lSDL2_image -lpng -lz")
+    (defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
     (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz")))
 
 (defconst ALLEGRO5" `allegro-config --libs` `pkg-config --cflags --libs allegro-5.0  ` -lldpng  -lpng -lz ")
