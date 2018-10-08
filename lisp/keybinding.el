@@ -42,7 +42,7 @@
 (global-set-key (kbd "M-k") 'kill-sexp)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key "\C-w" 'backward-kill-word-or-selection)
+(global-set-key "\C-w" 'kill-region)
 
 ;; Editing
 (global-set-key (kbd "<M-SPC>") 'mark-sexp)

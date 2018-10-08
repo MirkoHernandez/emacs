@@ -53,11 +53,8 @@
 (setq abbrev-file-name (concat emacs-root "emacs/lisp/abbrevs"))
 (setq default-justification 'full)
 (setq kill-whole-line t)
-
-;; Emacs  defaults  (In  order  to remember  the  default  values  and
-;; experiment with variations)
 (delete-selection-mode 1)
-(transient-mark-mode 1)
+(setq transient-mark-mode nil)
 
 ;;@============================= DESKTOP
 ;; (desktop-change-dir (concat emacs-root "emacs/tmp/desktop"))
