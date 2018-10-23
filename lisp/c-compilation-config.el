@@ -181,7 +181,7 @@
     (shell-command
      (delete-cweave-files file))))
 
-(defun anook ()
+(defun pdf-to-external-drive ()
   "Shell command.  Copy pdf file to the directory where the external drive is mounted."
   (interactive)
   (let ((file (file-name-base)))
