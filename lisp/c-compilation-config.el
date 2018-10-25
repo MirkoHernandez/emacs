@@ -1,23 +1,29 @@
 ;;@============================= LIBRARIES
 
 (defconst OPENGL " -IGL -IGLUT -lglut -lGLEW -lGL " )
-;; (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz -laldmd -ldumbd ldumb")
+
+(defconst HANDMADE_COMPILER_FLAGS  " -MT -nologo -Gm- -GR- -EHa- -Od -Oi -WX -W4 -wd4201 -wd4100 -wd4189 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 -Fmwin32_handmade.map ")
+(defconst HANDMADE_LINKER_FLAGS " -opt:ref user32.lib gdi32.lib winmm.lib ")
+(defun compile-handmade19 (filename)
+  (concat "cl "  HANDMADE_COMPILER_FLAGS filename " /link -subsystem:windows,5.1 "  HANDMADE_LINKER_FLAGS ))
 
 (if (eq system-type 'windows-nt)
     (progn
       (defconst SDL2 " -lSDL2_image -lpng -lz")
+      (defconst HANDMADE "")
       (defconst SDL " -lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer ")
       (defconst ALLEGRO " -lallegro-4.4.2-mt"))
   (progn
     (defconst SDL2 " `sdl2-config --cflags --libs` -lSDL2_image -lpng -lz")
     (defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
-    (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz")))
+    (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz"))) ;;  -lm  -lpng -lz -laldmd -ldumbd ldumb"
+
 
 (defconst ALLEGRO5" `allegro-config --libs` `pkg-config --cflags --libs allegro-5.0  ` -lldpng  -lpng -lz ")
 (defconst SRGP " -L/usr/X11R6/lib -lsrgp -lX11] ")
 (defconst WINLIBS " user32.lib gdi32.lib winmm.lib ")
 
-(defvar terminal-run  "gnome-terminal -x ")
+(defconst terminal-run  "gnome-terminal -x ")
 
 ;;@============================= HELPERS
 (defun buffer-name-no-extension ()
@@ -45,7 +51,6 @@
         (compile compile-command)))))
 
 
-
 ;;@============================= GENERATING COMPILE STRINGS
 (defun libraries-string (l)
   (let ((libraries "" ))
@@ -62,15 +67,21 @@
 	 (c (member 'c options))
 	 (cpp (member 'cpp options))
 	 (cweb (member 'cweb options))
+	 (debug (member 'debug options))
 	 (make (member 'make options))
+	 (handmade  (member 'handmade options))
 	 (multiple (member 'multiple options))
 	 (profile (member 'profile options))
 	 (run (member 'run options))
 	 (vs (member 'windows  options))
-	 (debug (member 'debug options)))
+	 )
     (cond
      (make
       (setq compile-string "make"))
+     (handmade
+      (setq compile-string (compile-handmade19 (concat " ../win32_handmade.cpp" ))))
+
+     
      ((or c cpp)
       (let  ((file-extension (if c ".c " ".cpp "))
 	     (cweb-extension (if c ".w" ".w_cpp "))
@@ -132,7 +143,7 @@
     (set (make-local-variable 'compile-command)
          (let ((file  (file-name-base)))
            (concat
-            "csc "   file ".scm " )))))
+            "csc " file ".scm ")))))
 (defun cweb-terminal ()
   (interactive)
   (unless (or (file-exists-p "makefile")
