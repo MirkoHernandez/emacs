@@ -71,6 +71,7 @@
 
 (add-hook 'c-mode-common-hook (lambda ()
 				(define-key c-mode-base-map  (kbd "C-j") 'newline)
+				(define-key c-mode-base-map  (kbd "M-/") 'c-mark-function)
 				(define-key c-mode-base-map  (kbd "<C-return>") 'electric-newline-and-maybe-indent)
                                 (define-key c-mode-base-map  (kbd "C-<backspace>") 'backward-kill-word-or-selection)))
 ;; (add-hook 'compilation-mode-hook (lambda ()

@@ -57,7 +57,12 @@
 ;;@============================= GENERAL KEYBINDINGS
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-+") 'text-scale-increase)
+
 (global-set-key (kbd "<C-tab>") 'c-indent-defun)
+;; (define-key global-map "M-;" 'exchange-point-and-mark)
+
+(global-set-key (kbd "M-S-n") 'next-error)
+(global-set-key (kbd "M-S-p") 'previous-error)
 
 (global-set-key "\C-xp" 'fill-paragraph)
 (global-set-key [f7] 'next-error)
@@ -116,4 +121,6 @@
 (global-set-key (kbd "<tab>") 'indent-for-tab-command)
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 (global-set-key (kbd "\C-x3") 'split-window-right-other-window)
+
+
 
