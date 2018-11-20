@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name : case : {...}
-# key: case
+# name : case2 : {...}
+# key: case2
 # --
-`(indent-region (- (point) 20) (+ (point) 20) nil)`case ${2:constexpr}:${3: \{}
+case ${1:constexpr}:
+{
     $0
-${3:$(if (string-match "\{" yas-text) "\} break;" "")}
+} break;
