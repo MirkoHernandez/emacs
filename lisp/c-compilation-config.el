@@ -2,10 +2,49 @@
 
 (defconst OPENGL " -IGL -IGLUT -lglut -lGLEW -lGL " )
 
-(defconst HANDMADE_COMPILER_FLAGS  " -MT -nologo -Gm- -GR- -EHa- -Od -Oi -WX -W4 -wd4201 -wd4100 -wd4189 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 -Fmwin32_handmade.map ")
-(defconst HANDMADE_LINKER_FLAGS " -opt:ref user32.lib gdi32.lib winmm.lib ")
-(defun compile-handmade19 (filename)
-  (concat "cl "  HANDMADE_COMPILER_FLAGS filename " /link -subsystem:windows,5.1 "  HANDMADE_LINKER_FLAGS ))
+(defconst HANDMADE_COMPILER_FLAGS20  " -MT -nologo -Gm- -GR- -EHa- -Zo -O2 -Oi  -W4 -wd4201 -wd4100 -wd4189 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 -Fmwin32_handmade.map ")
+(defconst HANDMADE_LINKER_FLAGS20 " -opt:ref user32.lib gdi32.lib winmm.lib ")
+
+
+(defconst HANDMADE_COMPILER_FLAGS30  "      -MTd -nologo -fp:fast -Gm- -GR- -EHa- -Od -Oi  -W4 -wd4201 -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 ")
+;; Maximize Speed
+(defconst HANDMADE_COMPILER_FLAGS119  " -O2 -MTd -nologo -fp:fast -fp:except- -Gm- -GR- -EHa- -Zo -Oi  -W4 -wd4201 -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 ")
+;; No optimizations
+(defconst HANDMADE_COMPILER_FLAGS143 " -Od  -MTd -nologo -fp:fast -fp:except- -Gm- -GR- -EHa- -Zo -Oi  -W4 -wd4201 -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 ")
+
+(defconst HANDMADE_LINKER_FLAGS143 " -incremental:no -opt:ref user32.lib gdi32.lib winmm.lib ")
+
+(defun compile-handmade20(filename)
+  (concat "cl "  HANDMADE_COMPILER_FLAGS20 filename " /link -subsystem:windows,5.1 "  HANDMADE_LINKER_FLAGS20 ))
+
+(defun compile-handmade30 (filename)
+  (concat
+   "del *.pdb > NUL 2> NUL && "
+   "cl " HANDMADE_COMPILER_FLAGS30 " ../handmade.cpp -Fmhandmade.map /LD /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender "  
+          " && cl " HANDMADE_COMPILER_FLAGS30 " ../win32_handmade.cpp  -Fmhandmade.map  /link  "   HANDMADE_LINKER_FLAGS143 ))
+
+
+(defun compile-handmade119 (filename)
+  (concat
+   "del *.pdb > NUL 2> NUL && "
+   "cl " HANDMADE_COMPILER_FLAGS119 " ../handmade.cpp -Fmhandmade.map /LD /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender "  
+          " && cl " HANDMADE_COMPILER_FLAGS119 " ../win32_handmade.cpp  -Fmhandmade.map  /link  "   HANDMADE_LINKER_FLAGS143 ))
+
+
+(defun compile-handmade143 (filename)
+  (concat
+   "del *.pdb > NUL 2> NUL && "
+   "cl " HANDMADE_COMPILER_FLAGS143 " -I../iaca-win64/ ../handmade.cpp -Fmhandmade.map -LD /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender "  
+          " && cl " HANDMADE_COMPILER_FLAGS143 " ../win32_handmade.cpp  -Fmwin32_handmade.map  /link  "   HANDMADE_LINKER_FLAGS143 ))
+
+(defun compile-handmade144 (filename)
+  (concat
+   "del *.pdb > NUL 2> NUL && "
+   "cl " HANDMADE_COMPILER_FLAGS143 " -O2 -I../iaca-win64/ -c ../handmade_optimized.cpp -Fohandmade_optimized.obj  -LD "  
+   " && cl " HANDMADE_COMPILER_FLAGS143 " -I../iaca-win64/   ../win32_handmade.cpp handmade_optimized.obj -Fmhandmade.map -LD  /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender "
+   " && del lock.tmp  "
+   " && cl " HANDMADE_COMPILER_FLAGS143 " ../win32_handmade.cpp  -Fmwin32_handmade.map  /link  "   HANDMADE_LINKER_FLAGS143 ))
+
 
 (if (eq system-type 'windows-nt)
     (progn
@@ -79,7 +118,7 @@
      (make
       (setq compile-string "make"))
      (handmade
-      (setq compile-string (compile-handmade19 (concat " ../win32_handmade.cpp" ))))
+      (setq compile-string (compile-handmade144 (concat " ../win32_handmade.cpp" ))))
 
      
      ((or c cpp)
