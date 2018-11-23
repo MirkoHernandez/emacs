@@ -33,9 +33,10 @@
 	ag
 	helm-ag
 	diff-hl
-	keyfreq
 	iedit
 	smartscan
+	speed-type
+	keyfreq
 	;; C
 	ggtags
 	xcscope
