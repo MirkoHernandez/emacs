@@ -4,3 +4,4 @@ packages
 desktop
 lisp/misc.el
 lisp/custom.el
+snippets/work
