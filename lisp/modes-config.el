@@ -30,6 +30,7 @@
                            (set (make-local-variable 'company-backends) '(company-web-html))
                            (company-mode t)
                            (emmet-mode t)))
+(setq emmet-preview-default nil)
 
 ;;@============================= COMMON LISP
 (setq inferior-lisp-program "sbcl")
