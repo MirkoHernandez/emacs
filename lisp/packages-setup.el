@@ -59,6 +59,9 @@
 	;; javascript
 	js-comint
 	ac-js2
+	json-mode
+	;; elm
+	elm-mode
 	;; looks
 	org-bullets
 	beacon
