@@ -12,7 +12,7 @@
 (global-set-key (kbd "C-x y a") 'aya-create)
 (global-set-key (kbd "C-x y e") 'aya-expand)
 ;;@============================= Expand Region
-(global-set-key (kbd "C-:") 'er/expand-region)
+(global-set-key (kbd "C-;") 'er/expand-region)
 ;; (global-set-key (kbd "C") 'er/contract-region)
 
 ;;@============================= iedit
