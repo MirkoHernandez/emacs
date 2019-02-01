@@ -54,7 +54,7 @@
 (setq default-justification 'full)
 (setq kill-whole-line t)
 (delete-selection-mode 1)
-(setq transient-mark-mode nil)
+(setq transient-mark-mode t)
 
 ;;@============================= DESKTOP
 ;; (desktop-change-dir (concat emacs-root "emacs/tmp/desktop"))
