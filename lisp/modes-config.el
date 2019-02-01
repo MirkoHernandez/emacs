@@ -32,6 +32,27 @@
                            (emmet-mode t)))
 (setq emmet-preview-default nil)
 
+;; Fix XML folding
+(add-to-list 'hs-special-modes-alist
+             (list 'nxml-mode
+                   "<!--\\|<[^/>]*[^/]>"
+                   "-->\\|</[^/>]*[^/]>"
+                   "<!--"
+                   'nxml-forward-element
+                   nil))
+
+;; Fix HTML folding
+(dolist (mode '(sgml-mode
+                html-mode
+                html-erb-mode))
+  (add-to-list 'hs-special-modes-alist
+               (list mode
+                     "<!--\\|<[^/>]*[^/]>"
+                     "-->\\|</[^/>]*[^/]>"
+                     "<!--"
+                     'sgml-skip-tag-forward
+                     nil)))
+
 ;;@============================= COMMON LISP
 (setq inferior-lisp-program "sbcl")
 
