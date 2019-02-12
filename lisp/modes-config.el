@@ -27,9 +27,10 @@
 
 ;;@============================= HTML
 (add-hook 'html-mode-hook (lambda ()
-                           (set (make-local-variable 'company-backends) '(company-web-html))
-                           (company-mode t)
-                           (emmet-mode t)))
+                            (set (make-local-variable 'company-backends) '(company-web-html))
+			    (hs-minor-mode t)
+                            (company-mode t)
+                            (emmet-mode t)))
 (setq emmet-preview-default nil)
 
 ;; Fix XML folding
