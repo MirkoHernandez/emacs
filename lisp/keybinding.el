@@ -45,8 +45,8 @@
 (global-set-key "\C-w" 'backward-kill-word-or-selection)
 
 ;; Editing
-(global-set-key (kbd "<M-SPC>") 'mark-sexp)
-(global-set-key (kbd "<C-M-SPC>") 'just-one-space)
+(global-set-key (kbd "<C-M-SPC>") 'mark-sexp)
+;; (global-set-key (kbd "<C-M-SPC>") 'just-one-space)
 (global-set-key (kbd "M-a") 'align-regexp)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-U") 'upcase-word)
