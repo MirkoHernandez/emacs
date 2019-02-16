@@ -4,6 +4,7 @@
 # type: command
 # --
 (let ((yas-good-grace nil)
+     (count (read-number "Number of elements: "))
       (variable (read-string "Type: "))
       )
   (yas-expand-snippet
