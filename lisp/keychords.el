@@ -26,7 +26,7 @@
 ;; (key-chord-define-global "km"   'hs-show-all)
 ;; misc
 (key-chord-define-global "yy"  'projectile-find-file)
-(key-chord-define-global "yy"   'helm-ag)
+(key-chord-define-global "ff"   'helm-ag)
 (key-chord-define-global "qq"   'outline-hide-sublevels)
 (key-chord-define-global "ww"   'outline-show-all)
 (key-chord-define-global "bb"   'bookmark-jump)

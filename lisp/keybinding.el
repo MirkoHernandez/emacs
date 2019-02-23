@@ -121,6 +121,7 @@
 (global-set-key (kbd "<tab>") 'indent-for-tab-command)
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 (global-set-key (kbd "\C-x3") 'split-window-right-other-window)
+(global-set-key (kbd "C-S-j") 'find-corresponding-file)
 
 
 
