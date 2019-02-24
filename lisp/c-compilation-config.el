@@ -55,7 +55,7 @@
   (progn
     (defconst SDL2 " `sdl2-config --cflags --libs` -lSDL2_image -lpng -lz")
     (defconst SDL " `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer ")
-    (defconst ALLEGRO  " `allegro-config --libs`   -lm  -lpng -lz"))) ;;  -lm  -lpng -lz -laldmd -ldumbd ldumb"
+    (defconst ALLEGRO  " `allegro-config --libs` -lm  -lpng -lz"))) ;;  -lm  -lpng -lz -laldmd -ldumbd ldumb"
 
 
 (defconst ALLEGRO5" `allegro-config --libs` `pkg-config --cflags --libs allegro-5.0  ` -lldpng  -lpng -lz ")
@@ -76,8 +76,8 @@
   (interactive "p")
   (if (get-buffer "*compilation*")
       (progn
-	(unless current-prefix-arg
-        (delete-windows-on (get-buffer "*compilation*")))
+	;; (unless current-prefix-arg
+        ;; (delete-windows-on (get-buffer "*compilation*")))
         (kill-buffer "*compilation*"))
     (progn
       (save-buffer)
@@ -112,8 +112,7 @@
 	 (multiple (member 'multiple options))
 	 (profile (member 'profile options))
 	 (run (member 'run options))
-	 (vs (member 'windows  options))
-	 )
+	 (vs (member 'windows  options)))
     (cond
      (make
       (setq compile-string "make"))
