@@ -2,7 +2,6 @@
 
 ;;; Code:
 ;;@============================= REBIND EMACS DEFAULTS
-
 (global-set-key (kbd "<apps>") 'smex) ;; Windows
 (define-key input-decode-map [?\C-m] [C-m])
 (global-set-key (kbd "<C-m>") 'smex)
@@ -13,6 +12,14 @@
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)
 
+
+;; Handmade hero keybindings
+(global-set-key (kbd "C-q") 'kill-ring-save)
+(global-set-key (kbd "C-f") 'yank)
+(global-set-key (kbd "M-o") 'query-replace)
+(global-set-key (kbd "M-g") 'goto-line)
+
+
 ;; Movement
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
 (global-set-key (kbd "C-x t") 'end-of-buffer)
@@ -22,8 +29,6 @@
 (global-set-key (kbd "C-i") 'beginning-of-defun)
 (global-set-key (kbd "C-o") 'end-of-defun)
 
-(global-set-key (kbd "C-f") 'forward-sexp)
-(global-set-key (kbd "C-b") 'backward-sexp)
 
 (global-set-key (kbd "C-8") 'backward-up-list)
 (global-set-key (kbd "C-9") 'down-list)
@@ -42,13 +47,14 @@
 (global-set-key (kbd "M-k") 'kill-sexp)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key "\C-w" 'backward-kill-word-or-selection)
+;; (global-set-key "\C-w" 'backward-kill-word-or-selection)
+(global-set-key "\C-w" 'kill-region)
+
 
 ;; Editing
 (global-set-key (kbd "<C-M-SPC>") 'mark-sexp)
 ;; (global-set-key (kbd "<C-M-SPC>") 'just-one-space)
 (global-set-key (kbd "M-a") 'align-regexp)
-(global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-U") 'upcase-word)
 (global-set-key (kbd "<M-S-down>") 'move-text-down)
 (global-set-key (kbd "<M-S-up>") 'move-text-up)
@@ -122,6 +128,3 @@
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 (global-set-key (kbd "\C-x3") 'split-window-right-other-window)
 (global-set-key (kbd "C-S-j") 'find-corresponding-file)
-
-
-

@@ -26,7 +26,7 @@
 ;; (key-chord-define-global "km"   'hs-show-all)
 ;; misc
 (key-chord-define-global "yy"  'projectile-find-file)
-(key-chord-define-global "ff"   'helm-ag)
+(key-chord-define-global "jj"   'helm-ag)
 (key-chord-define-global "qq"   'outline-hide-sublevels)
 (key-chord-define-global "ww"   'outline-show-all)
 (key-chord-define-global "bb"   'bookmark-jump)
@@ -34,8 +34,7 @@
 ;;@============================= C
 (add-hook 'c-mode-hook (lambda ()
 			 (key-chord-define c-mode-map ";;"  'add-semicolon)
-			 (key-chord-define c-mode-map "ii"  'c-indent-defun)
-			   ))
+			 (key-chord-define c-mode-map "ii"  'c-indent-defun)))
 ;;@============================= ORG 
 (add-hook 'org-mode-hook (lambda ()
                            (key-chord-define org-mode-map "xz"   'yas-org-new-task)

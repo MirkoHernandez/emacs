@@ -3,12 +3,10 @@
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
-
 (defun split-window-right-other-window ()
   (interactive)
   (split-window-right)
   (other-window 1))
-
 
 (defun find-corresponding-file ()
   "Find the file that corresponds to this one."
@@ -66,7 +64,7 @@
       (dabbrev-expand nil)
     (indent-for-tab-command)))
 
-(defun  add-semicolon ()
+(defun add-semicolon ()
   "Go to  the end of  the line,  delete any extra  whitespace and
 add a semicolon  (if there isn't one already in  place), then go
 to the next line."
@@ -104,6 +102,15 @@ to the next line."
   (interactive)
   (c-hungry-delete-forward)
   ( indent-for-tab-command))
+
+(defun query-replace-in-region (old-word new-word)
+  "Perform a replace-string in the current region."
+  (interactive "sReplace: \nsReplace: %s  With: ")
+  (save-excursion (save-restriction
+		    (narrow-to-region (mark) (point))
+		    (beginning-of-buffer)
+		    (replace-string old-word new-word)
+		    )))
 
 ;; Protect abbrevs
 (defun protect-underscore ()
