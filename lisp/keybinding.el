@@ -38,6 +38,7 @@
 ;; (global-set-key (kbd "C-8") 'backward-sexp)
 ;; (global-set-key (kbd "C-9") 'forward-sexp)
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
+(global-set-key (kbd "C-j") 'newline)
 
 ;; Tags
 (global-set-key (kbd "M-.") 'ggtags-find-tag-dwim)
