@@ -64,7 +64,7 @@
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-+") 'text-scale-increase)
 
-(global-set-key (kbd "<C-tab>") 'c-indent-defun)
+(global-set-key (kbd "<C-tab>") 'indent-region)
 ;; (define-key global-map "M-;" 'exchange-point-and-mark)
 
 (global-set-key (kbd "M-S-n") 'next-error)
