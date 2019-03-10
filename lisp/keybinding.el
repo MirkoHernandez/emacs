@@ -19,6 +19,11 @@
 (global-set-key (kbd "M-o") 'query-replace)
 (global-set-key (kbd "M-g") 'goto-line)
 
+;; Outline
+(global-set-key (kbd "<M-up>") 'outline-show-all)
+(global-set-key (kbd "<M-down>") 'outline-hide-body)
+(global-set-key (kbd "<M-right>") 'outline-toggle-children)
+(global-set-key (kbd "<M-left>") 'outline-toggle-children)
 
 ;; Movement
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
@@ -37,8 +42,6 @@
 
 ;; (global-set-key (kbd "C-8") 'backward-sexp)
 ;; (global-set-key (kbd "C-9") 'forward-sexp)
-(global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
-(global-set-key (kbd "C-j") 'newline)
 
 ;; Tags
 (global-set-key (kbd "M-.") 'ggtags-find-tag-dwim)
@@ -53,6 +56,9 @@
 
 
 ;; Editing
+(global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
+(global-set-key (kbd "C-j") 'newline)
+
 (global-set-key (kbd "<C-M-SPC>") 'mark-sexp)
 ;; (global-set-key (kbd "<C-M-SPC>") 'just-one-space)
 (global-set-key (kbd "M-a") 'align-regexp)
@@ -76,6 +82,7 @@
 (global-set-key [f5] 'compile-or-delete-window)
 (global-set-key [f6]  'comment-line)
 (global-set-key [f8] 'switch-to-previous-buffer)
+(global-set-key [f9] 'first-error)
 
 ;;@============================= ORG
 (global-set-key "\C-cl" 'org-store-link)
@@ -89,6 +96,8 @@
 ;;@============================= HIDE/SHOW
 (define-key  global-map [C-S-right] 'hs-show-block)
 (define-key  global-map  [C-S-left] 'hs-hide-block)
+
+
 
 
 ;;@================== INFO MODE
@@ -129,3 +138,5 @@
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 (global-set-key (kbd "\C-x3") 'split-window-right-other-window)
 (global-set-key (kbd "C-S-j") 'find-corresponding-file)
+
+
