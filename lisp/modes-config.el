@@ -1,8 +1,8 @@
-;;@=============================IDO-UBIQUITOUS
+;;@============================= IDO-UBIQUITOUS
 (ido-ubiquitous-mode 1)
 
 ;;@============================= SMEX
-;;; smex, remember recently and most frequently used commands
+;; smex, remember recently and most frequently used commands
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
@@ -65,11 +65,14 @@
 				  (ac-config-default)
 				  (global-auto-complete-mode t)
 				  (auto-complete-mode t)
+				  (outline-minor-mode)
+				  (setq outline-regexp ";;@")
 				  (diff-hl-mode t)))
+
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 
 
-;;@=============================  KEYCHORD
+;;@============================= KEYCHORD
 (key-chord-mode 1)
 (defvar key-chord-two-keys-delay 0.1)   ; 0.05 or 0.1
 (defvar key-chord-one-key-delay 0.08)
@@ -92,6 +95,8 @@
 (require 'flymake-python-pyflakes)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (setq flymake-python-pyflakes-executable "flake8")
+
+(setq python-shell-interpreter "python3.5")
 
 (add-hook 'python-mode-hook (lambda ()
 			   (abbrev-mode t)
@@ -164,13 +169,3 @@
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
-
-;;@============================= HELM-AG
-
-
-
-
-
-
-
-
