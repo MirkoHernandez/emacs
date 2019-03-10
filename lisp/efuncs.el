@@ -11,6 +11,7 @@
 (defun find-corresponding-file ()
   "Find the file that corresponds to this one."
   (interactive)
+
   (find-file
    (let ((base-filename (file-name-sans-extension (buffer-name)))
 	 (file-name (buffer-name)))
@@ -136,3 +137,5 @@ to the next line."
 (defun thunar()
   (interactive)
   (start-process "thunar" nil "thunar" (buffer-file-name) ))
+
+
