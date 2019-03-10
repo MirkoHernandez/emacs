@@ -99,8 +99,10 @@
 (setq python-shell-interpreter "python3.5")
 
 (add-hook 'python-mode-hook (lambda ()
-			   (abbrev-mode t)
-			   (hs-minor-mode t)))
+			      (setq outline-regexp "###")
+			      (outline-minor-mode )
+			      (abbrev-mode t)
+			      (hs-minor-mode t)))
 
 ;;@============================= ORG
 (setq org-directory (concat emacs-root "emacs/org"))

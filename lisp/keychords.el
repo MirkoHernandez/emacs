@@ -23,6 +23,8 @@
 
 ;; narrow
 (key-chord-define-global "hh"   'hs-hide-level)
+(key-chord-define-global "hh"   'hs-hide-level)
+
 ;; (key-chord-define-global "km"   'hs-show-all)
 ;; misc
 (key-chord-define-global "yy"  'projectile-find-file)
