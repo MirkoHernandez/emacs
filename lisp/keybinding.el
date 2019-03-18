@@ -14,7 +14,6 @@
 
 
 ;; Handmade hero keybindings
-(global-set-key (kbd "C-q") 'kill-ring-save)
 (global-set-key (kbd "C-f") 'yank)
 (global-set-key (kbd "M-o") 'query-replace)
 (global-set-key (kbd "M-g") 'goto-line)
@@ -100,7 +99,7 @@
 
 
 
-;;@================== INFO MODE
+;;@============================= INFO MODE
 (defun Info-bindings ()
   "sets shortcut bindings for Info  mode"
   (local-set-key (kbd "<tab>") 'Info-next-reference))
