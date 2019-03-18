@@ -55,12 +55,10 @@
 
 (define-abbrev-table 'c-mode-abbrev-table
   '(
-    ("and" "&&" nil 0)
-    ("is" "==" nil 4)
+    ("eq" "==" nil 4)
     ("ne" "!=" nil 0)
-    ("not" "!" nil 0)
     ("nu" "NULL" nil 2)
-    ("or" "||" nil 2)
+    ("o" "||" nil 2)
     ("r" "return" nil 0)
    ))
 
