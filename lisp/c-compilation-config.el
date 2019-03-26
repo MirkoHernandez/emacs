@@ -48,7 +48,7 @@
 
 (if (eq system-type 'windows-nt)
     (progn
-      (defconst SDL2 " -lSDL2_image -lpng -lz")
+      (defconst SDL2 " -lSDL2_image -lpng -lz -lm")
       (defconst HANDMADE "")
       (defconst SDL " -lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer ")
       (defconst ALLEGRO " -lallegro-4.4.2-mt"))
