@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# contributor: 
+# name: for_pointers
+# key: forp
+# --
+for (${1:Type} *${2:var} = $3 ; $2 < $3 + ${4:MAXIMUM}; $2++) {
+    $0
+}
