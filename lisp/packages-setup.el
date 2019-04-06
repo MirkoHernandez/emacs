@@ -41,6 +41,7 @@
 	speed-type
 	keyfreq
 	;; C
+	helm-cscope 
 	ggtags
 	xcscope
 	;; lisp
