@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: recipe
+# key: r
+# --
+;; $1: $2 -> $3
+;;
+;; Examples: $4  should produce $5
+;; Tests:
