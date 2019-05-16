@@ -1,5 +1,6 @@
 ;;@============================= HELM
 (global-set-key (kbd "M-i") 'helm-imenu)
+(global-set-key (kbd "M-b") 'helm-buffers-list)
 
 ;; MULTIPLE CURSORS:
 

@@ -46,6 +46,9 @@
 ;;@============================= Ignored * buffers
 (set-frame-parameter (selected-frame) 'buffer-predicate #'buffer-file-name)
 
+
+
+
 ;@============================= EDITING CONFIG
 
 (set-default 'truncate-lines t)
