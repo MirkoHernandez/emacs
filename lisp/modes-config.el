@@ -201,3 +201,15 @@
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
+
+
+
+;;@============================= HELM
+(setf helm-boring-buffer-regexp-list '("\\` " "\\*helm" "\\*helm-mode"
+				       "\\*Help" "\\*Buffer " 
+                                       "\\*Echo Area" "\\*Minibuf" "\\*monky-cmd-process\\*"
+                                       "\\*epc con" "\\*Compile-Log\\*" "\\*monky-process\\*"
+                                       "\\*CEDET CScope\\*" "\\*Messages\\*" "\\*Flycheck error"
+                                       "\\*.+(.+)" "elpa/.+" "tramp/.+"
+                                       "\\*Gofmt Errors\\*" "\\*autopep8"
+                                       "\\*magit-process:" "\\*magit-diff:" "\\*anaconda-mode\\*"))
