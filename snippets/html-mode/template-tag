@@ -1,0 +1,4 @@
+#name : template-tag
+#key :t
+# --
+{{$1}}

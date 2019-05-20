@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#name : constructor-public
+#key: cp
+# --
+constructor(public $1 :$2) {
+    $3
+}
+
