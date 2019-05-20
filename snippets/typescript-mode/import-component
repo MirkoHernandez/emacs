@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : import-component
+#key: ic
+# --
+import { Component } from '@angular/core';

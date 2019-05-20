@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name :public
+#key: p
+# --
+public $1: $2
