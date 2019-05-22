@@ -89,6 +89,26 @@
 
 (setq inferior-js-program-command "node")
 (setq inferior-js-program-arguments '("--interactive"))
+;;@============================= TYPESCRIPT
+(add-to-list 'exec-path (getenv "NODEPATH"))
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (company-mode t)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
 
 ;;@============================= GIMP
 ;; git clone git://github.com/pft/gimpmode.git
@@ -216,3 +236,5 @@
                                        "\\*.+(.+)" "elpa/.+" "tramp/.+"
                                        "\\*Gofmt Errors\\*" "\\*autopep8"
                                        "\\*magit-process:" "\\*magit-diff:" "\\*anaconda-mode\\*"))
+
+

@@ -12,10 +12,11 @@
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)
 (global-set-key (kbd "C-x C-e") 'pp-eval-last-sexp)
+(global-set-key (kbd "M-r") 'query-replace)
+(global-set-key (kbd "M-o") 'other-window)
 
 ;; Handmade hero keybindings
 (global-set-key (kbd "C-f") 'yank)
-(global-set-key (kbd "M-o") 'query-replace)
 (global-set-key (kbd "M-g") 'goto-line)
 
 ;; Outline
