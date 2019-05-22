@@ -12,18 +12,18 @@
 ;; AutoYasnippets
 (global-set-key (kbd "C-x y a") 'aya-create)
 (global-set-key (kbd "C-x y e") 'aya-expand)
-;;@============================= Expand Region
+;;@============================= EXPAND REGION
 (global-set-key (kbd "C-;") 'er/expand-region)
 ;; (global-set-key (kbd "C") 'er/contract-region)
 
-;;@============================= iedit
+;;@============================= IEDIT
 ;; (define-key global-map (kbd "C-;") 'iedit-mode)
 
-;;@============================= smartscan
+;;@============================= SMARTSCAN
 (define-key global-map (kbd "M-p") 'smartscan-symbol-go-backward)
 (define-key global-map (kbd "M-n") 'smartscan-symbol-go-forward)
 
-;;@============================= autocomplete
+;;@============================= AUTOCOMPLETE
 (define-key ac-menu-map (kbd "M-n") 'ac-next)
 (define-key ac-menu-map (kbd "M-p") 'ac-previous)
 
@@ -31,14 +31,20 @@
 ;;(define-key ac-menu-map (kbd "<S-tab>") nil)
 ;;(define-key ac-complete-mode-map (kbd "<tab>") 'yas-next-field)
 
-;;@============================= Racket
+
+;;@============================= NEOTREE
+(global-set-key (kbd "C-h") 'neotree)
+(add-hook ' neotree-mode-hook
+          (lambda ()
+            (define-key neotree-mode-map (kbd "C-h") 'neotree-hide)))
+;;@============================= RACKET
 (add-hook 'racket-mode-hook
           (lambda ()
 	    (paredit-mode 1)
             (define-key racket-mode-map (kbd "C-c r") 'racket-run)
             (define-key racket-mode-map (kbd "C-x e") 'racket-send-last-sexp)))
 
-;;@============================= Scheme
+;;@============================= SCHEME
 (defun scheme-outline-bindings ()
   "sets shortcut bindings for outline minor mode"
   (interactive)
