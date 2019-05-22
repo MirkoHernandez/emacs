@@ -95,3 +95,9 @@
 ;; (define-key company-active-map (kbd "C-N") 'company-select-next-or-abort)
 ;; (define-key html-mode-map (kbd "C-'") 'company-web-html)
 
+;;@============================= PAREDIT
+(add-hook 'paredit-mode-hook (lambda ()
+			       (define-key paredit-mode-map  (kbd "C-<right>") nil)
+			       (define-key paredit-mode-map  (kbd "C-<left>") nil)
+			       (define-key paredit-mode-map (kbd "C-S-<right>") 'paredit-forward-slurp-sexp)
+			       (define-key paredit-mode-map (kbd "C-S-<left>") 'paredit-forward-barf-sexp)))
