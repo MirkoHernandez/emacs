@@ -8,49 +8,73 @@
   (split-window-right)
   (other-window 1))
 
-(defun corresponding-file (base-filename expected)
-  (if (file-exists-p (concat base-filename expected))
-	  (concat base-filename expected)
-    nil))
 
-(defun find-corresponding-file ()
-  "Find the file that corresponds to this one."
-  (interactive)
-  (find-file
-   (let ((base-filename (file-name-sans-extension (buffer-name)))
-	 (file-name (buffer-name)))
-     (or 
+;;@ Functions to find corresponding files
+
+;; Primary-ext table
+(setq primary-ext-table (make-hash-table :test 'equal))
+(puthash "\\.module.ts$"
+	 '(".component.ts") primary-ext-table)
+(puthash "\\.component.ts$"
+	 '(".html") primary-ext-table)
+(puthash "\\.component.html$"
+	 '(".ts") primary-ext-table)
+(puthash "\\.c$\\|\\.cpp$"
+	 '(".h") primary-ext-table)
+(puthash "\\.h$" '
+	 (".c" ".cpp") primary-ext-table)
+(puthash "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"
+	 '(".config.json" ".config.js" ".config.yaml" ".config.yml") primary-ext-table)
+(puthash "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$"
+	 '(".hbs" ".mustache" ".twig" ".nunj" )  primary-ext-table)
+;; Secondary-ext table
+(setq secondary-ext-table (make-hash-table :test 'equal))
+(puthash "\\.component.ts$"
+	 '(".scss") secondary-ext-table)
+(puthash "\\.component.scss$"
+	 '(".component.ts") secondary-ext-table)
+
+(defun get-corresponding-file-extension (file hash-table)
+   "Returns the  corresponding extensions if  FILE as one  of the
+extensions included in the keys of HASH-TABLE"
+    (let ((new-file nil))
+    (maphash (lambda (key value)
+		 (when (string-match key file)
+		    (setq new-file  value)))
+	    hash-table)
+    new-file))
+
+(defun find-corresponding-file (file extensions)
+  "Find a corresponding file for FILE based on the EXTENSIONS to search for."
+   (let ((base-filename (file-name-sans-extension file)))
      (cond
-      ;; Cpp config
-      ((string-match "\\.c$" file-name)
-        (corresponding-file base-filename ".h"))
-      ((string-match "\\.cpp$" file-name)
-        (corresponding-file base-filename ".h"))
-      ((string-match "\\.h$" file-name)
-       (or (corresponding-file base-filename ".c")
-	   (corresponding-file base-filename ".cpp")
-       ))
-      ;; Fractal template to config.
-      ((string-match "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj" file-name)
-       (or (corresponding-file base-filename ".config.json")
-	   (corresponding-file base-filename ".config.js")
-	   (corresponding-file base-filename ".config.yaml")
-	   (corresponding-file base-filename ".config.yml")))
-      ;; Fractal config to template.
-      ((string-match "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$" file-name)
-       (let ((base-filename (car (split-string base-filename ".config"))))
-	 (or (corresponding-file base-filename ".hbs")
-	     (corresponding-file base-filename ".mustache")
-	     (corresponding-file base-filename ".twig")
-	     (corresponding-file base-filename ".nunj")))))
-     (error "Unable to find a corresponding file")))))
+      ((null extensions) nil)
+      ((file-exists-p (concat base-filename (car  extensions)))
+       (concat base-filename (car extensions)))
+      ((file-exists-p (concat  (replace-regexp-in-string "\\..*" "" base-filename) (car extensions)))
+       (concat  (replace-regexp-in-string "\\..*" "" base-filename) (car extensions)))
+      (t (find-corresponding-file file (cdr extensions))))))
 
-(defun find-corresponding-file-other-window ()
-  "Find the file that corresponds to this one."
+
+(defun goto-primary-file ()
+  "Go to the primary file that corresponds to the current buffer"
   (interactive)
-  (find-file-other-window buffer-file-name)
-  (casey-find-corresponding-file)
-  (other-window -1))
+  (let* ((extensions  (get-corresponding-file-extension  (replace-regexp-in-string "<.*" ""  (buffer-name))
+							 primary-ext-table)) 
+	 (file (find-corresponding-file (buffer-name) extensions)))
+    (if file
+	(find-file file)
+      (error "Unable to find a corresponding file"))))
+
+(defun goto-secondary-file ()
+  "Go to  the secondary file that corresponds to the current buffer"
+  (interactive)
+  (let* ((extensions  (get-corresponding-file-extension  (replace-regexp-in-string "<.*" ""  (buffer-name))
+							 secondary-ext-table)) 
+	 (file (find-corresponding-file (buffer-name) extensions)))
+    (if file
+	(find-file file)
+      (error "Unable to find a corresponding file"))))
 
 ;;@============================= EDITING
 (defun indent-or-complete ()
