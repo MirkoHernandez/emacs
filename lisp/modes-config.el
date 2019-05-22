@@ -68,9 +68,12 @@
 				  (outline-minor-mode)
 				  (setq outline-regexp ";;@")
 				  (diff-hl-mode t)))
-
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
-
+;;@============================= RACKET
+(add-hook 'racket-mode-hook (lambda ()
+			      (outline-minor-mode)
+			      (setq outline-regexp ";;@")
+			      (diff-hl-mode t)))
 
 ;;@============================= KEYCHORD
 (key-chord-mode 1)
