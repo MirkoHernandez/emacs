@@ -11,7 +11,7 @@
 (global-set-key (kbd "C-1") 'widen)
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)
-
+(global-set-key (kbd "C-x C-e") 'pp-eval-last-sexp)
 
 ;; Handmade hero keybindings
 (global-set-key (kbd "C-f") 'yank)
@@ -33,7 +33,6 @@
 (global-set-key (kbd "C-i") 'beginning-of-defun)
 (global-set-key (kbd "C-o") 'end-of-defun)
 
-
 (global-set-key (kbd "C-8") 'backward-up-list)
 (global-set-key (kbd "C-9") 'down-list)
 (global-set-key (kbd "C-7") 'backward-list)
@@ -52,7 +51,6 @@
 (global-set-key (kbd "C-h") 'delete-backward-char)
 ;; (global-set-key "\C-w" 'backward-kill-word-or-selection)
 (global-set-key "\C-w" 'kill-region)
-
 
 ;; Editing
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
@@ -96,9 +94,6 @@
 (define-key  global-map [C-S-right] 'hs-show-block)
 (define-key  global-map  [C-S-left] 'hs-hide-block)
 
-
-
-
 ;;@============================= INFO MODE
 (defun Info-bindings ()
   "sets shortcut bindings for Info  mode"
@@ -123,7 +118,6 @@
 
 
 ;;@============================= MINIBUFFER
-
 (define-key minibuffer-local-map (kbd "C-p") 'ido-prev-match)
 (define-key minibuffer-local-map (kbd "C-n") 'ido-next-match)
 
