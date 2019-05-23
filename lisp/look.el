@@ -24,8 +24,7 @@
       inhibit-startup-screen t
       echo-keystrokes 0.1
       linum-format " %d"
-      initial-scratch-message "For a moment, nothing happened. Then,
-      after a second or so, nothing continued to happen.\n")
+      initial-scratch-message ";; For a moment, nothing happened. Then, after a second or so, nothing continued to happen.\n")
 
 (setq inhibit-startup-message t);; no startup message
 (fset 'yes-or-no-p #'y-or-n-p)
