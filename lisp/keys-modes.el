@@ -2,7 +2,14 @@
 (global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "M-b") 'helm-buffers-list)
 
-;; MULTIPLE CURSORS:
+;;@============================= MULTIPLE  CURSORS:
+;; Rebind emacs Defaults
+;; (global-set-key (kbd "C-o") 'mc/mark-next-like-this)
+;;@============================= SMARTPARENTS
+(global-set-key (kbd "C-(") 'sp-wrap-round)
+(global-set-key (kbd "C-{") 'sp-wrap-curly)
+(global-set-key (kbd "C-]") 'sp-wrap-square)
+
 
 ;;@============================= YASNIPPETS
 (global-set-key (kbd "C-x y v") 'yas-visit-snippet-file)

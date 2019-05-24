@@ -18,7 +18,7 @@
 
 ;;@============================= Load Config 
 (load-library "settings")
-(load-library "keybinding")
+(load-library "keys")
 
 ;;@============================= Install Packages
 (load-library "packages-setup")
@@ -31,7 +31,7 @@
 (load-library "go-config")
 (load-library "efuncs")
 (load-library "site-efuncs")
-(load-library "keybinding_mode_specific")
+(load-library "keys-modes")
 (load-library "keychords")
 ;;@============================= Misc
 (load-library "misc")

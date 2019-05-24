@@ -15,6 +15,8 @@
 (global-set-key (kbd "M-r") 'query-replace)
 (global-set-key (kbd "M-o") 'other-window)
 
+(global-set-key (kbd "C-i") 'beginning-of-defun)
+
 ;; Handmade hero keybindings
 (global-set-key (kbd "C-f") 'yank)
 (global-set-key (kbd "M-g") 'goto-line)
@@ -31,8 +33,6 @@
 
 (global-set-key (kbd "C-S-p") 'backward-paragraph)
 (global-set-key (kbd "C-S-n") 'forward-paragraph)
-(global-set-key (kbd "C-i") 'beginning-of-defun)
-(global-set-key (kbd "C-o") 'end-of-defun)
 
 (global-set-key (kbd "C-8") 'backward-up-list)
 (global-set-key (kbd "C-9") 'down-list)
