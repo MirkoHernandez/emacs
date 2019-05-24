@@ -55,3 +55,22 @@
 
 ;;@============================= FRINGES
 (fringe-mode (quote (1 . 1))) ;; Set fringe style to 'minimal
+
+
+;;@============================= ORG HEADERS
+(defun org-prettify-headers ()
+  "Adds strings of headrs to the list of symbols to prettify."
+    (mapc (apply-partially 'add-to-list 'prettify-symbols-alist)
+          (cl-reduce 'append
+                     (mapcar (lambda (x) (list x (cons (upcase (car x)) (cdr x))))
+                             `(("#+begin_src" . ?✎)
+                               ("#+end_src"   . ?□)
+                               ("#+header:" . ?☰)
+                               ("#+begin_quote" . ?»)
+                               ("#+end_quote" . ?«)))))
+    (turn-on-prettify-symbols-mode))
+
+(add-hook 'org-mode-hook #'org-prettify-headers)
+
+
+
