@@ -1,0 +1,6 @@
+#name : focus
+#key:f
+# --
+$1:focus {
+$2
+}

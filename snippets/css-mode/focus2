@@ -1,0 +1,6 @@
+#name : focus2
+#key:ff
+# --
+&:focus $1{
+$2
+}

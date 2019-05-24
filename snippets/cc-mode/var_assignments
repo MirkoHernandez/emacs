@@ -5,7 +5,7 @@
 # --
 (let ((yas-good-grace nil)
       (count (read-number "Number of elements: "))
-      (variable (read-string "Nombre de variable: "))
+      (variable (read-string "Variable Name: "))
       )
   (yas-expand-snippet
    (concat
