@@ -33,6 +33,11 @@
 (key-chord-define-global "ww"   'outline-show-all)
 (key-chord-define-global "bb"   'bookmark-jump)
 
+;;@============================= SMARTPARENTS
+(key-chord-define-global "(("   'sp-wrap-round)
+(key-chord-define-global "{{"   'sp-wrap-curly)
+(key-chord-define-global "[["   'sp-wrap-square)
+
 ;;@============================= C
 (add-hook 'c-mode-hook (lambda ()
 			 (key-chord-define c-mode-map ";;"  'add-semicolon)
