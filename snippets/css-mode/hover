@@ -1,0 +1,6 @@
+#name : hover
+#key:h
+# --
+$1:hover {
+$2
+}

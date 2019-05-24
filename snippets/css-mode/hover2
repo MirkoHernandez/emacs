@@ -1,0 +1,6 @@
+#name : hover2
+#key:hh
+# --
+&:hover $1{
+$2
+}
