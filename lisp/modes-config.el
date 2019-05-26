@@ -57,6 +57,10 @@
 ;;@============================= COMMON LISP
 (setq inferior-lisp-program "sbcl")
 
+;;@============================= SMARTPARENS
+(require 'smartparens-config)
+(add-hook 'prog-mode-hook #'smartparens-mode)
+
 ;;@============================= EMACS LISP
 (require 'ac-slime)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
@@ -90,8 +94,6 @@
 (setq inferior-js-program-command "node")
 (setq inferior-js-program-arguments '("--interactive"))
 ;;@============================= TYPESCRIPT
-(add-to-list 'exec-path (getenv "NODEPATH"))
-
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -101,7 +103,6 @@
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (company-mode +1))
-
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
