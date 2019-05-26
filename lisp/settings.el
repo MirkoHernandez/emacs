@@ -1,3 +1,8 @@
+
+;;@============================= EXEC-PATH-FROM-SHELL
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;;@============================= HELPERS
 (defun load-if-exists (f)
   (if (file-readable-p f)
