@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : arrow
+#key: a
+# --
+($1) => {
+     $2
+}

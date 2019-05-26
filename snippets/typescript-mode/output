@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : output-decorator
+#key: o
+# --
+@Output() $1 = new EventEmitter<$2>();

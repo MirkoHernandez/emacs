@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : for
+#key: for
+# --
+for (let $1 of $2) {
+    $3
+}
