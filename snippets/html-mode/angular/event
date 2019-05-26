@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : angular-event
+#key: e
+# --
+($1)="$2"

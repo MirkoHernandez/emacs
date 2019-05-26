@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : event-emitter
+#key: ee
+# --
+$1 = new EventEmitter<$2>($3);

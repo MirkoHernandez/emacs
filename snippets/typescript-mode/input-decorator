@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : input-decorator
+#key: in
+# --
+@Input() $1: ${2:string};

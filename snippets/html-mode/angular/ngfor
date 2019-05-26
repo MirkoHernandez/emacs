@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : ngFor
+#key: ngf
+# --
+*ngFor="let $1 of $2"
