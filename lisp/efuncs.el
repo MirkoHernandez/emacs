@@ -1,5 +1,10 @@
-;;@============================= EMACS
-(defun switch-to-previous-buffer ()
+;;@============================= NAVEGATION
+
+;;@ switching buffers
+
+(defun my-switch-to-previous-buffer ()
+   "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
@@ -13,26 +18,36 @@
 
 ;; Primary-ext table
 (setq primary-ext-table (make-hash-table :test 'equal))
-(puthash "\\.module.ts$"
-	 '(".component.ts") primary-ext-table)
-(puthash "\\.component.ts$"
-	 '(".html") primary-ext-table)
-(puthash "\\.component.html$"
-	 '(".ts") primary-ext-table)
-(puthash "\\.c$\\|\\.cpp$"
-	 '(".h") primary-ext-table)
-(puthash "\\.h$" '
-	 (".c" ".cpp") primary-ext-table)
-(puthash "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"
-	 '(".config.json" ".config.js" ".config.yaml" ".config.yml") primary-ext-table)
-(puthash "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$"
-	 '(".hbs" ".mustache" ".twig" ".nunj" )  primary-ext-table)
-;; Secondary-ext table
-(setq secondary-ext-table (make-hash-table :test 'equal))
-(puthash "\\.component.ts$"
-	 '(".scss") secondary-ext-table)
-(puthash "\\.component.scss$"
-	 '(".component.ts") secondary-ext-table)
+;; Angular
+(progn
+  (puthash "\\.module.ts$"
+	   '(".component.ts") primary-ext-table)
+  (puthash "\\.component.ts$"
+	   '(".html") primary-ext-table)
+  (puthash "\\.component.html$"
+	   '(".ts") primary-ext-table)
+  (puthash "\\.component.scss$"
+	   '(".ts") primary-ext-table)
+  ;; C/C++
+  (puthash "\\.c$\\|\\.cpp$"
+	   '(".h") primary-ext-table)
+  (puthash "\\.h$" '
+	   (".c" ".cpp") primary-ext-table)
+  ;; Fractal
+  (puthash "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"
+	   '(".config.json" ".config.js" ".config.yaml" ".config.yml") primary-ext-table)
+  (puthash "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$"
+	   '(".hbs" ".mustache" ".twig" ".nunj" )  primary-ext-table)
+
+  ;; Secondary-ext table
+  (setq secondary-ext-table (make-hash-table :test 'equal))
+  (puthash "\\.component.ts$"
+	   '(".model.ts") secondary-ext-table)
+  (puthash "\\.component.html$"
+	   '(".component.scss") secondary-ext-table)
+  (puthash "\\.component.scss$"
+	   '(".component.html") secondary-ext-table)
+)
 
 (defun get-corresponding-file-extension (file hash-table)
    "Returns the  corresponding extensions if  FILE as one  of the
@@ -54,7 +69,6 @@ extensions included in the keys of HASH-TABLE"
       ((file-exists-p (concat  (replace-regexp-in-string "\\..*" "" base-filename) (car extensions)))
        (concat  (replace-regexp-in-string "\\..*" "" base-filename) (car extensions)))
       (t (find-corresponding-file file (cdr extensions))))))
-
 
 (defun goto-primary-file ()
   "Go to the primary file that corresponds to the current buffer"
@@ -109,7 +123,6 @@ to the next line."
   (move-beginning-of-line 1)
   (kill-line)
   (yank)
-  (newline-and-indent)
   (yank))
 
 (defun end-of-line-and-indented-new-line ()
