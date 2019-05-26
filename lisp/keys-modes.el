@@ -4,8 +4,9 @@
 
 ;;@============================= MULTIPLE  CURSORS:
 ;; Rebind emacs Defaults
-;; (global-set-key (kbd "C-o") 'mc/mark-next-like-this)
-;;@============================= SMARTPARENTS
+(global-set-key (kbd "C-S-o") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+;;@============================= SMARTPARENS
 (global-set-key (kbd "C-(") 'sp-wrap-round)
 (global-set-key (kbd "C-{") 'sp-wrap-curly)
 (global-set-key (kbd "C-]") 'sp-wrap-square)
