@@ -11,7 +11,6 @@
 (global-set-key (kbd "C-1") 'widen)
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)
-(global-set-key (kbd "C-x C-e") 'pp-eval-last-sexp)
 (global-set-key (kbd "M-r") 'query-replace)
 (global-set-key (kbd "M-o") 'other-window)
 
@@ -76,10 +75,11 @@
 (global-set-key (kbd "M-S-p") 'previous-error)
 
 (global-set-key "\C-xp" 'fill-paragraph)
-(global-set-key [f7] 'next-error)
+
 (global-set-key [f5] 'compile-or-delete-window)
 (global-set-key [f6]  'comment-line)
-(global-set-key [f8] 'switch-to-previous-buffer)
+(global-set-key [f7] 'switch-to-prev-buffer)
+(global-set-key [f8] 'my-switch-to-previous-buffer)
 (global-set-key [f9] 'first-error)
 
 ;;@============================= ORG
