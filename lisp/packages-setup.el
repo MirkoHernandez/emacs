@@ -40,6 +40,7 @@
 	smartscan
 	speed-type
 	keyfreq
+	exec-path-from-shell
 	;; C
 	helm-cscope 
 	ggtags
