@@ -47,13 +47,10 @@
 (ido-mode 1)
 
 (setq ido-file-extensions-order '(".org" ".c" ".cpp"  ".py" ".go" ".emacs" ".js" ".html" ".txt" ".xml" ".el" ".ini" ".cfg" ".cnf"))
-
+(setq ido-auto-merge-work-directories-length -1)
 
 ;;@============================= Ignored * buffers
 (set-frame-parameter (selected-frame) 'buffer-predicate #'buffer-file-name)
-
-
-
 
 ;@============================= EDITING CONFIG
 
