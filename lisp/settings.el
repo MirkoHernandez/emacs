@@ -1,7 +1,7 @@
 
 ;;@============================= EXEC-PATH-FROM-SHELL
 (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+ (exec-path-from-shell-initialize))
 
 ;;@============================= HELPERS
 (defun load-if-exists (f)
@@ -13,6 +13,7 @@
 (global-auto-revert-mode t)
 
 (setq create-lockfiles nil) ;; prevent the automatic creation of symbolic links
+(setq default-input-method 'programmer-dvorak)
 
 ;;@============================= EMACS SPECIFIC FOLDERS
 (setq temporary-file-directory (concat emacs-root "emacs/tmp"))
