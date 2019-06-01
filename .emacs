@@ -15,13 +15,13 @@
   (add-path "emacs/lisp")
   (add-path "emacs/site-lisp"))
 
+;;@============================= Install Packages
+(load-library "packages-setup")
 
 ;;@============================= Load Config 
 (load-library "settings")
 (load-library "keys")
 
-;;@============================= Install Packages
-(load-library "packages-setup")
 
 ;;@============================= Load Modes config
 (load-library "look")
