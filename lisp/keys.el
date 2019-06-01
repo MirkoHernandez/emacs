@@ -2,11 +2,9 @@
 
 ;;; Code:
 ;;@============================= REBIND EMACS DEFAULTS
-(global-set-key (kbd "<apps>") 'smex) ;; Windows
-(define-key input-decode-map [?\C-m] [C-m])
 (global-set-key (kbd "<C-m>") 'smex)
-(global-set-key (kbd "M-u") 'undo)
 
+(global-set-key (kbd "M-u") 'undo)
 (global-set-key (kbd "M-s") 'save-buffer)
 (global-set-key (kbd "C-1") 'widen)
 (global-set-key (kbd "C-2") 'narrow-to-defun)
@@ -46,7 +44,7 @@
 (global-set-key (kbd "M-,") 'pop-tag-mark)
 
 ;; Delete
-(global-set-key (kbd "M-k") 'kill-sexp)
+(global-set-key (kbd "M-k") 'kill-this-buffer)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 ;; (global-set-key "\C-w" 'backward-kill-word-or-selection)
@@ -62,6 +60,14 @@
 (global-set-key (kbd "M-U") 'upcase-word)
 (global-set-key (kbd "<M-S-down>") 'move-text-down)
 (global-set-key (kbd "<M-S-up>") 'move-text-up)
+
+;;@============================= KEYMAP 
+
+(define-prefix-command 'my-keymap)
+(global-set-key (kbd "<menu>") my-keymap)
+
+(global-set-key (kbd "C-o") ctl-x-map)
+ 
 
 
 ;;@============================= GENERAL KEYBINDINGS
@@ -79,7 +85,6 @@
 (global-set-key [f5] 'compile-or-delete-window)
 (global-set-key [f6]  'comment-line)
 (global-set-key [f7] 'switch-to-prev-buffer)
-(global-set-key [f8] 'my-switch-to-previous-buffer)
 (global-set-key [f9] 'first-error)
 
 ;;@============================= ORG
@@ -127,7 +132,7 @@
 (global-set-key (kbd "C-S-l") 'kill-whole-line)
 (global-set-key (kbd "<backtab>") 'yas-expand-indent)
 (global-set-key  "\C-c+" 'increment-number-at-point)
-(global-set-key [f8] 'switch-to-previous-buffer)
+(global-set-key [f8] 'my-switch-to-previous-buffer)
 (global-set-key (kbd "<tab>") 'indent-for-tab-command)
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 (global-set-key (kbd "\C-x3") 'split-window-right-other-window)
