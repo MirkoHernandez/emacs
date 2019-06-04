@@ -1,12 +1,10 @@
 ;;@============================= EMACS
-
-
 (defun swap-windows ()
   "If you have 2 windows, it swaps them." 
   (interactive) (cond ((not (= (count-windows) 2)) (message "You need exactly 2 windows to do this."))
 		      (t
-		       (let* ((w1 (first (window-list)))
-			      (w2 (second (window-list)))
+		       (let* ((w1 (nth 0 (window-list)))
+			      (w2 (nth 1 (window-list)))
 			      (b1 (window-buffer w1))
 			      (b2 (window-buffer w2))
 			      (s1 (window-start w1))
@@ -17,8 +15,6 @@
 			 (set-window-start w2 s1)))))
 
 ;;@============================= File editing
-
-
 (defun delete-this-buffer-and-file ()
   "Removes file connected to current buffer and kills buffer."
   (interactive)
