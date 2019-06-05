@@ -41,6 +41,7 @@
 	speed-type
 	keyfreq
 	exec-path-from-shell
+	linum-relative
 	;; C
 	helm-cscope 
 	ggtags
