@@ -14,40 +14,29 @@ Repeated invocations toggle between the two most recently open buffers."
   (other-window 1))
 
 
-;;@ Functions to find corresponding files
-
+;;@ Find corresponding files
 ;; Primary-ext table
-(setq primary-ext-table (make-hash-table :test 'equal))
-;; Angular
-(progn
-  (puthash "\\.module.ts$"
-	   '(".component.ts") primary-ext-table)
-  (puthash "\\.component.ts$"
-	   '(".html") primary-ext-table)
-  (puthash "\\.component.html$"
-	   '(".ts") primary-ext-table)
-  (puthash "\\.component.scss$"
-	   '(".ts") primary-ext-table)
-  ;; C/C++
-  (puthash "\\.c$\\|\\.cpp$"
-	   '(".h") primary-ext-table)
-  (puthash "\\.h$" '
-	   (".c" ".cpp") primary-ext-table)
-  ;; Fractal
-  (puthash "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"
-	   '(".config.json" ".config.js" ".config.yaml" ".config.yml") primary-ext-table)
-  (puthash "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$"
-	   '(".hbs" ".mustache" ".twig" ".nunj" )  primary-ext-table)
-
+(setq primary-ext-table
+      #s(hash-table size 20 data (
+				  ;; Angular
+				  "\\.module.ts$"   (".component.ts") 
+				  "\\.component.ts$"   (".html") 
+				  "\\.component.html$"   (".ts") 
+				  "\\.component.scss$"   (".ts") 
+				  ;; C/C++
+				  "\\.c$\\|\\.cpp$"   (".h") 
+				  "\\.h$" (".c" ".cpp")
+				  ;; Fractal
+				  "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"   (".config.json" ".config.js" ".config.yaml" ".config.yml") 
+				  "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$"   (".hbs" ".mustache" ".twig" ".nunj" ))))
   ;; Secondary-ext table
-  (setq secondary-ext-table (make-hash-table :test 'equal))
-  (puthash "\\.component.ts$"
-	   '(".model.ts") secondary-ext-table)
-  (puthash "\\.component.html$"
-	   '(".component.scss") secondary-ext-table)
-  (puthash "\\.component.scss$"
-	   '(".component.html") secondary-ext-table)
-)
+(setq secondary-ext-table
+      #s(hash-table size 20 data (
+				  ;; Angular
+				  "\\.component.ts$"   (".model.ts") 
+				  "\\.component.html$"   (".component.scss") 
+				  "\\.component.scss$"   (".component.html"))))
+
 
 (defun get-corresponding-file-extension (file hash-table)
    "Returns the  corresponding extensions if  FILE as one  of the
