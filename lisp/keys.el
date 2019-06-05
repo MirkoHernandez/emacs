@@ -11,6 +11,7 @@
 (global-set-key (kbd "C-3") 'narrow-to-region)
 (global-set-key (kbd "M-r") 'query-replace)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-i") 'helm-imenu)
 
 (global-set-key (kbd "C-i") 'beginning-of-defun)
 
