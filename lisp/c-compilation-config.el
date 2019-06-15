@@ -118,10 +118,10 @@
   Every program is compiled and executed inside a build folder."
   (interactive "p")
   (if (get-buffer "*compilation*")
-      (progn
-	;; (unless current-prefix-arg
-        ;; (delete-windows-on (get-buffer "*compilation*")))
-        (kill-buffer "*compilation*"))
+      ;; (progn 
+      ;; (unless current-prefix-arg
+      (delete-windows-on (get-buffer "*compilation*"))
+    ;; (kill-buffer "*compilation*"))
     (progn
       (save-buffer)
       (call-process-shell-command (concat "mkdir " (when (string-equal
@@ -188,10 +188,9 @@
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
   "Sets compile-command by selecting among a list of options."
-  (interactive "P\nsOptions:  make| cweb | c cpp cweb |  multiple | debug profile | libraries (sdl sdl2 allegro opengl): " ) 
+  (interactive "P\nsOptions:  make| cweb | c cpp cweb |  multiple | debug profile | [sdl sdl2 allegro dumb allegro5 opengl]): " ) 
     (set (make-local-variable 'compile-command)
          (create-compile-string (buffer-name-no-extension)  config))) 
-         ;; (create-compile-string (buffer-name-no-extension) (mapcar (lambda (a) (intern a)) (split-string config))))) 
 
 ;;@=============================  CHICKEN
 (defun chicken-compile ()
