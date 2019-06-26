@@ -1,83 +1,107 @@
+;;@============================= HANDMADE COMPILATION
+
+;; Optimization switches /O2 /Oi /fp:fast
+
+;; COMPILER
+;; /Zi	Generates complete debugging information.
+;; /EH	Specifies the model of exception handling.
+;; /fp	Specify floating-point behavior.
+;; /FC	Display full path of source code files passed to cl.exe in diagnostic text.
+;; /Fm	Creates a map file.
+;; /Gm	Deprecated. Enables minimal rebuild.
+;; /GR	Enables run-time type information (RTTI).
+;; /MT	Creates a multithreaded executable file using LIBCMT.lib.
+;; /Od	Disables optimization.
+;; /Oi	Generates intrinsic functions.
+;; /W0,/W1,/W2,/W3,/W4	Sets which warning level to output.
+;; /wd	Disables the specified warning.
+;; /WX	Treats all warnings as errors.
+;; /Z7	Generates C 7.0-compatible debugging information.
+;; /Zo  Generate enhanced debugging information for optimized code in non-debug builds.
+;; /nologo	Suppresses display of sign-on banner.
+
+;; LINKER
+;; /EXPORT	  Exports a function.
+;; /INCREMENTAL   Controls incremental linking.
+;; /OPT		  Controls LINK optimizations.
+;; /OPT:REF       eliminates functions and data that are never referenced.
+;; /OPT:NOREF     keeps functions and data that are never referenced.
+;; /PDB		  Creates a program database (PDB) file.
+;; /SUBSYSTEM	  Tells the operating system how to run the .exe file.
+
+
+(defun compile-handmade(day run)
+  (let (
+	(libs15  " user32.lib gdi32.lib ")
+	(libs230  " user32.lib gdi32.lib winmm.lib ")
+	(flags300 " -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 ")
+	; Linker Options
+	(linker20 " -opt:ref ")
+	(linker143 " -incremental:no -opt:ref ")
+	(linker-handmade21  " -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender ")
+	(linker-handmade23  " -incremental:no -opt:ref -PDB:handmade_%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender ")
+	(linker-handmade25  " -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender ")
+	;; Compiler Options, -WX is omitted.
+	(compiler15 " -FC -Zi ")
+	(compiler20 " -MT -nologo -Gm- -GR- -EHa- -Zo -O2 -Oi -W4 -wd4201 -wd4100 -wd4189 -FC -Z7 -Fmwin32_handmade.map ")
+	(compiler23 " -MT -nologo -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -FC -Z7 ")
+	(compiler26 " -MTd -nologo -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -FC -Z7 ")
+	(compiler33 " -MTd -nologo -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -wd4505 -FC -Z7 ")
+	(compiler89 " -MTd -nologo -fp:fast -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -wd4505 "))
+  (cond
+   ((equal day "10")
+    (concat "cl "  compiler15  " ../win32_handmade.cpp " libs15
+	    (when run " && win32_handmade.exe")))
+   ((equal day "15") ;; 11-15
+    (concat "cl "   compiler15  flags300  " ../win32_handmade.cpp " libs15
+	    (when run " && win32_handmade.exe")))
+   ((equal day "20")
+    (concat "cl " compiler20 flags300  " ../win32_handmade.cpp "
+	    " /link " linker20  libs230
+	    (when run " && win32_handmade.exe")))
+   ((equal day "21")
+    (concat "cl " compiler23  flags300  " ../handmade.cpp  -Fmhandmade.map"
+	    " -LD /link " linker-handmade21 " && "
+	    "cl " compiler23 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
+	    " /link " linker143  libs230
+	    (when run " && win32_handmade.exe")))
+   ((equal day "23")
+    (concat "cl " compiler23 flags300  " ../handmade.cpp  -Fmhandmade.map"
+	    " -LD /link "  linker-handmade23  " && "
+	    "cl "  compiler23 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
+	    " /link "  linker143 libs230
+	    (when run " && win32_handmade.exe")))
+   ((equal day "26")
+    (concat "cl " compiler26 flags300  " ../handmade.cpp  -Fmhandmade.map"
+	    " -LD /link "  linker-handmade25  " && "
+	    "cl "  compiler26 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
+	    " /link "  linker143 libs230
+	    (when run " && win32_handmade.exe")))
+
+   ((equal day "33")
+    (concat "cl " compiler89 flags300  " ../handmade.cpp  -Fmhandmade.map"
+	    " -LD /link "  linker-handmade25  " && "
+	    "cl "  compiler89 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
+	    " /link "  linker143 libs230
+	    (when run " && win32_handmade.exe")))
+
+    ((equal day "38")
+    (concat "cl " compiler45 flags300  " ../handmade.cpp  -Fmhandmade.map"
+	    " -LD /link "  linker-handmade25  " && "
+	    "cl "  compiler45 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
+	    " /link "  linker143 libs230
+	    (when run " && win32_handmade.exe")))
+    ((equal day "89")
+     (concat "echo WAITING FOR PDB > lock.tmp && "
+      "cl " compiler89 flags300  " ../handmade.cpp  -Fmhandmade.map"
+      " -LD /link "  linker-handmade25  " && "
+      "del lock.tmp && "
+      "cl "  compiler89 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
+      " /link "  linker143 libs230
+      (when run " && win32_handmade.exe")))
+    )))
+
 ;;@============================= LIBRARIES
-
-
-(defconst HANDMADE_COMPILER_FLAGS20  " -MT -nologo -Gm- -GR- -EHa- -Zo -O2 -Oi  -W4 -wd4201 -wd4100 -wd4189 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 -Fmwin32_handmade.map ")
-(defconst HANDMADE_LINKER_FLAGS20 " -opt:ref user32.lib gdi32.lib winmm.lib ")
-
-(defconst HANDMADE_COMPILER_FLAGS30  " -MTd -nologo -fp:fast -Gm- -GR- -EHa- -Od -Oi  -W4 -wd4201 -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 ")
-;; Maximize Speed
-(defconst HANDMADE_COMPILER_FLAGS119  " -O2 -MTd -nologo -fp:fast -fp:except- -Gm- -GR- -EHa- -Zo -Oi  -W4 -wd4201 -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 ")
-;; No optimizations
-(defconst HANDMADE_COMPILER_FLAGS143 " -Od  -MTd -nologo -fp:fast -fp:except- -Gm- -GR- -EHa- -Zo -Oi  -W4 -wd4201 -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 ")
-
-(defconst HANDMADE_LINKER_FLAGS143 " -incremental:no -opt:ref user32.lib gdi32.lib winmm.lib ")
-
-(setq handmade-flags
-      #s(hash-table size 20 test equal
-		    data (
-			  ;; Linker Flags
-			  "linker20" " -opt:ref user32.lib gdi32.lib winmm.lib "
-			  "linker143" " -incremental:no -opt:ref user32.lib gdi32.lib winmm.lib "
-			  ;; Compiler Flags
-			  "compiler20" " -MT -nologo -Gm- -GR- -EHa- -Zo -O2 -Oi  -W4 -wd4201 -wd4100 -wd4189 
-                                         -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 -Fmwin32_handmade.map "
-			  "compiler30" " -MTd -nologo -fp:fast -Gm- -GR- -EHa- -Od -Oi  -W4 -wd4201 -wd4100 -wd4189 
-                                         -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 -DHANDMADE_WIN32=1 -FC -Z7 "
-			  ;; Maximize speed
-			  "compiler119" " -O2 -MTd -nologo -fp:fast -fp:except- -Gm- -GR- -EHa- -Zo -Oi  -W4 -wd4201 
-                                          -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 
-                                          -DHANDMADE_WIN32=1 -FC -Z7 "
-			  ;; No optimizations
-			  "compiler143"  "-Od  -MTd -nologo -fp:fast -fp:except- -Gm- -GR- -EHa- -Zo -Oi  -W4 -wd4201 
-                                          -wd4100 -wd4189 -wd4505 -wd4127 -DHANDMADE_INTERNAL=1 -DHANDMADE_SLOW=1 
-                                          -DHANDMADE_WIN32=1 -FC -Z7 "
-			   "dll144"  " /LD /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender"
-			   )))
-
-(setq handmade-table
-      #s(hash-table size 20 test equal
-		    data (
-			  "handmade20" (lambda (filename) (concat "cl "  (gethash "compiler20" handmade-flags) filename
-					       " /link -subsystem:windows,5.1 "  (gethash "compiler20" handmade-flags))))
-		    ))
-
-(defun compile-handmade20(filename)
-  (concat "cl "  HANDMADE_COMPILER_FLAGS20 "../win32_handmade.cpp
- /link -subsystem:windows,5.1 "  HANDMADE_LINKER_FLAGS20 ))
-
-
-(defun compile-handmade30 (filename)
-  (concat
-   "del *.pdb > NUL 2> NUL && "
-   "cl " HANDMADE_COMPILER_FLAGS30
-   " ../handmade.cpp -Fmhandmade.map /LD /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender  && "
-   "cl "  HANDMADE_COMPILER_FLAGS30
-   " ../win32_handmade.cpp  -Fmhandmade.map  /link  "
-   HANDMADE_LINKER_FLAGS143 ))
-
-(defun compile-handmade119 (filename)
-  (concat
-   "del *.pdb > NUL 2> NUL && "
-   "cl " HANDMADE_COMPILER_FLAGS119
-   " ../handmade.cpp -Fmhandmade.map /LD /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb 
-     -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender  && "
-   "cl " HANDMADE_COMPILER_FLAGS119 " ../win32_handmade.cpp  -Fmhandmade.map  /link  "
-   HANDMADE_LINKER_FLAGS143 ))
-
-(defun compile-handmade143 (filename)
-  (concat
-   "del *.pdb > NUL 2> NUL && "
-   "cl " HANDMADE_COMPILER_FLAGS143 " -I../iaca-win64/ ../handmade.cpp -Fmhandmade.map -LD /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender "  
-          " && cl " HANDMADE_COMPILER_FLAGS143 " ../win32_handmade.cpp  -Fmwin32_handmade.map  /link  "   HANDMADE_LINKER_FLAGS143 ))
-
-(defun compile-handmade144 (filename)
-  (concat
-   "del *.pdb > NUL 2> NUL && "   "cl " HANDMADE_COMPILER_FLAGS143 " -O2 -I../iaca-win64/ -c ../handmade_optimized.cpp -Fohandmade_optimized.obj  -LD "  
-   " && cl " HANDMADE_COMPILER_FLAGS143 " -I../iaca-win64/   ../win32_handmade.cpp handmade_optimized.obj -Fmhandmade.map -LD  /link -incremental:no -opt:ref -PDB:handmade_%random%.pdb -EXPORT:GameGetSoundSamples -EXPORT:GameUpdateAndRender "
-   " && del lock.tmp  "
-   " && cl " HANDMADE_COMPILER_FLAGS143 " ../win32_handmade.cpp  -Fmwin32_handmade.map  /link  "   HANDMADE_LINKER_FLAGS143 ))
-
-
 (if (eq system-type 'windows-nt)
     (setq libraries-table
       #s(hash-table size 20 test equal
@@ -118,7 +142,7 @@
   Every program is compiled and executed inside a build folder."
   (interactive "p")
   (if (get-buffer "*compilation*")
-      ;; (progn 
+      ;; (progn
       ;; (unless current-prefix-arg
       (delete-windows-on (get-buffer "*compilation*"))
     ;; (kill-buffer "*compilation*"))
@@ -130,7 +154,7 @@
 						     "-p")
 					  " build" ) nil 0)
       (let ((default-directory (concat default-directory "build")))
-        (compile compile-command)))))
+	(compile compile-command)))))
 
 ;;@============================= GENERATING COMPILE STRINGS
 (setq c-compile-table
@@ -139,7 +163,7 @@
 	 test equal
 	 data (
 	       "vs" "cl -Zi "
-	        "cweb" "something"
+		"cweb" "something"
 	       "cweb cpp"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w_cpp && " )
 	       "cweb c"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w && " ))))
 
@@ -183,35 +207,35 @@
      (when (string-match "\\<run\\>" options)
        (setq compile-string (concat compile-string    " &&  cd .. &&  "  "build/" buffername)))
      compile-string)))
- 
+
 
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
   "Sets compile-command by selecting among a list of options."
-  (interactive "P\nsOptions:  make| cweb | c cpp cweb |  multiple | debug profile | [sdl sdl2 allegro dumb allegro5 opengl]): " ) 
+  (interactive "P\nsOptions:  make| cweb | c cpp cweb |  multiple | debug profile | [sdl sdl2 allegro dumb allegro5 opengl]): " )
     (set (make-local-variable 'compile-command)
-         (create-compile-string (buffer-name-no-extension)  config))) 
+	 (create-compile-string (buffer-name-no-extension)  config)))
 
 ;;@=============================  CHICKEN
 (defun chicken-compile ()
   (interactive)
   (unless (or (file-exists-p "makefile")
-              (file-exists-p "Makefile"))
+	      (file-exists-p "Makefile"))
     (set (make-local-variable 'compile-command)
-         (let ((file  (file-name-base)))
-           (concat
-            "csc " file ".scm ")))))
+	 (let ((file  (file-name-base)))
+	   (concat
+	    "csc " file ".scm ")))))
 
 (defun cweb-terminal ()
   (interactive)
   (unless (or (file-exists-p "makefile")
-              (file-exists-p "Makefile"))
+	      (file-exists-p "Makefile"))
     (set (make-local-variable 'compile-command)
-         (concat
-          "ctangle " (file-name-nondirectory buffer-file-name) " && "
-          "gcc -g -std=c99  "   (file-name-base) ".c "
-          "  -o "(file-name-base) ".out &&"
-          "gnome-terminal -x ./" (file-name-base) ".out " ))))
+	 (concat
+	  "ctangle " (file-name-nondirectory buffer-file-name) " && "
+	  "gcc -g -std=c99  "   (file-name-base) ".c "
+	  "  -o "(file-name-base) ".out &&"
+	  "gnome-terminal -x ./" (file-name-base) ".out " ))))
 
 
 ;;@============================= CWEAVE
@@ -220,28 +244,28 @@
   (async-shell-command (concat "pdftex  " (file-name-base) ".tex && "  "evince " (file-name-base) ".pdf & " )))
 
 (setf delete-cweave-files (concat "rm *.tex && "
-                                  "rm *.log && "
-                                  "rm *.scn && "
-                                  "rm *.idx && "
-                                  "rm *.toc && " ))
+				  "rm *.log && "
+				  "rm *.scn && "
+				  "rm *.idx && "
+				  "rm *.toc && " ))
 
 (defun cweaved () ;; debug
   "Run cweave, pdftex and evince in a shell command with the name of the buffer as a filename argument."
   (interactive)
   (let ((file  (file-name-base)))
     (shell-command (concat "cweave  -bhp -e "  (file-name-nondirectory buffer-file-name)         "&& "
-                           "pdftex  -file-line-error " file ".tex && "
-                           (delete-cweave-files file)
-                           "evince " file ".pdf & " ))))
+			   "pdftex  -file-line-error " file ".tex && "
+			   (delete-cweave-files file)
+			   "evince " file ".pdf & " ))))
 
 (defun cweaved-noindex () ;; debug
   "Run cweave, pdftex and evince in a shell command, no index in the pdf."
   (interactive)
   (let ((file  (file-name-base)))
     (shell-command (concat "cweave -x -bhp -e "  (file-name-nondirectory buffer-file-name)       " && "
-                           "pdftex  -file-line-error " file ".tex && "
-                           (delete-cweave-files file)
-                           "evince " file ".pdf & " ))))
+			   "pdftex  -file-line-error " file ".tex && "
+			   (delete-cweave-files file)
+			   "evince " file ".pdf & " ))))
 
 (defun clean-cweave () ;; debug
   ""
@@ -255,21 +279,21 @@
   (interactive)
   (let ((file (file-name-base)))
     (shell-command (concat "cp  " (file-name-base) ".pdf  "
-			         (getenv "READER_DRIVE") " &"  ))))
+				 (getenv "READER_DRIVE") " &"  ))))
 
 (defun cweave ()
   "Shell command.  Run cweave and kill the shell window afterwards."
   (interactive)
   (let ((file  (file-name-base)))
     (async-shell-command (concat "cweave "  (file-name-nondirectory buffer-file-name) "&& "
-                                 "pdftex  " file ".tex && "
-                                 (delete-cweave-files file)
-                                 "evince " file ".pdf & " ))
+				 "pdftex  " file ".tex && "
+				 (delete-cweave-files file)
+				 "evince " file ".pdf & " ))
     (progn
       (if (get-buffer "*Async Shell Command*") ; If old compile window exists
-          (progn
-            (delete-windows-on (get-buffer "*Async Shell Command*")) ; Delete the compilation window
-            (kill-buffer "*Async Shell Command*"))))))
+	  (progn
+	    (delete-windows-on (get-buffer "*Async Shell Command*")) ; Delete the compilation window
+	    (kill-buffer "*Async Shell Command*"))))))
 
 
 ;;@============================= GUD
@@ -291,20 +315,20 @@
   (switch-to-buffer gud-comint-buffer)
   (delete-other-windows)
   (let ((win0 (selected-window))
-        (win1 (split-window nil ( / ( * (window-height) 3) 4)))
-        (win2 (split-window nil ( / (window-height) 3)))
-        (win3 (split-window-right)))
+	(win1 (split-window nil ( / ( * (window-height) 3) 4)))
+	(win2 (split-window nil ( / (window-height) 3)))
+	(win3 (split-window-right)))
     (gdb-set-window-buffer (gdb-locals-buffer-name) nil win3)
     (select-window win2)
     (set-window-buffer
      win2
      (if gud-last-last-frame
-         (gud-find-file (car gud-last-last-frame))
+	 (gud-find-file (car gud-last-last-frame))
        (if gdb-main-file
-           (gud-find-file gdb-main-file)
-         ;; Put buffer list in window if we
-         ;; can't find a source file.
-         (list-buffers-noselect))))
+	   (gud-find-file gdb-main-file)
+	 ;; Put buffer list in window if we
+	 ;; can't find a source file.
+	 (list-buffers-noselect))))
     (setq gdb-source-window (selected-window))
     (let ((win4 (split-window-right)))
       (gdb-set-window-buffer
@@ -313,24 +337,24 @@
     (gdb-set-window-buffer (gdb-stack-buffer-name))
     (let ((win5 (split-window-right)))
       (gdb-set-window-buffer (if gdb-show-threads-by-default
-                                 (gdb-threads-buffer-name)
-                               (gdb-breakpoints-buffer-name))
-                             nil win5))
+				 (gdb-threads-buffer-name)
+			       (gdb-breakpoints-buffer-name))
+			     nil win5))
     (select-window win0)))
 
 
 
 ;;@============================= HOOKS
 (add-hook 'c-mode-hook
-          (lambda ()
-             (set (make-local-variable 'compile-command)
+	  (lambda ()
+	     (set (make-local-variable 'compile-command)
 	     (create-compile-string
 	      (buffer-name-no-extension)
 	      "c sdl run " ))))
 
-(add-hook 'c++-mode-hook 
-          (lambda ()
-             (set (make-local-variable 'compile-command)
+(add-hook 'c++-mode-hook
+	  (lambda ()
+	     (set (make-local-variable 'compile-command)
 	     (create-compile-string
 	      (buffer-name-no-extension)
 	      "cpp vs run " ))))
