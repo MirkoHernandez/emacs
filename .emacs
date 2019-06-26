@@ -26,11 +26,11 @@
 ;;@============================= Load Modes config
 (load-library "look")
 (load-library "modes-config")
+(load-library "efuncs")
+(load-library "site-efuncs")
 (load-library "c-config")
 (load-library "c-compilation-config")
 (load-library "go-config")
-(load-library "efuncs")
-(load-library "site-efuncs")
 (load-library "keys-modes")
 (load-library "keychords")
 ;;@============================= Misc
