@@ -84,7 +84,6 @@
 	    "cl "  compiler89 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
 	    " /link "  linker143 libs230
 	    (when run " && win32_handmade.exe")))
-
     ((equal day "38")
     (concat "cl " compiler45 flags300  " ../handmade.cpp  -Fmhandmade.map"
 	    " -LD /link "  linker-handmade25  " && "
@@ -99,6 +98,12 @@
       "cl "  compiler89 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
       " /link "  linker143 libs230
       (when run " && win32_handmade.exe")))
+    ((> (string-to-number day) 200 )
+     nil)
+    (t
+     (compile-handmade (number-to-string 
+			(1+ (string-to-number day)))
+		       run))
     )))
 
 ;;@============================= LIBRARIES
@@ -144,8 +149,8 @@
   (if (get-buffer "*compilation*")
       ;; (progn
       ;; (unless current-prefix-arg
-      (delete-windows-on (get-buffer "*compilation*"))
-    ;; (kill-buffer "*compilation*"))
+      ;; (delete-windows-on (get-buffer "*compilation*"))
+    (kill-buffer "*compilation*")
     (progn
       (save-buffer)
       (call-process-shell-command (concat "mkdir " (when (string-equal
@@ -174,8 +179,12 @@
     (progn
      (when (compare-options "make")
        (setq compile-string "make"))
-     (when (string-match-p "handmade[0-9]+" options)
-       (setq compile-string (compile-handmade144 (concat " ../win32_handmade.cpp" ))))
+     (when (string-match "handmade\\([0-9]+\\)" options)
+       (setq compile-string
+	     (compile-handmade
+	      (match-string 1 options)
+	      (string-match "\\<run\\>" options))))
+       ;; (setq compile-string (compile-handmade144 (concat " ../win32_handmade.cpp" ))))
      (when (string-match-p "cweb" options)
        (progn
 	 (setq compile-string (concat "ctangle ../"  buffername))
