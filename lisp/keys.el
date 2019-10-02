@@ -12,8 +12,8 @@
 (global-set-key (kbd "M-r") 'query-replace)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'helm-imenu)
-
-(global-set-key (kbd "C-i") 'beginning-of-defun)
+(global-set-key (kbd "C-i") 'dabbrev-expand)
+(global-set-key (kbd "C-o") 'hippie-expand)
 
 ;; Handmade hero keybindings
 (global-set-key (kbd "C-f") 'yank)
@@ -67,7 +67,7 @@
 (define-prefix-command 'my-keymap)
 (global-set-key (kbd "<menu>") my-keymap)
 
-(global-set-key (kbd "C-o") ctl-x-map)
+;; (global-set-key (kbd "C-o") ctl-x-map)
  
 
 
@@ -86,8 +86,8 @@
 (global-set-key [f5] 'compile-or-delete-window)
 (global-set-key [f6]  'comment-line)
 (global-set-key [f7] 'switch-to-prev-buffer)
-(global-set-key [f9] 'first-error)
 
+(global-set-key [f9] 'first-error)
 ;;@============================= ORG
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
