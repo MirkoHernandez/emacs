@@ -4,19 +4,19 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ;;@============================= MAXIMIZE WINDOW ON STARTUP
-
 ;; (defun fullscreen ()
   ;; (interactive)
   ;; (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          ;; '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-
-;; (fullscreen)
 ;; (if (display-graphic-p)
 ;; (fullscreen)))
 
+;; (w32-send-sys-command 61488)
+(toggle-frame-fullscreen)
 
 ;;@============================= CURSOR
 (blink-cursor-mode 0) 
+
 
 ;;@============================= STARTUP
 (setq initial-major-mode 'emacs-lisp-mode)
@@ -51,7 +51,8 @@
 (set-face-background 'hl-line "midnight blue")
 
 ;;@============================= FONT
-(set-frame-font "Liberation Mono-12" nil t)
+(add-to-list 'default-frame-alist '(font . "Liberation Mono-11.5"))
+(set-face-attribute 'default t :font "Liberation Mono-11.5")
 
 ;;@============================= FRINGES
 (fringe-mode (quote (1 . 1))) ;; Set fringe style to 'minimal
@@ -65,6 +66,7 @@
                      (mapcar (lambda (x) (list x (cons (upcase (car x)) (cdr x))))
                              `(("#+begin_src" . ?✎)
                                ("#+end_src"   . ?□)
+			       ("#+name:"   . ?☰)
                                ("#+header:" . ?☰)
                                ("#+begin_quote" . ?»)
                                ("#+end_quote" . ?«)))))
