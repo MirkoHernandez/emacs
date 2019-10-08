@@ -1,12 +1,8 @@
-
-;;@============================= EXEC-PATH-FROM-SHELL
-(when (memq window-system '(mac ns x))
- (exec-path-from-shell-initialize))
-
 ;;@============================= HELPERS
 (defun load-if-exists (f)
   (if (file-readable-p f)
       (load-file f)))
+
 ;;@============================= GENERAL SETTINGS
 (setq undo-limit 20000000)
 (setq undo-strong-limit 40000000)
@@ -14,6 +10,22 @@
 
 (setq create-lockfiles nil) ;; prevent the automatic creation of symbolic links
 (setq default-input-method 'programmer-dvorak)
+
+;;@============================= WINDOWS 
+(if (string-equal system-type "windows-nt")
+    (progn
+      ;; in case GNU utils is not installed for global use.
+      (setq gnu-bin (getenv "GNUBIN"))
+      ;; Prevent slow scroll in Windows (buffers with unicode characters)
+      (setq inhibit-compacting-font-caches t) 
+      (load "server")
+      (unless (server-running-p)
+	(server-start))))
+
+;;@============================= EXEC-PATH-FROM-SHELL
+(when (memq window-system '(mac ns x))
+ (exec-path-from-shell-initialize))
+
 
 ;;@============================= EMACS SPECIFIC FOLDERS
 (setq temporary-file-directory (concat emacs-root "emacs/tmp"))
@@ -92,9 +104,6 @@
 (require 'epa-file)
 (epa-file-enable)
 
-;;@============================= WINDOWS COMPATIBILITY
-(when (string-equal system-type "windows-nt")
-  (setq gnu-bin (getenv "GNUBIN")))
 
 ;;@============================= TEMPLATES
 (auto-insert-mode) 
