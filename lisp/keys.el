@@ -12,8 +12,8 @@
 (global-set-key (kbd "M-r") 'query-replace)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'helm-imenu)
-(global-set-key (kbd "C-i") 'dabbrev-expand)
-(global-set-key (kbd "C-o") 'hippie-expand)
+(global-set-key (kbd "C-o") 'dabbrev-expand)
+(global-set-key (kbd "C-i") 'hippie-expand)
 
 ;; Handmade hero keybindings
 (global-set-key (kbd "C-f") 'yank)
