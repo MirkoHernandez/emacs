@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: paint
+# key: paint
+# --
+PAINTSTRUCT paint;
+HDC DeviceContext = BeginPaint(${1:window}, &paint);
+EndPaint(window, &paint);

@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: loadlibrary
+# key: loadlibrary
+# --
+HMODULE ${1:lib} = LoadLibraryA("${2:xinput1_4}.dll");
+if(!$1) {
+        $1 = LoadLibraryA("${3:xinput1_3}.dll");
+}
+if($1) {
+        ${4:function} = (prototype *)GetProcAddress($1, "function");
+        if(!$4) {
+	        $4 = ${5:functionstub};
+	}
+} else {
+
+
+}
+
+
+    

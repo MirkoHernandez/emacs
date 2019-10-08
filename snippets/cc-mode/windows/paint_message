@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name:message_paint
+# key: message-paint
+# --
+case "${2:$$(yas-choose-value '(
+"WM_PAINT"
+"WM_DISPLAYCHANGE"
+"WM_ERASEBKGND"
+"WM_NCPAINT"
+"WM_PRINT"
+"WM_PRINTCLIENT"
+"WM_SETREDRAW"
+"WM_SYNCPAINT"
+))}":
+{
+} break;

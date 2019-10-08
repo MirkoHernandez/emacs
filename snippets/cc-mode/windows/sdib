@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: sdib
+# key: sdib
+# --
+StretchDIBits(DeviceContext,
+0, 0, window_width, window_height,
+0, 0, width, height,
+memory,
+&info,
+DIB_RGB_COLORS, SRCCOPY);

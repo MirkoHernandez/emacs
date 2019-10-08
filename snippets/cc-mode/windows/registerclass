@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: registerclass 
+# key: registerclass
+# --
+if (RegisterClassA(&${1:class})) {
+        $2
+}

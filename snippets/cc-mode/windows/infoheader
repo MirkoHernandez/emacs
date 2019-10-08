@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: infoheader
+# key: infoheader
+# --
+${1:info}.bmiHeader.biSize = sizeof($1.bmiHeader);
+$1.bmiHeader.biWidth = $2; 
+$1.bmiHeader.biHeight = -$3; // negative for top down.
+$1.bmiHeader.biPlanes = 1;
+$1.bmiHeader.biBitCount = 32;
+$1.bmiHeader.biCompression = BI_RGB;

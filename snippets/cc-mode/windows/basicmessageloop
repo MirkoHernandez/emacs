@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: basic_message_loop
+# key: bml
+# --
+MSG Message;
+while(PeekMessage(&Message, 0, 0, 0, PM_REMOVE)) {
+        if(Message.message == WM_QUIT) {
+                break;
+        }
+	TranslateMessage(&Message);
+	DispatchMessageA(&Message);
+}

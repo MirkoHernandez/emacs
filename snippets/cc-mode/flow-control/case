@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name : case2 : {...}
-# key: case2
+# name : case : {...}
+# key: case
 # --
 case ${1:constexpr}:
 {

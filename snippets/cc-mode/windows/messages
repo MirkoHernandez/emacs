@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: messages
+# key: messages
+# --
+switch(${1:message}) {
+case WM_SIZE:
+{
+} break;
+
+case WM_CLOSE:
+{
+        PostQuitMessage(0);
+} break;
+
+case WM_ACTIVATEAPP:
+{
+} break;
+
+case WM_DESTROY:
+{
+        PostQuitMessage(0);
+} break;
+
+case WM_PAINT:
+{
+} break;
+
+default:
+{
+	result = DefWindowProc(${2:window}, $1, ${3:wparam},${4:lparam});
+} break;
+}
