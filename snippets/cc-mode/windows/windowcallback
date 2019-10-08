@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: wincallback
+# key: wincallback
+# --
+LRESULT CALLBACK
+WindowCallback(HWND window,
+                   UINT message,
+                   WPARAM wparam,
+                   LPARAM lparam)
+{
+    LRESULT result = 0;
+    
+    return result;
+}

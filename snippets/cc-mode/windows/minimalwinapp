@@ -1,0 +1,90 @@
+# -*- mode: snippet -*-
+# name: minimal_windows_aplication
+# key: mwa
+# --
+#include <windows.h>
+bool global_running;
+
+LRESULT CALLBACK
+WinProc(HWND window,
+	UINT message,
+	WPARAM wparam,
+	LPARAM lparam)
+{
+	LRESULT result = 0;
+	switch(message) {
+	case WM_SIZE:
+	{
+	} break;
+
+	case WM_CLOSE:
+	{
+		global_running = false;
+	} break;
+
+	case WM_ACTIVATEAPP:
+	{
+	} break;
+
+	case WM_DESTROY:
+	{
+		global_running = false;
+	} break;
+
+	case WM_PAINT:
+	{
+		PAINTSTRUCT Paint;
+		BeginPaint(window, &Paint);
+		EndPaint(window, &Paint);
+	} break;
+
+	default:
+	{
+		result = DefWindowProc(window, message, wparam,lparam);
+	} break;
+	}
+	return result;
+}
+
+
+int CALLBACK
+WinMain(HINSTANCE instance,
+	HINSTANCE prev_instance,
+	LPSTR command_line,
+	int show_code)
+{
+	WNDCLASS WinClass = {};
+	WinClass.lpfnWndProc = WinProc;
+	WinClass.hInstance = instance;
+	WinClass.lpszClassName = "title";
+	if (RegisterClassA(&WinClass)) {
+		HWND window = CreateWindowExA(
+			0,	
+			WinClass.lpszClassName,
+			"title",
+			WS_OVERLAPPEDWINDOW|WS_VISIBLE,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			0,
+			0,
+			instance,
+			0);
+		global_running = true;
+		if (window) {
+			while (global_running) {
+				MSG Message;
+				while(PeekMessage(&Message, 0, 0, 0, PM_REMOVE)) {
+					if(Message.message == WM_QUIT) {
+						global_running = false;
+					}
+					TranslateMessage(&Message);
+					DispatchMessageA(&Message);
+				}
+			}
+		}
+	}
+	
+	return 0;
+}

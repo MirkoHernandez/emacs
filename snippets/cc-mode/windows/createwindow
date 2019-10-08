@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: createwindow
+# key: createwindow
+# --
+HWND ${1:window} = CreateWindowExA(
+                0,	
+                ${2:class}.lpszClassName,
+                "${3:title}",
+                WS_OVERLAPPEDWINDOW|WS_VISIBLE,
+                CW_USEDEFAULT,
+                CW_USEDEFAULT,
+                CW_USEDEFAULT,
+                CW_USEDEFAULT,
+                0,
+                0,
+                ${4:instance},
+                0);
+
+if ($1) {
+
+}

@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name: src
-# key: src
+# name: src2
+# key: src2
 # --
+#+NAME: 
 #+BEGIN_SRC ${1:C++}
 $0            
 #+END_SRC

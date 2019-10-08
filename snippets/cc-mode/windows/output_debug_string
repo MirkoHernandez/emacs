@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: output_debug_string
+# key: ods
+# --
+OutputDebugStringA("$1");

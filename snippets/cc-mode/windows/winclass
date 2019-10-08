@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: winclass
+# key: winclass
+# --
+WNDCLASSA $1 = {};
+$1.lpfnWndProc = ${2:WindowCallback};
+$1.hInstance = ${3:instance};
+$1.lpszClassName = "${4:className}";

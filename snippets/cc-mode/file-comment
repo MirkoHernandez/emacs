@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name : file-comment
+# key: fc
+# --
+/* ===============================================
+Date: $1
+PURPOSE: $2
+NOTE: $3
+AUTHOR: Mirko Hernandez
+==================================================  */

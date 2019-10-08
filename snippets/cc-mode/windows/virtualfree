@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: virtualfree
+# key: vfree
+# --
+VirtualFree(${1:memory}, 0, MEM_RELEASE);
