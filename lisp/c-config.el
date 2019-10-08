@@ -7,20 +7,25 @@
 
 ;;@============================= C Configuration.
 
-(setq-default c-basic-offset 8)
+(setq c-basic-offset 8)
 
-(add-hook 'c-mode-hook
-          '(lambda ()
-             (outline-minor-mode)
-             (hs-minor-mode)
-	     (flycheck-mode)
-	     (smartparens-mode)
-	     ;; Kernel Coding Style
-	     (setq c-basic-offset 8)
-	     (setq c-default-style "k&r"
-		   c-basic-offset 8
-		   company-backends '(company-gtags company-c-headers))
-             (setq outline-regexp "///" )))
+(defun c-config-hook ()
+  (outline-minor-mode)
+  (hs-minor-mode)
+  (flycheck-mode)
+  (smartparens-mode)
+  ;; Kernel Coding Style
+  (setq c-default-style "k&r"
+	c-basic-offset 8
+	company-backends '(company-gtags company-c-headers))
+  ;; Style modifications
+  (c-set-offset 'arglist-intro 8)
+  (c-set-offset 'statement-case-open 0)
+  ;; Outline regex
+  (setq outline-regexp "///" )
+  )
+
+(add-hook 'c-mode-common-hook 'c-config-hook)
 
 (defun my-autoindent-c ()
   ""
