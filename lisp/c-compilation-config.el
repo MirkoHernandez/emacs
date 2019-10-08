@@ -29,7 +29,9 @@
 ;; /PDB		  Creates a program database (PDB) file.
 ;; /SUBSYSTEM	  Tells the operating system how to run the .exe file.
 
-
+;; LIBS
+;;  user32.lib gdi32.lib winmm.lib;
+ 
 (defun compile-handmade(day run)
   (let (
 	(libs15  " user32.lib gdi32.lib ")
@@ -103,14 +105,16 @@
     (t
      (compile-handmade (number-to-string 
 			(1+ (string-to-number day)))
-		       run))
-    )))
+		       run)))))
 
 ;;@============================= LIBRARIES
 (if (eq system-type 'windows-nt)
     (setq libraries-table
       #s(hash-table size 20 test equal
 		    data (
+			  "user"   "user32.lib"
+			  "gdi"  "gdi32.lib"
+			  "winm" "winm.lib"
 			  "sdl2" "-lSDL2_image -lpng -lz -lm"
 			  "sdl"  "-lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer"
 			  "winlibs" "user32.lib gdi32.lib winmm.lib"
@@ -167,7 +171,7 @@
 	 size 20
 	 test equal
 	 data (
-	       "vs" "cl -Zi "
+	       "windows" "cl -Zi "
 		"cweb" "something"
 	       "cweb cpp"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w_cpp && " )
 	       "cweb c"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w && " ))))
@@ -175,48 +179,56 @@
 (defun create-compile-string(buffername options)
   (defun compare-options (rgx)
     (string-match-p rgx options))
-  (let  ((compile-string ""))
+  (let  ((compile-string "")
+	 (make (compare-options "make"))
+	 (run  (compare-options "\\<run\\>"))
+	 (cweb (compare-options "\\<cweb\\>"))
+	 (c (compare-options "\\<c\\>"))
+	 (cpp (compare-options "\\<cpp\\>"))
+	 (windows (compare-options "\\<windows\\>"))
+	 (profile (compare-options "\\<profile\\>"))
+	 (debug (compare-options "\\<debug\\>"))
+	 (resources (compare-options "\\<resources\\>"))
+	 (multiple (compare-options "\\<multiple\\>")))
     (progn
-     (when (compare-options "make")
+     (when make
        (setq compile-string "make"))
      (when (string-match "handmade\\([0-9]+\\)" options)
        (setq compile-string
-	     (compile-handmade
-	      (match-string 1 options)
-	      (string-match "\\<run\\>" options))))
-       ;; (setq compile-string (compile-handmade144 (concat " ../win32_handmade.cpp" ))))
-     (when (string-match-p "cweb" options)
+	     (compile-handmade (match-string 1 options) run)))
+     (when cweb
        (progn
 	 (setq compile-string (concat "ctangle ../"  buffername))
-	 (when (string-match-p "\\<c\\>" options)
-		(setq compile-string (concat compile-string ".w")))
-	 (when (string-match-p "cpp" options)
+	 (when c
+	   (setq compile-string (concat compile-string ".w")))
+	 (when cpp
 	   (setq compile-string (concat compile-string ".w_cpp")))))
-     (cond ((string-match-p "\\<vs\\>" options)
+     (cond (windows
 	    (setq compile-string (concat compile-string "cl -Zi")))
-	   ((string-match-p "\\<c\\>" options)
+	   (c
 	    (setq compile-string (concat compile-string "gcc -std=c99 ")))
-	   ((string-match-p "cpp" options)
+	   (cpp
 	    (setq compile-string (concat compile-string "g++  "))))
-     (when (string-match-p "profile" options )
-       (setq compile-string (concat compile-string "-pg ")))
-     (when (string-match-p "debug" options )
-       (setq compile-string (concat compile-string "-g ")))
-     (when (string-match "\\<c\\>" options)
-       (if (string-match "multiple" options)
-	   (setq compile-string (concat  compile-string  " ../*"    ".c -o main"))
-	 (setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
-     (when (string-match "cpp" options)
-       (if (string-match "multiple" options)
-	   (setq compile-string (concat  compile-string  " ../*"    ".cpp -o main"))
-	 (setq compile-string (concat compile-string   " ../" buffername ".cpp  -o " buffername ))))
-     (when (or (string-match "\\<c\\>" options)
-	       (string-match "cpp" options))
-       (setq compile-string (concat  compile-string   (libraries-string options) " ")))
-     (when (string-match "\\<run\\>" options)
-       (setq compile-string (concat compile-string    " &&  cd .. &&  "  "build/" buffername)))
+     (when profile
+	 (setq compile-string (concat compile-string "-pg ")))
+       (when debug
+	 (setq compile-string (concat compile-string "-g ")))
+       (when c
+	 (if multiple
+	     (setq compile-string (concat  compile-string  " ../*"    ".c -o main"))
+	   (setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
+       (when cpp
+	 (if multiple
+	     (setq compile-string (concat  compile-string  " ../*"    ".cpp " (when (not windows) "-o ") "main "))
+	   (setq compile-string (concat compile-string   " ../" buffername ".cpp " (when (not windows) "-o ")  buffername ))))
+       (when (or c cpp)
+	 (setq compile-string (concat  compile-string   (libraries-string options) " ")))
+     (when run
+       (if windows
+	   (setq compile-string (concat compile-string  (when resources "/link resources.res ")
+					" &&  cd .. && "  "build\\" buffername))
+	 (setq compile-string (concat compile-string    " &&  cd .. && "  "build/" buffername))))
      compile-string)))
-
 
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
@@ -366,4 +378,4 @@
 	     (set (make-local-variable 'compile-command)
 	     (create-compile-string
 	      (buffer-name-no-extension)
-	      "cpp vs run " ))))
+	      "cpp windows run user gdi" ))))
