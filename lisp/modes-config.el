@@ -107,7 +107,7 @@
 (setq company-tooltip-align-annotations t)
 
 ;; formats the buffer before saving
-(add-hook 'before-save-hook 'tide-format-before-save)
+;; (add-hook 'before-save-hook 'tide-format-before-save)
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 
@@ -214,6 +214,8 @@
 (add-hook 'org-mode-hook (lambda ()
 			   (setq default-justification 'full)
 			   (turn-on-auto-fill)
+			   (smartparens-mode)
+			   (toggle-input-method)
 			   ;; LOOKS
 			   (set-face-attribute 'org-level-1 t :height 1.9 )
 			   (set-face-attribute 'org-level-2 t :height 1.3 )
@@ -226,7 +228,15 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
-
+;;@============================= FLYCHECK
+;; (set-face-attribute 'flycheck-error
+                    ;; nil
+		    ;; :underline
+		    ;; '(:color "red" :style line))
+;; (set-face-attribute 'flycheck-warning
+		    ;; nil
+		    ;; :underline
+		    ;; '(:color "orange" :style line))
 
 ;;@============================= HELM
 (setf helm-boring-buffer-regexp-list '("\\` " "\\*helm" "\\*helm-mode"
@@ -237,5 +247,3 @@
                                        "\\*.+(.+)" "elpa/.+" "tramp/.+"
                                        "\\*Gofmt Errors\\*" "\\*autopep8"
                                        "\\*magit-process:" "\\*magit-diff:" "\\*anaconda-mode\\*"))
-
-
