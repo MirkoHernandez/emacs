@@ -258,8 +258,13 @@
 	  "  -o "(file-name-base) ".out &&"
 	  "gnome-terminal -x ./" (file-name-base) ".out " ))))
 
+;;@============================= WINDOWS RESOURCES
+(defun compile-resources ()
+  (interactive)
+  (shell-command (concat "rc -fo build\\" (file-name-base)  ".res "  (file-name-nondirectory buffer-file-name))))
 
 ;;@============================= CWEAVE
+
 (defun pdftex ()
   (interactive)
   (async-shell-command (concat "pdftex  " (file-name-base) ".tex && "  "evince " (file-name-base) ".pdf & " )))
