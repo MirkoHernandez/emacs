@@ -23,6 +23,9 @@ case WM_DESTROY:
 
 case WM_PAINT:
 {
+       	PAINTSTRUCT paint;
+	HDC DeviceContext = BeginPaint(window, &paint);
+	EndPaint(window, &paint);
 } break;
 
 default:
