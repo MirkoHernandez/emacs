@@ -2,11 +2,13 @@
 # name: basic_message_loop
 # key: bml
 # --
-MSG Message;
-while(PeekMessage(&Message, 0, 0, 0, PM_REMOVE)) {
-        if(Message.message == WM_QUIT) {
-                break;
+while ($1) {
+        MSG Message;
+        while(PeekMessage(&Message, 0, 0, 0, PM_REMOVE)) {
+                if(Message.message == WM_QUIT) {
+                        $1 = 0;
+                 }
+                 TranslateMessage(&Message);
+                 DispatchMessageA(&Message);
         }
-	TranslateMessage(&Message);
-	DispatchMessageA(&Message);
 }
