@@ -2,13 +2,13 @@
 
 (require 'package)
 
-;; (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    ;; (not (gnutls-available-p))))
-       ;; (proto (if no-ssl "http" "https")))
-  ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  ;; (when (< emacs-major-version 24)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
     ;; For important compatibility libraries like cl-lib
-    ;; (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
+    (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
 ;;@============================= PACKAGE LIST
@@ -21,27 +21,39 @@
 ;; (Add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (setq package-selected-packages
       '(
+	;; smex
+	;; iedit
+	;; linum-relative
+	;; ido-completing-read+
+	;;
+	;;
 	;; general
 	yasnippet
 	company
 	key-chord
-	ido-completing-read+
 	projectile
 	expand-region
 	flycheck
-	smex
+	ivy
+	counsel
+	counsel-projectile
+	swiper
+	avy
+	which-key
 	helm
 	magit
 	move-text
 	ag
 	helm-ag
 	diff-hl
-	iedit
 	smartscan
 	speed-type
 	keyfreq
 	exec-path-from-shell
-	linum-relative
+	multiple-cursors
+	ranger
+	hydra
+	fix-word
 	;; C
 	helm-cscope 
 	ggtags
