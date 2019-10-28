@@ -13,7 +13,7 @@
 (key-chord-define-global "JK"   'yas-expand)
 (key-chord-define-global "jl"   'hippie-expand)
 ;; movement
-(key-chord-define-global "qw"   ' c-beginning-of-statement)
+(key-chord-define-global "qw"   'c-beginning-of-statement)
 ;;delete 
 (key-chord-define-global "dg"   'c-hungry-delete-forward-and-indent)
 (key-chord-define-global "DG"   'c-hungry-delete-forward-and-indent)
@@ -23,15 +23,14 @@
 
 ;; narrow
 (key-chord-define-global "hh"   'hs-hide-level)
-(key-chord-define-global "hh"   'hs-hide-level)
 
 ;; (key-chord-define-global "km"   'hs-show-all)
 ;; misc
 (key-chord-define-global "yy"  'projectile-find-file)
-(key-chord-define-global "jj"   'helm-ag)
+(key-chord-define-global "fg"   'helm-ag)
+(key-chord-define-global "jj"   'avy-goto-word-1)
 (key-chord-define-global "qq"   'outline-hide-sublevels)
 (key-chord-define-global "ww"   'outline-show-all)
-(key-chord-define-global "bb"   'bookmark-jump)
 (key-chord-define-global ";;"   'add-semicolon)
 
 ;;@============================= SMARTPARENS
