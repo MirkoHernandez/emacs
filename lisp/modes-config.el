@@ -3,10 +3,30 @@
 
 ;;@============================= SMEX
 ;; smex, remember recently and most frequently used commands
-(require 'smex)
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; (require 'smex)
+;; (smex-initialize)
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+;;@============================= IVY
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t) 
+(setq enable-recursive-minibuffers t)
+(setq ivy-count-format "(%d/%d) ")
+
+(ivy-set-actions
+ 'counsel-find-file
+ '(("j" find-file-other-window "other window")
+   ("b" counsel-find-file-cd-bookmark-action "cd bookmark")
+   ("x" counsel-find-file-extern "open externally")
+   ("d" delete-file "delete")
+   ("r" counsel-find-file-as-root "open as root")))
+
+(ivy-set-actions
+ 'ivy-switch-buffer
+ '(("j" switch-to-buffer-other-window "other window")
+   ("k" kill-buffer "kill")
+   ("r" ivy--rename-buffer-action "rename")))
 
 ;;@============================= PROJECTILE
 (projectile-global-mode t)
@@ -228,6 +248,15 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
+(setq keyfreq-excluded-commands
+      '(self-insert-command
+        org-self-insert-command
+	dired
+	))
+;;@============================= WHICH-KEY
+(require 'which-key)
+(which-key-mode)
+
 ;;@============================= FLYCHECK
 ;; (set-face-attribute 'flycheck-error
                     ;; nil
@@ -247,3 +276,57 @@
                                        "\\*.+(.+)" "elpa/.+" "tramp/.+"
                                        "\\*Gofmt Errors\\*" "\\*autopep8"
                                        "\\*magit-process:" "\\*magit-diff:" "\\*anaconda-mode\\*"))
+
+;;@============================= HYDRA
+(defvar rectangle-mark-mode)
+(defun hydra-ex-point-mark ()
+  "Exchange point and mark."
+  (interactive)
+  (if rectangle-mark-mode
+      (rectangle-exchange-point-and-mark)
+    (let ((mk (mark)))
+      (rectangle-mark-mode 1)
+      (goto-char mk))))
+
+(defhydra hydra-bookmarks (:color blue)
+  "Bookmarks"
+  ("b" counsel-bookmark "Jump to Bookmark")
+  ("i" insert-register "Insert Register")
+  ("j" jump-to-register "Jump to Register")
+  ("m" bookmark-set "Set Bookmark")
+  ("w" window-configuration-to-register "Window Configuration to Register")
+  ("x" copy-to-register "Copy to Register"))
+
+
+(defhydra hydra-replace (:color orange)
+  "Replace"
+  ("r" query-replace-in-region "Replace in region without moving point")
+  ("."  (lambda () (interactive)
+	  (setq current-prefix-arg '(4)) ; C-u
+	  (call-interactively 'smartscan-symbol-replace)) "Replace Symbol in defun")
+  ("," smartscan-symbol-replace "Replace symbol in buffer")
+  ("b" query-replace-regexp "Replace regexp in buffer or region")
+  ("q" nil "cancel"))
+
+
+(defhydra hydra-rectangle (:body-pre (rectangle-mark-mode 1)
+				     :color pink
+				     :post (deactivate-mark))
+  "Rectangle"
+  ("h" rectangle-backward-char nil)
+  ("l" rectangle-forward-char nil)
+  ("k" rectangle-previous-line nil)
+  ("j" rectangle-next-line nil)
+  ("e" hydra-ex-point-mark "hydra-ex-point-mark")
+  ("n" copy-rectangle-as-kill "copy-rectangle-as-kill")
+  ("d" delete-rectangle "delete-rectangle")
+  ("r" (if (region-active-p)
+	   (deactivate-mark)
+	 (rectangle-mark-mode 1)) "Deactivate Region")
+  ("y" yank-rectangle "yank-rectangle")
+  ("u" undo "undo")
+  ("s" string-rectangle "string-rectangle")
+  ("x" kill-rectangle "kill-rectangle")
+  ("o" nil "" ))
+
+
