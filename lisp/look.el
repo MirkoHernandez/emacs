@@ -49,6 +49,8 @@
 ;;@============================= HL-LINE
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "midnight blue")
+;;@============================= CURSOR
+(set-cursor-color "#40FF40")
 
 ;;@============================= FONT
 (add-to-list 'default-frame-alist '(font . "Liberation Mono-11.5"))
