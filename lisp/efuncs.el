@@ -27,7 +27,8 @@ Repeated invocations toggle between the two most recently open buffers."
 				  "\\.c$\\|\\.cpp$"   (".h") 
 				  "\\.h$" (".c" ".cpp")
 				  ;; Fractal
-				  "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"   (".config.json" ".config.js" ".config.yaml" ".config.yml") 
+				  "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"   (".scss")
+				  "\\.scss$"   (".hbs" ".mustache" ".twig" ".nunj")
 				  "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$"   (".hbs" ".mustache" ".twig" ".nunj" ))))
   ;; Secondary-ext table
 (setq secondary-ext-table
@@ -35,7 +36,11 @@ Repeated invocations toggle between the two most recently open buffers."
 				  ;; Angular
 				  "\\.component.ts$"   (".model.ts") 
 				  "\\.component.html$"   (".component.scss") 
-				  "\\.component.scss$"   (".component.html"))))
+				  "\\.component.scss$"   (".component.html")
+				  ;; Fractal
+				  "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"   (".config.json" ".config.js" ".config.yaml" ".config.yml") 
+				  "\\.scss$"   (".config.json" ".config.js" ".config.yaml" ".config.yml") 
+				  )))
 
 
 (defun get-corresponding-file-extension (file hash-table)
