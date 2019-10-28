@@ -6,6 +6,7 @@
 ;;; Code:
 
 ;;@============================= C Configuration.
+(setq compilation-skip-threshold 2)
 
 (setq c-basic-offset 8)
 
