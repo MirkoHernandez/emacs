@@ -1,3 +1,7 @@
+
+;;@============================= HYDRA
+(global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
+
 ;;@============================= HELM
 (global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "M-b") 'helm-buffers-list)
@@ -42,9 +46,17 @@
 
 ;;@============================= NEOTREE
 (global-set-key (kbd "C-h") 'neotree)
-(add-hook ' neotree-mode-hook
+(add-hook 'neotree-mode-hook
           (lambda ()
             (define-key neotree-mode-map (kbd "C-h") 'neotree-hide)))
+
+;;@============================= IVY
+(add-hook 'ivy-mode-hook
+          (lambda ()
+	    (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
+	    (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-scroll-up-command)
+	    (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-scroll-down-command)))
+
 ;;@============================= RACKET
 (add-hook 'racket-mode-hook
           (lambda ()

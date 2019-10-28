@@ -3,13 +3,36 @@
 ;;; Code:
 ;;@============================= REBIND EMACS DEFAULTS
 (global-set-key (kbd "<C-m>") 'smex)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key "\C-x\C-b" 'buffer-menu)
+(global-set-key "\C-x\C-f" 'counsel-find-file)
+(global-set-key "\C-x\C-q" 'save-buffers-kill-terminal)
+(global-set-key "\C-x\C-c" nil)
+(global-set-key (kbd "C-x r b") 'counsel-bookmark)
+(global-set-key "\C-b" 'ivy-switch-buffer)
+(global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+
+(global-set-key (kbd "M-U") #'fix-word-upcase)
+(global-set-key (kbd "M-l") #'fix-word-downcase)
+(global-set-key (kbd "M-c") #'fix-word-capitalize)
+
+
+(global-set-key "\C-s" 'swiper-isearch)
+(global-set-key "\C-r" 'swiper-isearch-backward)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "M-y") 'counsel-yank-pop)
+(global-set-key (kbd "M-f") 'counsel-find-file)
+(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+
+
 
 (global-set-key (kbd "M-u") 'undo)
 (global-set-key (kbd "M-s") 'save-buffer)
 (global-set-key (kbd "C-1") 'widen)
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)
-(global-set-key (kbd "M-r") 'query-replace)
+(global-set-key (kbd "M-r") 'hydra-replace/body)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "C-o") 'dabbrev-expand)
@@ -58,7 +81,6 @@
 (global-set-key (kbd "<C-M-SPC>") 'mark-sexp)
 ;; (global-set-key (kbd "<C-M-SPC>") 'just-one-space)
 (global-set-key (kbd "M-a") 'align-regexp)
-(global-set-key (kbd "M-U") 'upcase-word)
 (global-set-key (kbd "<M-S-down>") 'move-text-down)
 (global-set-key (kbd "<M-S-up>") 'move-text-up)
 
@@ -134,10 +156,12 @@
 (global-set-key (kbd "<backtab>") 'yas-expand-indent)
 (global-set-key  "\C-c+" 'increment-number-at-point)
 (global-set-key [f8] 'my-switch-to-previous-buffer)
-(global-set-key (kbd "<tab>") 'indent-for-tab-command)
+;; (global-set-key (kbd "<tab>") 'indent-for-tab-command)
 (global-set-key (kbd "<C-return>") 'end-of-line-and-indented-new-line)
 (global-set-key (kbd "\C-x3") 'split-window-right-other-window)
 
 (global-set-key (kbd "C-S-j") 'goto-primary-file)
 (global-set-key (kbd "C-S-h") 'goto-secondary-file)
+
+
 
