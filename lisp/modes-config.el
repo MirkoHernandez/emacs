@@ -9,7 +9,7 @@
 ;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 ;;@============================= IVY
-(ivy-mode 1)
+(ivy-mode)
 (setq ivy-use-virtual-buffers t) 
 (setq enable-recursive-minibuffers t)
 (setq ivy-count-format "(%d/%d) ")
@@ -27,6 +27,12 @@
  '(("j" switch-to-buffer-other-window "other window")
    ("k" kill-buffer "kill")
    ("r" ivy--rename-buffer-action "rename")))
+
+(with-eval-after-load 'counsel
+  (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t))
+	)
+    (define-key ivy-minibuffer-map done #'ivy-alt-done)))
+
 
 ;;@============================= PROJECTILE
 (projectile-global-mode t)
