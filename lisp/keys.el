@@ -16,7 +16,6 @@
 (global-set-key (kbd "M-l") #'fix-word-downcase)
 (global-set-key (kbd "M-c") #'fix-word-capitalize)
 
-
 (global-set-key "\C-s" 'swiper-isearch)
 (global-set-key "\C-r" 'swiper-isearch-backward)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
@@ -24,7 +23,6 @@
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
 (global-set-key (kbd "M-f") 'counsel-find-file)
 (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-
 
 
 (global-set-key (kbd "M-u") 'undo)

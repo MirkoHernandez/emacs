@@ -50,12 +50,6 @@
           (lambda ()
             (define-key neotree-mode-map (kbd "C-h") 'neotree-hide)))
 
-;;@============================= IVY
-(add-hook 'ivy-mode-hook
-          (lambda ()
-	    (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
-	    (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-scroll-up-command)
-	    (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-scroll-down-command)))
 
 ;;@============================= RACKET
 (add-hook 'racket-mode-hook
