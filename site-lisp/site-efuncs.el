@@ -58,7 +58,13 @@
       (progn 	(copy-file filename newname 1) 	(delete-file filename) 	(set-visited-file-name newname) 	(set-buffer-modified-p nil) 	t)))) 
 
 
-;;============================  EDITING 
+;;============================  EDITING
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
 (defun backward-kill-sexp-or-selection(beg end)
   "message region or \"empty string\" if none highlighted"
   (interactive (if (use-region-p)
