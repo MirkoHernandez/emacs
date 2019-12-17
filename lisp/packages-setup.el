@@ -51,6 +51,7 @@
 	ranger
 	hydra
 	fix-word
+	smartparens
 	;; C
 	helm-cscope 
 	ggtags
