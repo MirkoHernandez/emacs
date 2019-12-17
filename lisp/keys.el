@@ -15,6 +15,8 @@
 (global-set-key (kbd "M-U") #'fix-word-upcase)
 (global-set-key (kbd "M-l") #'fix-word-downcase)
 (global-set-key (kbd "M-c") #'fix-word-capitalize)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
+
 
 (global-set-key "\C-s" 'swiper-isearch)
 (global-set-key "\C-r" 'swiper-isearch-backward)
@@ -107,7 +109,7 @@
 (global-set-key [f6]  'comment-line)
 (global-set-key [f7] 'switch-to-prev-buffer)
 
-(global-set-key [f9] 'first-error)
+(global-set-key [f9] 'next-error)
 ;;@============================= ORG
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
