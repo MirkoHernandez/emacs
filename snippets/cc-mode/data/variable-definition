@@ -1,6 +1,5 @@
 # -*- mode: snippet -*-
-# name: var_definition
+# name: variable_definition
 # key: v
 # --
 ${1:int} $2 = ${3:0};
-

@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: parameter_declarations
+# key: pd
+# type: command
+# --
+(let ((yas-good-grace nil)
+     (count (read-number "Number of parameters: "))
+      (variable (read-string "Type: ")))
+  (yas-expand-snippet
+   (concat
+    (mapconcat
+     (lambda (num)
+       (format "%s ${%d:ele}"variable (1+ num)  ))
+     (number-sequence 1 count nil)
+     ", ")
+    "$0")))
+
