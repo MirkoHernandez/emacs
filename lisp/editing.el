@@ -24,13 +24,14 @@ expression) used.  TOKEN,  a string, is appended  to each element
 of the original string.  The final argument KEEP-FINAL-SEPARATOR,
 if  set to  not nil,  it includes  the last  separator, which  is
 eliminated otherwise."
-
   (mapconcat (lambda (x)
                (if (not (equal  (string-trim x) ""))
                    (let  ((token (replace-regexp-in-string separators "" x)))
-                     (setf string (replace-regexp-in-string token
-                                                            (concat  token token-insert)
-                                                            string)))))
+                     (setf string
+			   (replace-regexp-in-string
+			    token
+			    (concat  token token-insert)
+			    string)))))
              (delete-dups (split-string string separators))
              "")
   (setq string (string-trim-right string))
@@ -49,9 +50,13 @@ elements are not going to be replaced."
 
   (mapconcat (lambda (x)
                (if (not
-                    (position-if #'(lambda (y) (equal y x)) (if exclude-list exclude-list '(""))))
+                    (cl-position-if #'(lambda (y) (equal y x))
+				    (if exclude-list
+					exclude-list '(""))))
                    (let  ((token x))
-                     (setf string (replace-regexp-in-string token  (concat  token-b token token-e) string )))))
+                     (setf string (replace-regexp-in-string
+				   token
+				   (concat  token-b token token-e) string )))))
              (delete-dups (split-string string separators))
              "")
   (setq string (string-trim-right string)))
@@ -68,14 +73,16 @@ selection are replaced with yasnippet templates."
   (if (and beg end)
       (let ((string  (buffer-substring-no-properties beg end) ))
         (kill-region beg end)
-        (yas-expand-snippet (modify-string-enclose-words string
-                                                         "\\(\\.\\| \\|'\\|{\\|}\\|(\\|)\\|\\[\\|\\]\\|,\\|;\\)" "${" "}" '("") )))
+        (yas-expand-snippet (modify-string-enclose-words
+			     string
+			     "\\(\\.\\| \\|'\\|{\\|}\\|(\\|)\\|\\[\\|\\]\\|,\\|;\\)"
+			     "${" "}"
+			     '("") )))
     (let  ((beg (line-beginning-position))
            (end (line-end-position)))
       (if (and beg end)
           (refactor-line-or-selection-any beg end )
         nil ))))
-
 
 
 (defun refactor-line-or-selection-identifiers-only (beg end )
@@ -91,10 +98,16 @@ change so that only identifiers should be available for editing."
   (if (and beg end)
       (let ((string  (buffer-substring-no-properties beg end) ))
         (kill-region beg end)
-        (yas-expand-snippet (modify-string-enclose-words string   "\\(\\.\\| \\|'\\|{\\|}\\|(\\|)\\|\\[\\|\\]\\|,\\|;\\)"  "${" "}"
-                                                         '("" "var" "function" "return" ">=" "<=" "/" "=" "+=" "/" "*=" "for" "if" "else" "console"
-                                                           ">" "<" "=>" "log" "switch" "case" "while" "try" "catch" "throw" "*" "*=" "%" "*=" "%" "-"
-                                                           "*=" "+"  "debugger" "continue" "new" "that" ":"  "=" "*=" "=" "*="  ) )))
+        (yas-expand-snippet (modify-string-enclose-words
+			     string
+			     "\\(\\.\\| \\|'\\|{\\|}\\|(\\|)\\|\\[\\|\\]\\|,\\|;\\)"
+			     "${" "}"
+			     '("" "var" "function" "return" ">=" "<=" "/"
+			       "=" "+=" "/" "*=" "for" "if" "else" "console"
+			       ">" "<" "=>" "log" "switch" "case" "while" "try"
+			       "catch" "throw" "*" "*=" "%" "*=" "%" "-"
+			       "*=" "+"  "debugger" "continue" "new" "that"
+			       ":"  "=" "*=" "=" "*="  ) )))
     (let  ((beg (line-beginning-position))
            (end (line-end-position)))
       (if (and beg end)
