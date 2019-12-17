@@ -136,8 +136,8 @@
 	(libraries (split-string l)))
     (mapc (lambda (x)
 	    (when (gethash x libraries-table)
-	       (setq libraries-string (concat libraries-string (gethash x libraries-table) " ")))
-	    ) libraries)
+	       (setq libraries-string (concat libraries-string (gethash x libraries-table) " "))))
+	     libraries)
     libraries-string))
 
 ;;@============================= HELPERS
@@ -151,19 +151,17 @@
   Every program is compiled and executed inside a build folder."
   (interactive "p")
   (if (get-buffer "*compilation*")
-      ;; (progn
-      ;; (unless current-prefix-arg
-      ;; (delete-windows-on (get-buffer "*compilation*"))
-    (kill-buffer "*compilation*")
-    (progn
-      (save-buffer)
+      (progn
+	  (delete-windows-on (get-buffer "*compilation*"))
+	  (kill-buffer "*compilation*"))
+      ;; (save-buffer)
       (call-process-shell-command (concat "mkdir " (when (string-equal
 							  system-type
 							  "gnu/linux")
 						     "-p")
 					  " build" ) nil 0)
       (let ((default-directory (concat default-directory "build")))
-	(compile compile-command)))))
+	(compile compile-command))))
 
 ;;@============================= GENERATING COMPILE STRINGS
 (setq c-compile-table
@@ -172,7 +170,7 @@
 	 test equal
 	 data (
 	       "windows" "cl -Zi "
-		"cweb" "something"
+	       "cweb" "something"
 	       "cweb cpp"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w_cpp && " )
 	       "cweb c"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w && " ))))
 
@@ -190,52 +188,51 @@
 	 (debug (compare-options "\\<debug\\>"))
 	 (resources (compare-options "\\<resources\\>"))
 	 (multiple (compare-options "\\<multiple\\>")))
-    (progn
-     (when make
-       (setq compile-string "make"))
-     (when (string-match "handmade\\([0-9]+\\)" options)
-       (setq compile-string
-	     (compile-handmade (match-string 1 options) run)))
-     (when cweb
-       (progn
-	 (setq compile-string (concat "ctangle ../"  buffername))
-	 (when c
-	   (setq compile-string (concat compile-string ".w")))
-	 (when cpp
-	   (setq compile-string (concat compile-string ".w_cpp")))))
-     (cond (windows
-	    (setq compile-string (concat compile-string "cl -Zi")))
-	   (c
-	    (setq compile-string (concat compile-string "gcc -std=c99 ")))
-	   (cpp
-	    (setq compile-string (concat compile-string "g++  "))))
-     (when profile
-	 (setq compile-string (concat compile-string "-pg ")))
-       (when debug
-	 (setq compile-string (concat compile-string "-g ")))
-       (when c
-	 (if multiple
-	     (setq compile-string (concat  compile-string  " ../*"    ".c -o main"))
-	   (setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
-       (when cpp
-	 (if multiple
-	     (setq compile-string (concat  compile-string  " ../*"    ".cpp " (when (not windows) "-o ") "main "))
-	   (setq compile-string (concat compile-string   " ../" buffername ".cpp " (when (not windows) "-o ")  buffername ))))
-       (when (or c cpp)
-	 (setq compile-string (concat  compile-string   (libraries-string options) " ")))
-     (when run
-       (if windows
-	   (setq compile-string (concat compile-string  (when resources "/link resources.res ")
-					" &&  cd .. && "  "build\\" buffername))
-	 (setq compile-string (concat compile-string    " &&  cd .. && "  "build/" buffername))))
-     compile-string)))
+      (when make
+	(setq compile-string "make"))
+      (when (string-match "handmade\\([0-9]+\\)" options)
+	(setq compile-string
+	      (compile-handmade (match-string 1 options) run)))
+      (when cweb
+	(progn
+	  (setq compile-string (concat "ctangle ../"  buffername))
+	  (when c
+	    (setq compile-string (concat compile-string ".w")))
+	  (when cpp
+	    (setq compile-string (concat compile-string ".w_cpp")))))
+      (cond (windows
+	     (setq compile-string (concat compile-string "cl -Zi")))
+	    (c
+	     (setq compile-string (concat compile-string "gcc -std=c99 ")))
+	    (cpp
+	     (setq compile-string (concat compile-string "g++  "))))
+      (when profile
+	(setq compile-string (concat compile-string "-pg ")))
+      (when debug
+	(setq compile-string (concat compile-string "-g ")))
+      (when c
+	(if multiple
+	    (setq compile-string (concat  compile-string  " ../*"    ".c -o main"))
+	  (setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
+      (when cpp
+	(if multiple
+	    (setq compile-string (concat  compile-string  " ../*"    ".cpp " (when (not windows) "-o ") "main "))
+	  (setq compile-string (concat compile-string   " ../" buffername ".cpp " (when (not windows) "-o ")  buffername ))))
+      (when (or c cpp)
+	(setq compile-string (concat  compile-string   (libraries-string options) " ")))
+      (when run
+	(if windows
+	    (setq compile-string (concat compile-string  (when resources "/link resources.res ")
+					 " &&  cd .. && "  "build\\" buffername))
+	  (setq compile-string (concat compile-string    " &&  cd .. && "  "build/" buffername))))
+      compile-string))
 
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
   "Sets compile-command by selecting among a list of options."
   (interactive "P\nsOptions:  make| cweb | c cpp cweb |  multiple | debug profile | [sdl sdl2 allegro dumb allegro5 opengl]): " )
-    (set (make-local-variable 'compile-command)
-	 (create-compile-string (buffer-name-no-extension)  config)))
+  (set (make-local-variable 'compile-command)
+       (create-compile-string (buffer-name-no-extension)  config)))
 
 ;;@=============================  CHICKEN
 (defun chicken-compile ()
