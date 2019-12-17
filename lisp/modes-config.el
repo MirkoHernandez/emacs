@@ -1,15 +1,28 @@
+;;@============================= PROG-MODE
+(require 'smartparens-config)
+(add-hook 'prog-mode-hook (lambda ()
+			    (smartparens-mode)
+			    (toggle-input-method)))
+
+;;@============================= MINIBUFFER
+(add-hook 'minibuffer-inactive-mode-hook (lambda ()
+					   ;; (toggle-input-method)
+					   ))
+
 ;;@============================= IDO-UBIQUITOUS
-(ido-ubiquitous-mode 1)
+;; (ido-ubiquitous-mode 1)
 
 ;;@============================= SMEX
-;; smex, remember recently and most frequently used commands
-;; (require 'smex)
+
+;; smex, remember recently and most frequently usedr commands
+
+;; (require   'smex)
 ;; (smex-initialize)
-;; (global-set-key (kbd "M-x") 'smex)
-;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 ;;@============================= IVY
 (ivy-mode)
+
+
 (setq ivy-use-virtual-buffers t) 
 (setq enable-recursive-minibuffers t)
 (setq ivy-count-format "(%d/%d) ")
@@ -29,8 +42,7 @@
    ("r" ivy--rename-buffer-action "rename")))
 
 (with-eval-after-load 'counsel
-  (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t))
-	)
+  (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t)))
     (define-key ivy-minibuffer-map done #'ivy-alt-done)))
 
 
@@ -83,9 +95,6 @@
 ;;@============================= COMMON LISP
 (setq inferior-lisp-program "sbcl")
 
-;;@============================= SMARTPARENS
-(require 'smartparens-config)
-(add-hook 'prog-mode-hook #'smartparens-mode)
 
 ;;@============================= EMACS LISP
 (require 'ac-slime)
