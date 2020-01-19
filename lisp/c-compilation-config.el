@@ -49,7 +49,7 @@
 	(compiler23 " -MT -nologo -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -FC -Z7 ")
 	(compiler26 " -MTd -nologo -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -FC -Z7 ")
 	(compiler33 " -MTd -nologo -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -wd4505 -FC -Z7 ")
-	(compiler89 " -MTd -nologo -fp:fast -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -wd4505 "))
+	(compiler89 " -MTd -nologo -fp:fast -Gm- -GR- -EHa- -Od -Oi -W4 -wd4201 -wd4100 -wd4189 -wd4505 -FC -Zi "))
   (cond
    ((equal day "10")
     (concat "cl "  compiler15  " ../win32_handmade.cpp " libs15
