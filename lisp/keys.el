@@ -43,8 +43,8 @@
 (global-set-key (kbd "M-g") 'goto-line)
 
 ;; Outline
-(global-set-key (kbd "<M-up>") 'outline-show-all)
-(global-set-key (kbd "<M-down>") 'outline-hide-body)
+(global-set-key (kbd "<M-up>") 'outline-hide-body) 
+(global-set-key (kbd "<M-down>") 'outline-show-all)
 (global-set-key (kbd "<M-right>") 'outline-toggle-children)
 (global-set-key (kbd "<M-left>") 'outline-toggle-children)
 
