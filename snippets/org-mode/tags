@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tags
+# key: tags
+# --
+#+TAGS: @${1:Single}(m) @${2:Single2}(p)
+#+TAGS: [ ${3:Category}(t) : {${4:}@.+} $4@Subcategory $4@Subcategory2 $4@Subcategory3 ]
