@@ -25,37 +25,40 @@
 	;;
 	;;
 	;; general
-	yasnippet
-	company
+	avy
 	key-chord
 	projectile
-	expand-region
-	flycheck
 	ivy
 	counsel
 	counsel-projectile
 	swiper
-	avy
 	which-key
 	helm
-	magit
-	move-text
+	neotree 
 	ag
 	helm-ag
-	diff-hl
 	smartscan
 	speed-type
 	keyfreq
 	exec-path-from-shell
-	multiple-cursors
 	ranger
 	hydra
+	;; Programming
+	flycheck
+	expand-region
+	diff-hl
+	company
+	yasnippet
+	multiple-cursors
+	move-text
+	magit
 	fix-word
 	smartparens
 	;; C
 	helm-cscope 
 	ggtags
 	xcscope
+	realgud 
 	;; lisp
 	ac-slime
 	paredit
