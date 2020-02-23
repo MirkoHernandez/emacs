@@ -14,6 +14,17 @@
 			 (set-window-start w1 s2)
 			 (set-window-start w2 s1)))))
 
+(defun async-shell-command-no-window
+    (command)
+  (interactive)
+  (let
+      ((display-buffer-alist
+        (list
+         (cons
+          "\\*Async Shell Command\\*.*"
+          (cons #'display-buffer-no-window nil)))))
+    (async-shell-command
+     command)))
 ;;@============================= File editing
 (defun delete-this-buffer-and-file ()
   "Removes file connected to current buffer and kills buffer."
