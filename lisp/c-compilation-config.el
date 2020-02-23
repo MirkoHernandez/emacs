@@ -201,7 +201,7 @@
 	  (when cpp
 	    (setq compile-string (concat compile-string ".w_cpp")))))
       (cond (windows
-	     (setq compile-string (concat compile-string "cl -Zi")))
+	     (setq compile-string (concat compile-string "cl -Zi ")))
 	    (c
 	     (setq compile-string (concat compile-string "gcc -std=c99 ")))
 	    (cpp
@@ -216,13 +216,14 @@
 	  (setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
       (when cpp
 	(if multiple
-	    (setq compile-string (concat  compile-string  " ../*"    ".cpp " (when (not windows) "-o ") "main "))
-	  (setq compile-string (concat compile-string   " ../" buffername ".cpp " (when (not windows) "-o ")  buffername ))))
+	    (setq compile-string (concat  compile-string  " ../*"    ".cpp " (if windows "/Fe" "-o ") "main "))
+	  (setq compile-string (concat compile-string   " ../" buffername ".cpp " (if  windows "/Fe" "-o ")  buffername ))))
       (when (or c cpp)
 	(setq compile-string (concat  compile-string   (libraries-string options) " ")))
       (when run
 	(if windows
-	    (setq compile-string (concat compile-string  (when resources "/link resources.res ")
+	    (setq compile-string (concat compile-string
+					 (when resources "/link resources.res ")
 					 " &&  cd .. && "  "build\\" buffername))
 	  (setq compile-string (concat compile-string    " &&  cd .. && "  "build/" buffername))))
       compile-string))
@@ -255,13 +256,17 @@
 	  "  -o "(file-name-base) ".out &&"
 	  "gnome-terminal -x ./" (file-name-base) ".out " ))))
 
-;;@============================= WINDOWS RESOURCES
+;;@============================= WINDOWS 
 (defun compile-resources ()
   (interactive)
   (shell-command (concat "rc -fo build\\" (file-name-base)  ".res "  (file-name-nondirectory buffer-file-name))))
 
-;;@============================= CWEAVE
+(defun remedybg (arg executable)
+  (interactive "P\nsExecutable: ")
+  (async-shell-command-no-window  (concat "remedybg.exe " executable )))
 
+;;@============================= CWEAVE
+ivy-previous-history-element
 (defun pdftex ()
   (interactive)
   (async-shell-command (concat "pdftex  " (file-name-base) ".tex && "  "evince " (file-name-base) ".pdf & " )))
