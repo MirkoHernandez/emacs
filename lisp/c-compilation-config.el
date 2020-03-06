@@ -216,7 +216,7 @@
 	  (setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
       (when cpp
 	(if multiple
-	    (setq compile-string (concat  compile-string  " ../*"    ".cpp " (if windows "/Fe" "-o ") "main "))
+	    (setq compile-string (concat  compile-string  " ../*"    ".cpp " (if windows "/Fe" "-o ") buffername))
 	  (setq compile-string (concat compile-string   " ../" buffername ".cpp " (if  windows "/Fe" "-o ")  buffername ))))
       (when (or c cpp)
 	(setq compile-string (concat  compile-string   (libraries-string options) " ")))
@@ -266,7 +266,6 @@
   (async-shell-command-no-window  (concat "remedybg.exe " executable )))
 
 ;;@============================= CWEAVE
-ivy-previous-history-element
 (defun pdftex ()
   (interactive)
   (async-shell-command (concat "pdftex  " (file-name-base) ".tex && "  "evince " (file-name-base) ".pdf & " )))
@@ -385,4 +384,4 @@ ivy-previous-history-element
 	     (set (make-local-variable 'compile-command)
 	     (create-compile-string
 	      (buffer-name-no-extension)
-	      "cpp windows run user gdi" ))))
+	      "cpp windows multiple winlibs" ))))
