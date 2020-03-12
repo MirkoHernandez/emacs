@@ -58,6 +58,7 @@
 	helm-cscope 
 	ggtags
 	xcscope
+	gxref
 	realgud 
 	;; lisp
 	ac-slime
