@@ -95,6 +95,7 @@
 				(define-key c-mode-base-map  (kbd "C-<tab>") 'c-indent-defun)
 				(define-key c-mode-base-map  (kbd "C-j") 'newline)
 				(define-key c-mode-base-map  (kbd "M-/") 'c-mark-function)
+				(define-key c-mode-base-map  (kbd "C-.") 'xref-find-references)
 				(define-key c-mode-base-map  (kbd "<C-return>") 'electric-newline-and-maybe-indent)
                                 (define-key c-mode-base-map  (kbd "C-<backspace>") 'backward-kill-word-or-selection)))
 ;; (add-hook 'compilation-mode-hook (lambda ()
