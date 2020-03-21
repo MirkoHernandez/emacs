@@ -31,7 +31,7 @@
 
 ;; LIBS
 ;;  user32.lib gdi32.lib winmm.lib;
- 
+
 (defun compile-handmade(day run)
   (let (
 	(libs15  " user32.lib gdi32.lib ")
@@ -103,65 +103,82 @@
     ((> (string-to-number day) 200 )
      nil)
     (t
-     (compile-handmade (number-to-string 
+     (compile-handmade (number-to-string
 			(1+ (string-to-number day)))
 		       run)))))
+
 
 ;;@============================= LIBRARIES
 (if (eq system-type 'windows-nt)
     (setq libraries-table
-      #s(hash-table size 20 test equal
-		    data (
-			  "user"   "user32.lib"
-			  "gdi"  "gdi32.lib"
-			  "winm" "winm.lib"
-			  "sdl2" "-lSDL2_image -lpng -lz -lm"
-			  "sdl"  "-lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer"
-			  "winlibs" "user32.lib gdi32.lib winmm.lib"
-			  "opengl"   "-IGL -IGLUT -lglut -lGLEW -lGL"
-			  "allegro"  "-lallegro-4.4.2-mt")))
-    (setq libraries-table
-      #s(hash-table size 20 test equal
-		    data (
-			   "sdl2"     "`sdl2-config --cflags --libs` -lSDL2_image -lpng -lz"
-			   "sdl"      "`sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer"
-			   "dumb"     "-laldmd -ldumbd -ldumb"
-			   "srgp"     "-L/usr/X11R6/lib -lsrgp -lX11"
-			   "opengl"   "-IGL -IGLUT -lglut -lGLEW -lGL"
-			   "allegro5" "`allegro-config --libs` `pkg-config --cflags --libs allegro-5.0  ` -lldpng  -lpng -lz"
-			   "allegro"  "`allegro-config --libs` -lm  -lpng -lz" ))))
+	  #s(hash-table size 20 test equal
+			data (
+			      "user"   "user32.lib"
+			      "gdi"  "gdi32.lib"
+			      "winm" "winm.lib"
+			      "sdl2" "-lSDL2_image -lpng -lz -lm"
+			      "sdl"  "-lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer"
+			      "winlibs" "user32.lib gdi32.lib winmm.lib"
+			      "opengl"   "-IGL -IGLUT -lglut -lGLEW -lGL"
+			      "allegro"  "-lallegro-4.4.2-mt")))
+  (setq libraries-table
+	#s(hash-table size 20 test equal
+		      data (
+			    "sdl2"     "`sdl2-config --cflags --libs` -lSDL2_image -lpng -lz"
+			    "sdl"      "`sdl-config --cflags --libs` -lSDL_image -lSDL_ttf -lSDL_mixer"
+			    "dumb"     "-laldmd -ldumbd -ldumb"
+			    "srgp"     "-L/usr/X11R6/lib -lsrgp -lX11"
+			    "opengl"   "-IGL -IGLUT -lglut -lGLEW -lGL"
+			    "allegro5" "`allegro-config --libs` `pkg-config --cflags --libs allegro-5.0  ` -lldpng  -lpng -lz"
+			    "allegro"  "`allegro-config --libs` -lm  -lpng -lz" ))))
+
 
 (defun libraries-string (l)
   (let ((libraries-string " ")
 	(libraries (split-string l)))
     (mapc (lambda (x)
 	    (when (gethash x libraries-table)
-	       (setq libraries-string (concat libraries-string (gethash x libraries-table) " "))))
-	     libraries)
+	      (setq libraries-string (concat libraries-string (gethash x libraries-table) " "))))
+	  libraries)
     libraries-string))
+
 
 ;;@============================= HELPERS
 (defun buffer-name-no-extension ()
   "Return the name of the buffer without the extension."
   (file-name-sans-extension (file-name-nondirectory (buffer-name))))
 
+
 ;;@============================= COMPILATION COMMANDS
+(setq compile-commands-table
+      #s(hash-table size 30 test equal))
+
+
+(defun clear-compile-command-from-table ()
+  (interactive)
+  (remhash default-directory compile-commands-table))
+
+
 (defun compile-or-delete-window (arg)
   "Delete the *compilation* window or call the compile command if the window does not exist.
   Every program is compiled and executed inside a build folder."
   (interactive "p")
   (if (get-buffer "*compilation*")
       (progn
-	  (delete-windows-on (get-buffer "*compilation*"))
-	  (kill-buffer "*compilation*"))
-      ;; (save-buffer)
-      (call-process-shell-command (concat "mkdir " (when (string-equal
-							  system-type
-							  "gnu/linux")
-						     "-p")
-					  " build" ) nil 0)
-      (let ((default-directory (concat default-directory "build")))
-	(compile compile-command))))
+	(delete-windows-on (get-buffer "*compilation*"))
+	(kill-buffer "*compilation*"))
+    ;; (save-buffer)
+    (call-process-shell-command (concat "mkdir " (when (string-equal
+							system-type
+							"gnu/linux")
+						   "-p")
+					" build" ) nil 0)
+    (let ((saved-command (gethash default-directory compile-commands-table))
+	  (default-directory (concat default-directory "build")))
+      (if saved-command
+	  (compile saved-command)
+	(compile compile-command)))))
+
 
 ;;@============================= GENERATING COMPILE STRINGS
 (setq c-compile-table
@@ -173,6 +190,7 @@
 	       "cweb" "something"
 	       "cweb cpp"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w_cpp && " )
 	       "cweb c"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w && " ))))
+
 
 (defun create-compile-string(buffername options)
   (defun compare-options (rgx)
@@ -188,52 +206,55 @@
 	 (debug (compare-options "\\<debug\\>"))
 	 (resources (compare-options "\\<resources\\>"))
 	 (multiple (compare-options "\\<multiple\\>")))
-      (when make
-	(setq compile-string "make"))
-      (when (string-match "handmade\\([0-9]+\\)" options)
-	(setq compile-string
-	      (compile-handmade (match-string 1 options) run)))
-      (when cweb
-	(progn
-	  (setq compile-string (concat "ctangle ../"  buffername))
-	  (when c
-	    (setq compile-string (concat compile-string ".w")))
-	  (when cpp
-	    (setq compile-string (concat compile-string ".w_cpp")))))
-      (cond (windows
-	     (setq compile-string (concat compile-string "cl -Zi ")))
-	    (c
-	     (setq compile-string (concat compile-string "gcc -std=c99 ")))
-	    (cpp
-	     (setq compile-string (concat compile-string "g++  "))))
-      (when profile
-	(setq compile-string (concat compile-string "-pg ")))
-      (when debug
-	(setq compile-string (concat compile-string "-g ")))
-      (when c
-	(if multiple
-	    (setq compile-string (concat  compile-string  " ../*"    ".c -o main"))
-	  (setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
-      (when cpp
-	(if multiple
-	    (setq compile-string (concat  compile-string  " ../*"    ".cpp " (if windows "/Fe" "-o ") buffername))
-	  (setq compile-string (concat compile-string   " ../" buffername ".cpp " (if  windows "/Fe" "-o ")  buffername ))))
-      (when (or c cpp)
-	(setq compile-string (concat  compile-string   (libraries-string options) " ")))
-      (when run
-	(if windows
-	    (setq compile-string (concat compile-string
-					 (when resources "/link resources.res ")
-					 " &&  cd .. && "  "build\\" buffername))
-	  (setq compile-string (concat compile-string    " &&  cd .. && "  "build/" buffername))))
-      compile-string))
+    (when make
+      (setq compile-string "make"))
+    (when (string-match "handmade\\([0-9]+\\)" options)
+      (setq compile-string
+	    (compile-handmade (match-string 1 options) run)))
+    (when cweb
+      (progn
+	(setq compile-string (concat "ctangle ../"  buffername))
+	(when c
+	  (setq compile-string (concat compile-string ".w")))
+	(when cpp
+	  (setq compile-string (concat compile-string ".w_cpp")))))
+    (cond (windows
+	   (setq compile-string (concat compile-string "cl -Zi ")))
+	  (c
+	   (setq compile-string (concat compile-string "gcc -std=c99 ")))
+	  (cpp
+	   (setq compile-string (concat compile-string "g++  "))))
+    (when profile
+      (setq compile-string (concat compile-string "-pg ")))
+    (when debug
+      (setq compile-string (concat compile-string "-g ")))
+    (when c
+      (if multiple
+	  (setq compile-string (concat  compile-string  " ../*"    ".c -o main"))
+	(setq compile-string (concat compile-string   " ../" buffername ".c  -o " buffername ))))
+    (when cpp
+      (if multiple
+	  (setq compile-string (concat  compile-string  " ../*"    ".cpp " (if windows "/Fe" "-o ") buffername))
+	(setq compile-string (concat compile-string   " ../" buffername ".cpp " (if  windows "/Fe" "-o ")  buffername ))))
+    (when (or c cpp)
+      (setq compile-string (concat  compile-string   (libraries-string options) " ")))
+    (when run
+      (if windows
+	  (setq compile-string (concat compile-string
+				       (when resources "/link resources.res ")
+				       " &&  cd .. && "  "build\\" buffername))
+	(setq compile-string (concat compile-string    " &&  cd .. && "  "build/" buffername))))
+    compile-string))
+
 
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
   "Sets compile-command by selecting among a list of options."
   (interactive "P\nsOptions:  make| cweb | c cpp cweb |  multiple | debug profile | [sdl sdl2 allegro dumb allegro5 opengl]): " )
   (set (make-local-variable 'compile-command)
-       (create-compile-string (buffer-name-no-extension)  config)))
+       (create-compile-string (buffer-name-no-extension)  config))
+  (puthash default-directory compile-command compile-commands-table))
+
 
 ;;@=============================  CHICKEN
 (defun chicken-compile ()
@@ -244,6 +265,7 @@
 	 (let ((file  (file-name-base)))
 	   (concat
 	    "csc " file ".scm ")))))
+
 
 (defun cweb-terminal ()
   (interactive)
@@ -256,14 +278,17 @@
 	  "  -o "(file-name-base) ".out &&"
 	  "gnome-terminal -x ./" (file-name-base) ".out " ))))
 
-;;@============================= WINDOWS 
+
+;;@============================= WINDOWS
 (defun compile-resources ()
   (interactive)
   (shell-command (concat "rc -fo build\\" (file-name-base)  ".res "  (file-name-nondirectory buffer-file-name))))
 
+
 (defun remedybg (arg executable)
   (interactive "P\nsExecutable: ")
   (async-shell-command-no-window  (concat "remedybg.exe " executable )))
+
 
 ;;@============================= CWEAVE
 (defun pdftex ()
@@ -276,6 +301,7 @@
 				  "rm *.idx && "
 				  "rm *.toc && " ))
 
+
 (defun cweaved () ;; debug
   "Run cweave, pdftex and evince in a shell command with the name of the buffer as a filename argument."
   (interactive)
@@ -284,6 +310,7 @@
 			   "pdftex  -file-line-error " file ".tex && "
 			   (delete-cweave-files file)
 			   "evince " file ".pdf & " ))))
+
 
 (defun cweaved-noindex () ;; debug
   "Run cweave, pdftex and evince in a shell command, no index in the pdf."
@@ -294,6 +321,7 @@
 			   (delete-cweave-files file)
 			   "evince " file ".pdf & " ))))
 
+
 (defun clean-cweave () ;; debug
   ""
   (interactive)
@@ -301,12 +329,14 @@
     (shell-command
      (delete-cweave-files file))))
 
+
 (defun pdf-to-external-drive ()
   "Shell command.  Copy pdf file to the directory where the external drive is mounted."
   (interactive)
   (let ((file (file-name-base)))
     (shell-command (concat "cp  " (file-name-base) ".pdf  "
-				 (getenv "READER_DRIVE") " &"  ))))
+			   (getenv "READER_DRIVE") " &"  ))))
+
 
 (defun cweave ()
   "Shell command.  Run cweave and kill the shell window afterwards."
@@ -327,11 +357,13 @@
 (setq  gdb-many-windows t)
 (setq  gdb-show-main nil)
 
+
 (defadvice gdb-setup-windows (around setup-more-gdb-windows activate)
   ad-do-it
   (other-window 1)
   (gdb-set-window-buffer
-    (gdb-get-buffer-create 'gdb-disassembly-position)))
+   (gdb-get-buffer-create 'gdb-disassembly-position)))
+
 
 (defun gdb-setup-windows ()
   "Layout the window pattern for option `gdb-many-windows'."
@@ -370,14 +402,14 @@
     (select-window win0)))
 
 
-
 ;;@============================= HOOKS
 (add-hook 'c-mode-hook
 	  (lambda ()
-	     (set (make-local-variable 'compile-command)
-	     (create-compile-string
-	      (buffer-name-no-extension)
-	      "c sdl run " ))))
+	    (set (make-local-variable 'compile-command)
+		 (create-compile-string
+		  (buffer-name-no-extension)
+		  "c sdl run " ))))
+
 
 (add-hook 'c++-mode-hook
 	  (lambda ()
