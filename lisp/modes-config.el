@@ -306,14 +306,20 @@
       (rectangle-mark-mode 1)
       (goto-char mk))))
 
-(defhydra hydra-bookmarks (:color blue)
-  "Bookmarks"
-  ("b" counsel-bookmark "Jump to Bookmark")
-  ("i" insert-register "Insert Register")
-  ("j" jump-to-register "Jump to Register")
-  ("m" bookmark-set "Set Bookmark")
-  ("w" window-configuration-to-register "Window Configuration to Register")
-  ("x" copy-to-register "Copy to Register"))
+(defhydra hydra-bookmarks (:color blue :hint nil)
+ "
+^Set^                                      ^Jump^                         ^Insert^          
+-------------------------------------------------------------------------------------
+_m_ Set Bookmark                        _j_ Jump to Register         _i_ Insert Register
+_w_ Window Configuration to Register    _b_ Jump to Bookmark 
+_x_ Copy to Register
+"
+  ("b" counsel-bookmark)
+  ("i" insert-register)
+  ("j" jump-to-register)
+  ("m" bookmark-set)
+  ("w" window-configuration-to-register)
+  ("x" copy-to-register))
 
 
 (defhydra hydra-replace (:color orange)
