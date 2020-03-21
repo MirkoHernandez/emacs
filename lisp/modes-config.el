@@ -22,8 +22,8 @@
 ;;@============================= IVY
 (ivy-mode)
 
-(setq ivy-use-virtual-buffers t) 
-(setq enable-recursive-minibuffers t)
+(setq ivy-use-virtual-buffers nil) 
+(setq enable-recursive-minibuffers nil)
 (setq ivy-count-format "(%d/%d) ")
 (setq ivy-height 15)
 ;; No regex 
