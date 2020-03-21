@@ -23,7 +23,7 @@
   (c-set-offset 'arglist-intro 8)
   (c-set-offset 'statement-case-open 0)
   ;; Outline regex
-  (setq outline-regexp "///" )
+  (setq outline-regexp "	*///" )
   )
 
 (add-hook 'c-mode-common-hook 'c-config-hook)
