@@ -1,6 +1,11 @@
+;;@============================= IVY
+
+(add-hook 'ivy-mode-hook (lambda ()
+                           (define-key ivy-minibuffer-map  (kbd "C-o") 'dabbrev-expand)))
 
 ;;@============================= HYDRA
 (global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
+
 
 ;;@============================= HELM
 (global-set-key (kbd "M-i") 'helm-imenu)
