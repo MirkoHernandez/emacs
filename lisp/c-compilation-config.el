@@ -87,9 +87,9 @@
 	    " /link "  linker143 libs230
 	    (when run " && win32_handmade.exe")))
     ((equal day "38")
-    (concat "cl " compiler45 flags300  " ../handmade.cpp  -Fmhandmade.map"
+    (concat "cl " compiler89 flags300  " ../handmade.cpp  -Fmhandmade.map"
 	    " -LD /link "  linker-handmade25  " && "
-	    "cl "  compiler45 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
+	    "cl "  compiler89 flags300 "../win32_handmade.cpp -Fmwin32_handmade.map "
 	    " /link "  linker143 libs230
 	    (when run " && win32_handmade.exe")))
     ((equal day "89")
@@ -158,6 +158,10 @@
   (interactive)
   (remhash default-directory compile-commands-table))
 
+(defun clone-compile-command ()
+  (interactive)
+  (puthash default-directory compile-command compile-commands-table))
+
 
 (defun compile-or-delete-window (arg)
   "Delete the *compilation* window or call the compile command if the window does not exist.
@@ -187,7 +191,6 @@
 	 test equal
 	 data (
 	       "windows" "cl -Zi "
-	       "cweb" "something"
 	       "cweb cpp"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w_cpp && " )
 	       "cweb c"  (lamda (buffername) ) (concat "ctangle ../" buffername ".w && " ))))
 
