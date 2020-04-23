@@ -17,10 +17,13 @@
       ;; in case GNU utils is not installed for global use.
       (setq gnu-bin (getenv "GNUBIN"))
       ;; Prevent slow scroll in Windows (buffers with unicode characters)
-      (setq inhibit-compacting-font-caches t) 
-      (load "server")
+      (setq inhibit-compacting-font-caches t)
+
+      ;; Start server
+      (require 'server)
       (unless (server-running-p)
 	(server-start))))
+
 
 ;;@============================= EXEC-PATH-FROM-SHELL
 (when (memq window-system '(mac ns x))
@@ -47,6 +50,7 @@
 
 ;;@============================= HS-MINOR-MODE
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+
 ;;@============================= AUTO-FILL-MODE  
 (defun my-prog-mode-hook ()
   (setq default-justification 'full))
@@ -103,7 +107,6 @@
 ;;@============================= GPG
 (require 'epa-file)
 (epa-file-enable)
-
 
 ;;@============================= TEMPLATES
 (auto-insert-mode) 

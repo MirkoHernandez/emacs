@@ -16,7 +16,7 @@
   (add-path "emacs/site-lisp"))
 
 ;;@============================= Install Packages
-;;(load-library "packages-setup")
+;; (load-library "packages-setup")
 
 ;;@============================= Load Config 
 (load-library "settings")
@@ -31,7 +31,7 @@
 (load-library "c-compilation-config")
 (load-library "go-config")
 (load-library "keys-modes")
-(load-library "keychords")
+;; (load-library "keychords")
 ;;@============================= Misc
 (load-library "misc")
 ;;@============================= Shell
