@@ -70,6 +70,7 @@
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
 (global-set-key (kbd "M-u") 'undo)
 (global-set-key (kbd "C-r") 'repeat)
+(global-set-key (kbd "C-o") 'dabbrev-expand)
 
 (global-set-key (kbd "<S-return>") 'crux-smart-open-line)
 (global-set-key (kbd "<C-S-return>") 'crux-smart-open-line-above)
