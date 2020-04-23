@@ -41,9 +41,10 @@
 	speed-type
 	keyfreq
 	exec-path-from-shell
-	ranger
 	hydra
+	crux
 	;; Programming
+	rainbow-mode
 	flycheck
 	expand-region
 	diff-hl
