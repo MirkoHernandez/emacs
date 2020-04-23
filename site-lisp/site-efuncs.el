@@ -54,7 +54,6 @@
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
-
 (defun move-buffer-file (dir)
   "Moves both current buffer and file it's visiting to DIR." (interactive "DNew directory: ")
   (let* ((name (buffer-name))
@@ -67,7 +66,6 @@
     (if (not filename)
 	(message "Buffer '%s' is not visiting a file!" name)
       (progn 	(copy-file filename newname 1) 	(delete-file filename) 	(set-visited-file-name newname) 	(set-buffer-modified-p nil) 	t)))) 
-
 
 ;;============================  EDITING
 (defun remove-dos-eol ()
@@ -94,8 +92,6 @@
       (kill-region beg end)
     (call-interactively  'backward-kill-word)))
 
-
-
 (defun copy-line (arg)
       "Copy lines (as many as prefix argument) in the kill ring"
       (interactive "p")
@@ -117,7 +113,7 @@ With argument ARG, do this that many times."
   (interactive "p")
   (delete-region (point) (progn (backward-word arg) (point))))
 
-;;@====================================  Restart
+;;@============================= Restart
 (defun launch-separate-emacs-in-terminal ()
   (suspend-emacs "fg ; emacs -nw"))
 

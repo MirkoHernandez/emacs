@@ -259,7 +259,7 @@
   (puthash default-directory compile-command compile-commands-table))
 
 
-;;@=============================  CHICKEN
+;;@============================= CHICKEN
 (defun chicken-compile ()
   (interactive)
   (unless (or (file-exists-p "makefile")
