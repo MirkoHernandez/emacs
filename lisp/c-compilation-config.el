@@ -208,6 +208,8 @@
 	 (profile (compare-options "\\<profile\\>"))
 	 (debug (compare-options "\\<debug\\>"))
 	 (resources (compare-options "\\<resources\\>"))
+	 (dll (and (string-match "\\<dll=\\(\\w+\\)\\>" options)
+		   (match-string-no-properties 1 options)))
 	 (multiple (compare-options "\\<multiple\\>")))
     (when make
       (setq compile-string "make"))
@@ -241,6 +243,8 @@
 	(setq compile-string (concat compile-string   " ../" buffername ".cpp " (if  windows "/Fe" "-o ")  buffername ))))
     (when (or c cpp)
       (setq compile-string (concat  compile-string   (libraries-string options) " ")))
+    (when dll
+      (setq compile-string (concat compile-string " -LD /link -incremental:no -opt:ref -EXPORT:" dll " ")))
     (when run
       (if windows
 	  (setq compile-string (concat compile-string
@@ -253,7 +257,7 @@
 ;;@============================= SET COMPILATION COMMAND
 (defun set-compile-command(arg config)
   "Sets compile-command by selecting among a list of options."
-  (interactive "P\nsOptions:  make| cweb | c cpp cweb |  multiple | debug profile | [sdl sdl2 allegro dumb allegro5 opengl]): " )
+  (interactive "P\nsOptions:  make| cweb | c cpp cweb windows|  multiple | debug profile dll| [sdl sdl2 allegro dumb allegro5 opengl]): " )
   (set (make-local-variable 'compile-command)
        (create-compile-string (buffer-name-no-extension)  config))
   (puthash default-directory compile-command compile-commands-table))
