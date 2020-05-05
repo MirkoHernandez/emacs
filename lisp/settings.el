@@ -9,7 +9,22 @@
 (global-auto-revert-mode t)
 
 (setq create-lockfiles nil) ;; prevent the automatic creation of symbolic links
+
+;;@============================= INPUT METHOD
+
 (setq default-input-method 'programmer-dvorak)
+
+(defvar use-default-input-method t)
+(make-variable-buffer-local 'use-default-input-method)
+
+(defun activate-default-input-method ()
+  (interactive)
+  (if use-default-input-method
+      (activate-input-method default-input-method)
+    (inactivate-input-method)))
+
+(add-hook 'after-change-major-mode-hook 'activate-default-input-method)
+(add-hook 'minibuffer-setup-hook 'activate-default-input-method)
 
 ;;@============================= WINDOWS 
 (if (string-equal system-type "windows-nt")
@@ -18,17 +33,14 @@
       (setq gnu-bin (getenv "GNUBIN"))
       ;; Prevent slow scroll in Windows (buffers with unicode characters)
       (setq inhibit-compacting-font-caches t)
-
       ;; Start server
       (require 'server)
       (unless (server-running-p)
 	(server-start))))
 
-
 ;;@============================= EXEC-PATH-FROM-SHELL
 (when (memq window-system '(mac ns x))
  (exec-path-from-shell-initialize))
-
 
 ;;@============================= EMACS SPECIFIC FOLDERS
 (setq temporary-file-directory (concat emacs-root "emacs/tmp"))
@@ -58,12 +70,12 @@
 
 
 ;;@============================= IDO
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+;; (setq ido-enable-flex-matching t)
+;; (setq ido-everywhere t)
+;; (ido-mode 1)
 
-(setq ido-file-extensions-order '(".org" ".c" ".cpp"  ".py" ".go" ".emacs" ".js" ".html" ".txt" ".xml" ".el" ".ini" ".cfg" ".cnf"))
-(setq ido-auto-merge-work-directories-length -1)
+;; (setq ido-file-extensions-order '(".org" ".c" ".cpp"  ".py" ".go" ".emacs" ".js" ".html" ".txt" ".xml" ".el" ".ini" ".cfg" ".cnf"))
+;; (setq ido-auto-merge-work-directories-length -1)
 
 ;;@============================= Ignored * buffers
 (set-frame-parameter (selected-frame) 'buffer-predicate #'buffer-file-name)
@@ -113,4 +125,22 @@
 ;; (setq auto-insert-directory (concat emacs-root "emacs/templates/"))
 ;; (setq auto-insert-query t) 
 ;; (define-auto-insert "\.c" "main.c")
+;;@============================= MOUSE
+
+(setq mouse-wheel-progressive-speed nil
+ mouse-wheel-scroll-amount (quote (15)))
+
+
+;;@============================= WINDOWING
+(defun never-split-a-window ()
+    "Never, ever split a window."
+    nil)
+;; (setq split-window-preferred-function 'never-split-a-window)
+
+(setq split-window-preferred-function 'split-window-sensibly)
+
+
+(setq truncate-partial-width-windows 50)
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
