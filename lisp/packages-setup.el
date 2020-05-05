@@ -29,6 +29,7 @@
 	key-chord
 	projectile
 	ivy
+	flx
 	counsel
 	counsel-projectile
 	swiper
