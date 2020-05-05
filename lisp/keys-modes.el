@@ -1,17 +1,16 @@
 ;;@============================= IVY
-
 (add-hook 'ivy-mode-hook (lambda ()
                            (define-key ivy-minibuffer-map  (kbd "C-o") 'dabbrev-expand)))
 
 ;;@============================= HYDRA
 (global-set-key (kbd "M-r") 'hydra-replace/body)
 (global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
-(global-set-key (kbd "C-i") 'hydra-navigation/body)
+(global-set-key (kbd "M-i") 'hydra-navigation/body)
 (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
 
 ;;@============================= HELM
-(global-set-key (kbd "M-i") 'helm-imenu)
-(global-set-key (kbd "M-b") 'helm-buffers-list)
+;; (global-set-key (kbd "M-i") 'helm-imenu)
+;; (global-set-key (kbd "M-b") 'helm-buffers-list)
 
 ;;@============================= NEOTREE
 (global-set-key (kbd "C-h") 'neotree)
@@ -21,6 +20,7 @@
 
 ;;@============================= ORG
 (add-hook 'org-mode-hook (lambda ()
+			   (define-key org-mode-map (kbd "C-c u") 'org-up-elements)
 			   (define-key org-mode-map (kbd "C-c e") 'org-texinfo-export-to-info)
 			   (define-key org-mode-map (kbd "C-c b") (lambda ()  (interactive)
 								    (org-emphasize ?\*)))))
@@ -96,7 +96,6 @@
 
 (add-hook 'c-mode-common-hook (lambda ()
 				(define-key c-mode-base-map  (kbd "C-<tab>") 'c-indent-defun)
-				(define-key c-mode-base-map  (kbd "C-i") 'hydra-navigation/body)
 				(define-key c-mode-base-map  (kbd "C-j") 'newline)
 				(define-key c-mode-base-map  (kbd "M-/") 'c-mark-function)
 				(define-key c-mode-base-map  (kbd "C-.") 'xref-find-references)
