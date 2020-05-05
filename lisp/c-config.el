@@ -20,7 +20,7 @@
 	c-basic-offset 8
 	company-backends '(company-gtags company-c-headers))
   ;; Style modifications
-  (c-set-offset 'statement-count 0)
+  (c-set-offset 'statement-cont 0)
   (c-set-offset 'arglist-intro 8)
   (c-set-offset 'statement-case-open 0)
   ;; Outline regex
