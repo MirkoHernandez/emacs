@@ -27,6 +27,7 @@
       initial-scratch-message ";; For a moment, nothing happened. Then, after a second or so, nothing continued to happen.\n")
 
 (setq inhibit-startup-message t);; no startup message
+
 (fset 'yes-or-no-p #'y-or-n-p)
 
 ;;@============================= HIGHLIGHT NOTES, TODOS
@@ -44,21 +45,30 @@
  (modify-face 'font-lock-note-face "Light Blue" nil nil t nil t nil nil)
 
 ;;@============================= THEME
-(load-theme 'zenburn t)
+(load-theme 'gruvbox-dark-medium t)
 
 ;;@============================= HL-LINE
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "midnight blue")
+;;@============================= BEACON
+(beacon-mode 1)
+
 ;;@============================= CURSOR
 (set-cursor-color "#40FF40")
 
 ;;@============================= FONT
 (add-to-list 'default-frame-alist '(font . "Liberation Mono-11.5"))
 (set-face-attribute 'default t :font "Liberation Mono-11.5")
+;;@============================= MOUSE
+
+
+;;@============================= MODELINE
+(moody-replace-mode-line-buffer-identification)
+(moody-replace-vc-mode)
+
 
 ;;@============================= FRINGES
-(fringe-mode (quote (1 . 1))) ;; Set fringe style to 'minimal
-
+(fringe-mode (quote (3 . 1))) ;; Set fringe style to 'minimal
 
 ;;@============================= ORG HEADERS
 (defun org-prettify-headers ()
@@ -74,7 +84,12 @@
                                ("#+end_quote" . ?«)))))
     (turn-on-prettify-symbols-mode))
 
-(add-hook 'org-mode-hook #'org-prettify-headers)
+(add-hook 'org-mode-hook 'org-prettify-headers)
 
+;; Org Headers
+(custom-theme-set-faces 'user
+			`(org-default ((t (:foreground "lightskyblue"))))
+                        `(org-level-2 ((t (:foreground "lightskyblue"))))
+			`(org-tag ((t (:foreground "indianred")))))
 
-
+(setq org-hide-emphasis-markers t)
