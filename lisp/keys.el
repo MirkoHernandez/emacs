@@ -5,14 +5,13 @@
 ;; (global-set-key (kbd "<C-m>") 'smex)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key "\C-x\C-b" 'ibuffer-other-window)
-(global-set-key "\C-f" 'counsel-find-file)
 (global-set-key "\C-x\C-q" 'save-buffers-kill-terminal)
 (global-set-key "\C-x\C-c" nil)
 (global-set-key (kbd "C-x r b") 'counsel-bookmark)
 (global-set-key "\C-b" 'ivy-switch-buffer)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "C-f") 'counsel-find-file)
+(global-set-key (kbd "M-f") 'helm-find-files)
 (global-set-key (kbd "M-s") 'save-buffer)
 
 (global-set-key (kbd "C--") 'text-scale-decrease)
@@ -23,13 +22,19 @@
 
 ;;@============================= Navigation
 (global-set-key "\C-s" 'swiper-isearch)
-(global-set-key "\C-r" 'swiper-isearch-backward)
+;; (global-set-key "\C-r" 'swiper-isearch-backward)
 (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-i") 'helm-imenu)
+;; (global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "M-g") 'goto-line)
-;; Movement
+(global-set-key (kbd "C-c f") 'helm-ag)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+;; Movement
+(global-set-key (kbd "C-f") 'avy-goto-word-or-subword-1)
+
+
+(global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
@@ -37,6 +42,12 @@
 
 (global-set-key (kbd "C-S-p") 'backward-paragraph)
 (global-set-key (kbd "C-S-n") 'forward-paragraph)
+
+(define-key global-map [pgup] 'forward-page)
+(define-key global-map [pgdown] 'backward-page)
+(define-key global-map [C-prior] 'scroll-other-window)
+(define-key global-map [C-next] 'scroll-other-window-down)
+
 
 (global-set-key (kbd "C-8") 'backward-up-list)
 (global-set-key (kbd "C-9") 'down-list)
@@ -58,9 +69,9 @@
 (global-set-key (kbd "M-.") 'ggtags-find-tag-dwim)
 (global-set-key (kbd "M-,") 'pop-tag-mark)
 ;; Errors
+
+(global-set-key (kbd "S-<f9>") 'previous-error)
 (global-set-key [f9] 'next-error)
-(global-set-key (kbd "M-S-n") 'next-error)
-(global-set-key (kbd "M-S-p") 'previous-error)
 
 ;;@============================= Editing
 (global-set-key (kbd "M-U") #'fix-word-upcase)
@@ -80,7 +91,7 @@
 (global-set-key (kbd "C-c d") 'crux-duplicate-current-line-or-region)
 
 ;; (global-set-key (kbd "C-i") 'indent-or-complete)
-(global-set-key (kbd "C-f") 'yank)
+;; (global-set-key (kbd "C-f") 'yank)
 (global-set-key (kbd "C-j") 'newline)
 (global-set-key (kbd "M-a") 'align-regexp)
 (global-set-key (kbd "<M-S-down>") 'move-text-down)
@@ -108,6 +119,7 @@
 (global-set-key (kbd "C-h") 'delete-backward-char)
 ;; (global-set-key "\C-w" 'backward-kill-word-or-selection)
 (global-set-key "\C-w" 'kill-region)
+(global-set-key "\M-d" 'kill-sexp)
 
 ;; (define-key global-map "M-;" 'exchange-point-and-mark)
 
