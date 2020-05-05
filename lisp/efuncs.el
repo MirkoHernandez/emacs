@@ -1,5 +1,11 @@
 ;;@============================= NAVEGATION
 
+(defun my-hs-toggle-hide ()
+  (interactive)
+  (end-of-line)
+  (hs-toggle-hiding))
+
+
 ;;@ switching buffers
 
 (defun my-switch-to-previous-buffer ()
