@@ -7,10 +7,15 @@
 (global-set-key "\C-x\C-b" 'ibuffer-other-window)
 (global-set-key "\C-x\C-q" 'save-buffers-kill-terminal)
 (global-set-key "\C-x\C-c" nil)
+(global-set-key (kbd "C-x g") 'magit-status)
+
 (global-set-key (kbd "C-x r b") 'counsel-bookmark)
+
+
 (global-set-key "\C-b" 'ivy-switch-buffer)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+
 (global-set-key (kbd "M-f") 'helm-find-files)
 (global-set-key (kbd "M-s") 'save-buffer)
 
@@ -33,7 +38,7 @@
 ;; Movement
 (global-set-key (kbd "C-f") 'avy-goto-word-or-subword-1)
 
-
+(global-set-key (kbd "C-c u") 'backward-up-list)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 
@@ -135,7 +140,10 @@
 (global-set-key (kbd "<M-left>") 'outline-toggle-children)
 
 (define-key  global-map [C-S-right] 'hs-show-block)
-(define-key  global-map  [C-S-left] 'hs-hide-block)
+(define-key  global-map [C-S-left] 'hs-hide-block)
+(define-key  global-map [C-S-up] 'hs-hide-level)
+(define-key  global-map [C-S-down] 'hs-show-all)
+
 
 (defun cjm-outline-bindings ()
   "sets shortcut bindings for outline minor mode"
@@ -172,7 +180,6 @@
 ;;@============================= Minibuffer
 (define-key minibuffer-local-map (kbd "C-p") 'ido-prev-match)
 (define-key minibuffer-local-map (kbd "C-n") 'ido-next-match)
-
 
 
 
