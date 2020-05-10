@@ -1,7 +1,12 @@
 # -*- mode: snippet -*-
 # name: src
 # key: src
+# type: command
 # --
-#+BEGIN_SRC ${1:C++}
-$0            
-#+END_SRC
+(let ((src (or (gethash "elisp-src" snippets-values-table) "C++")))
+(yas-expand-snippet
+    (concat "#+BEGIN_SRC ${1:" src "$(when (eq yas/moving-away-p t)(puthash  \"elisp-src\"  yas-text snippets-values-table))" "}
+    $0
+    #+END_SRC"
+   ))
+)
