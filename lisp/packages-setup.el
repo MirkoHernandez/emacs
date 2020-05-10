@@ -13,6 +13,7 @@
              '("melpa" . "https://melpa.org/packages/")
              t)
 
+
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;; (Add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
@@ -85,6 +86,8 @@
 	org-bullets
 	beacon
 	zenburn-theme
+	gruvbox-theme
+	moody
 	))
 
 (package-refresh-contents)
