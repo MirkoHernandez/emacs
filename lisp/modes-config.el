@@ -89,6 +89,11 @@
 
 ;;@============================= YASNIPEPTS
 (require 'yasnippet)
+(setq snippets-values-table
+      #s(hash-table size 20 test equal
+		    data (
+			  ""  "")))
+
 (add-to-list 'yas-snippet-dirs
 	     (concat emacs-root "emacs/snippets"))
 (yas-global-mode 1)
@@ -254,6 +259,8 @@
 			   ;; (set-face-attribute 'org-level-1 t :height 1.9 )
 			   ;; (set-face-attribute 'org-level-2 t :height 1.3 )
 			   (org-bullets-mode 1)))
+;; Refile
+(setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
 
 ;; LOOKS
 (set-face-attribute 'bold nil :height 130 :foreground "deep sky blue")
@@ -480,9 +487,12 @@ _r_ Point to Register
 ;;@============================= XREF
 (add-to-list 'xref-backend-functions 'gxref-xref-backend)
 ;;@============================= MAGIT
-(setq vc-handled-backends nil)
 (custom-theme-set-faces 'user
 			`(magit-diff-file-heading-highlight ((t (:foreground "lightskyblue"  :weight bold))))
 			`(magit-diff-file-heading ((t (:foreground "lightskyblue" ))))
 			)
-
+;;@============================= EDIFF
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-diff-options "-w ")
+(setq ediff-keep-variants nil)
