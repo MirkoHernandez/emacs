@@ -22,6 +22,7 @@
 (add-hook 'org-mode-hook (lambda ()
 			   (define-key org-mode-map (kbd "C-c u") 'org-up-elements)
 			   (define-key org-mode-map (kbd "C-c e") 'org-texinfo-export-to-info)
+			   (define-key org-mode-map (kbd "C-c w") 'unpackaged/org-refile-to-datetree)
 			   (define-key org-mode-map (kbd "C-c b") (lambda ()  (interactive)
 								    (org-emphasize ?\*)))))
 
