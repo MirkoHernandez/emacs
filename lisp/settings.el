@@ -7,11 +7,10 @@
 (setq undo-limit 20000000)
 (setq undo-strong-limit 40000000)
 (global-auto-revert-mode t)
-
 (setq create-lockfiles nil) ;; prevent the automatic creation of symbolic links
 
+(load-library "view")
 ;;@============================= INPUT METHOD
-
 (setq default-input-method 'programmer-dvorak)
 
 (defvar use-default-input-method t)
@@ -80,7 +79,7 @@
 ;;@============================= Ignored * buffers
 (set-frame-parameter (selected-frame) 'buffer-predicate #'buffer-file-name)
 
-;@============================= EDITING CONFIG
+;;@============================= EDITING 
 
 (set-default 'truncate-lines t)
 (show-paren-mode)
@@ -88,7 +87,16 @@
 (setq default-justification 'full)
 (setq kill-whole-line t)
 (delete-selection-mode 1)
-(setq transient-mark-mode t)
+;;@============================= TRANSIENT MARK
+(setq transient-mark-mode nil)
+(defadvice set-mark-command (after no-bloody-t-m-m activate)
+  "Prevent consecutive marks activating bloody `transient-mark-mode'."
+  (if transient-mark-mode (setq transient-mark-mode nil) ))
+
+(defadvice mouse-set-region-1 (after no-bloody-t-m-m activate)
+  "Prevent mouse commands activating bloody `transient-mark-mode'."
+  (if transient-mark-mode (setq transient-mark-mode nil))) 
+(setq set-mark-command-repeat-pop t)
 
 ;;@============================= DESKTOP
 ;; (desktop-change-dir (concat emacs-root "emacs/tmp/desktop"))
@@ -139,8 +147,10 @@
 
 (setq split-window-preferred-function 'split-window-sensibly)
 
-
 (setq truncate-partial-width-windows 50)
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;;@============================= HELP
+;; Select help window
+(setq help-window-select t)
