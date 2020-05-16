@@ -169,7 +169,7 @@
   (interactive "p")
   (if (get-buffer "*compilation*")
       (progn
-	(delete-windows-on (get-buffer "*compilation*"))
+	(quit-windows-on (get-buffer "*compilation*"))
 	(kill-buffer "*compilation*"))
     ;; (save-buffer)
     (call-process-shell-command (concat "mkdir " (when (string-equal
