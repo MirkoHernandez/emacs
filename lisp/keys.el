@@ -16,13 +16,13 @@
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 
-(global-set-key (kbd "M-f") 'helm-find-files)
 (global-set-key (kbd "M-s") 'save-buffer)
 
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-+") 'text-scale-increase)
 
 (global-set-key [f5] 'compile-or-delete-window)
+(global-set-key (kbd "S-<f5>") 'recompile-quietly)
 
 
 ;;@============================= Navigation
@@ -32,13 +32,19 @@
 (global-set-key (kbd "M-o") 'other-window)
 ;; (global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "M-g") 'goto-line)
+;; Files
+(global-set-key (kbd "M-f") 'helm-find-files)
 (global-set-key (kbd "C-c f") 'helm-ag)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-
+(global-set-key (kbd "C-x C-r") 'helm-recentf) 
 ;; Movement
+
+(global-set-key (kbd "C-;") 'View-back-to-mark)
+(global-set-key (kbd "C-:") 'exchange-point-and-mark)
+
 (global-set-key (kbd "C-f") 'avy-goto-word-or-subword-1)
 
-(global-set-key (kbd "C-c u") 'backward-up-list)
+(global-set-key (kbd "C-S-u") 'backward-up-list)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 
@@ -85,7 +91,8 @@
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
 (global-set-key (kbd "M-u") 'undo)
-(global-set-key (kbd "C-r") 'repeat)
+(global-set-key (kbd "<f12>") 'repeat)
+(global-set-key (kbd "S-<f12>") 'repeat-complex-command) 
 (global-set-key (kbd "C-o") 'dabbrev-expand)
 
 (global-set-key (kbd "<S-return>") 'crux-smart-open-line)
@@ -180,6 +187,4 @@
 ;;@============================= Minibuffer
 (define-key minibuffer-local-map (kbd "C-p") 'ido-prev-match)
 (define-key minibuffer-local-map (kbd "C-n") 'ido-next-match)
-
-
 
