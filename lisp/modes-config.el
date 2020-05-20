@@ -149,9 +149,10 @@
 				  (auto-complete-mode t)
 				  (outline-minor-mode)
 				  (rainbow-mode)
-				  (setq outline-regexp ";;@")
+				  (setq outline-regexp ";;@+")
 				  (diff-hl-mode t)))
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
+
 ;;@============================= RACKET
 (add-hook 'racket-mode-hook (lambda ()
 			      (outline-minor-mode)
@@ -240,6 +241,8 @@
 ;;@============================= ORG
 (setq org-modules '(org-bbdb org-bibtex org-docview org-gnus org-habit org-drill org-info org-irc org-mhe org-rmail org-w3m))
 (eval-after-load "org" '(add-to-list 'org-modules 'org-timer))
+(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 0)
 
 (setq org-todo-keywords ;; with utf8 characters.
       '((sequence "☛ TODO" "|" "✔ DONE")
@@ -397,14 +400,14 @@ _r_ Point to Register
   "
  ^Navigation^ | ^Mark^        | ^Actions^        | ^View^
 -^----------^-+-^----^--------+-^-------^--------+-^----^-------
-  _k_:    ʌ   | _m_: mark     | _D_: delete      | _g_: refresh
+  ^ ^         | _m_: mark     | _D_: delete      | _g_: refresh
  _RET_: visit | _u_: unmark   | _S_: save        | _s_: sort
-  _j_:    v   | _*_: specific | _a_: all actions | _/_: filter
+  ^ ^         | _*_: specific | _a_: all actions | _/_: filter
 -^----------^-+-^----^--------+-^-------^--------+-^----^-------
 "
-  ("j" ibuffer-forward-line)
+  ;; ("j" ibuffer-forward-line)
+  ;; ("k" ibuffer-backward-line)
   ("RET" ibuffer-visit-buffer :color blue)
-  ("k" ibuffer-backward-line)
 
   ("m" ibuffer-mark-forward)
   ("u" ibuffer-unmark-forward)
@@ -435,7 +438,7 @@ _r_ Point to Register
   ("e" ibuffer-mark-dissociated-buffers "dissociated")
   ("h" ibuffer-mark-help-buffers "help")
   ("z" ibuffer-mark-compressed-file-buffers "compressed")
-  ("b" hydra-ibuffer-main/body "back" :color blue))
+  ("SPC" hydra-ibuffer-main/body "back" :color blue))
 
 (defhydra hydra-ibuffer-action (:color teal :columns 4
                                 :after-exit
@@ -468,7 +471,7 @@ _r_ Point to Register
   ("s" ibuffer-do-sort-by-size "size")
   ("f" ibuffer-do-sort-by-filename/process "filename")
   ("m" ibuffer-do-sort-by-major-mode "mode")
-  ("b" hydra-ibuffer-main/body "back" :color blue))
+  ("SPC" hydra-ibuffer-main/body "back" :color blue))
 
 (defhydra hydra-ibuffer-filter (:color amaranth :columns 4)
   "Filter"
@@ -481,7 +484,7 @@ _r_ Point to Register
   (">" ibuffer-filter-by-size-gt "size")
   ("<" ibuffer-filter-by-size-lt "size")
   ("/" ibuffer-filter-disable "disable")
-  ("b" hydra-ibuffer-main/body "back" :color blue))
+  ("SPC" hydra-ibuffer-main/body "back" :color blue))
 
 (add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
 ;;@============================= XREF
@@ -496,3 +499,49 @@ _r_ Point to Register
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-diff-options "-w ")
 (setq ediff-keep-variants nil)
+;;@============================= ENGINE
+(require 'engine-mode)
+(engine-mode t)
+(setq engine/browser-function 'eww-browse-url)
+
+;; Wikipedia
+(defengine wikipedia
+  "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+  :keybinding "w"
+  :docstring "Search Wikipedia!")
+;; 
+(defengine project-gutenberg
+  "http://www.gutenberg.org/ebooks/search/?query=%s"
+  :keybinding "g"
+  :docstring "Search Project Gutenberg"
+  )
+
+(defengine rfc
+  "http://pretty-rfc.herokuapp.com/search?q=%s"
+:keybinding "r"
+  :docstring "RFC")
+
+(defengine stack-overflow
+  "https://stackoverflow.com/search?q=%s"
+  :keybinding "s"
+  :docstring "Search Stack-Overflow")
+;;@============================= EWW
+(setq browse-url-browser-function 'eww-browse-url)
+(setq shr-inhibit-images t)
+
+;;@============================= SHRFACE
+
+(with-eval-after-load 'shr ; lazy load is very important, it can save you a lot of boot up time
+  (require 'shrface)
+  (shrface-basic) ; enable shrfaces, must be called before loading eww/dash-docs/nov.el
+  (shrface-trial) ; enable shrface experimental face(s), must be called before loading eww/dash-docs/nov.el
+  (setq shrface-href-versatile t) ; enable versatile URL faces support
+                                  ; (http/https/ftp/file/mailto/other), if
+                                  ; `shrface-href-versatile' is nil, default
+                                  ; face `shrface-href-face' would be used.
+  (setq shrface-toggle-bullets nil) ; Set t if you do not like headline bullets
+)
+;; eww support
+(with-eval-after-load 'eww
+  (add-hook 'eww-after-render-hook 'shrface-mode))
+

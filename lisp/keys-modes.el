@@ -54,6 +54,18 @@
 ;;@@====================== DIRED
 ;;(define-key dired-mode-map (kbd "C-q") 'dired-toggle-read-only)
 
+;;@@====================== EWW | SHRFACE
+(with-eval-after-load 'eww
+  (define-key eww-mode-map (kbd "<tab>") 'org-cycle)
+  (define-key eww-mode-map (kbd "S-<tab>") 'org-shifttab)
+  (define-key eww-mode-map (kbd "j") 'forward-paragraph)
+  (define-key eww-mode-map (kbd "k") 'backward-paragraph)
+  (define-key eww-mode-map (kbd "C-t") 'shrface-toggle-bullets)
+  (define-key eww-mode-map (kbd "C-j") 'shrface-next-headline)
+  (define-key eww-mode-map (kbd "C-k") 'shrface-previous-headline)
+  (define-key eww-mode-map (kbd "C-i") 'shrface-links-counsel) ; or 'shrface-links-helm
+  (define-key eww-mode-map (kbd "C-o") 'shrface-headline-counsel)) ; or 'shrface-headline-helm
+
 ;;@============================= MODES  KEYBINDINGS
 ;;@@====================== IVY
 (add-hook 'ivy-mode-hook (lambda ()
