@@ -23,11 +23,9 @@
 	;; iedit
 	;; linum-relative
 	;; ido-completing-read+
-	;;
-	;;
 	;; general
+;	key-chord
 	avy
-	key-chord
 	projectile
 	ivy
 	flx
@@ -45,6 +43,10 @@
 	exec-path-from-shell
 	hydra
 	crux
+	;; Documentation
+	markdown-mode
+	engine-mode
+	shrface 
 	;; Programming
 	rainbow-mode
 	flycheck
