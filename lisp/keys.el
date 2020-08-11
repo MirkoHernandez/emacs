@@ -123,7 +123,7 @@
 (global-set-key (kbd "<C-M-SPC>") 'mark-sexp)
 
 ;; Delete
-(global-set-key (kbd "C-k") 'crux-smart-kill-line)
+(global-set-key (kbd "C-k") 'kill-line)
 (global-set-key (kbd "C-S-k") 'crux-kill-line-backwards)
 
 (global-set-key (kbd "M-k") 'kill-this-buffer)
