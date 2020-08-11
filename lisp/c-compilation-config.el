@@ -153,6 +153,11 @@
 (setq compile-commands-table
       #s(hash-table size 30 test equal))
 
+(defun clear-all-compile-commands-from-table ()
+  (interactive)
+  (setq compile-commands-table
+      #s(hash-table size 30 test equal))
+  )
 
 (defun clear-compile-command-from-table ()
   (interactive)
@@ -167,7 +172,7 @@
   "Delete the *compilation* window or call the compile command if the window does not exist.
   Every program is compiled and executed inside a build folder."
   (interactive "p")
-  (if (get-buffer "*compilation*")
+    (if (get-buffer "*compilation*")
       (progn
 	(quit-windows-on (get-buffer "*compilation*"))
 	(kill-buffer "*compilation*"))
@@ -179,10 +184,12 @@
 					" build" ) nil 0)
     (let ((saved-command (gethash default-directory compile-commands-table))
 	  (default-directory (concat default-directory "build")))
-      (if saved-command
-	  (compile saved-command)
-	(compile compile-command)))))
-
+      (if (> arg 1)
+	  (compile compile-command)
+	(if saved-command
+	    (compile saved-command)
+	  (compile compile-command))))))
+ 
 
 ;;@============================= GENERATING COMPILE STRINGS
 (setq c-compile-table
