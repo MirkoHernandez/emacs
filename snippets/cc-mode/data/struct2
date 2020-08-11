@@ -1,0 +1,6 @@
+#name : struct-typedef
+# key: s2
+# --
+typedef struct {
+	$0
+} ${1:name};
