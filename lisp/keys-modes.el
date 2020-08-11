@@ -52,7 +52,15 @@
 ;;(define-key ac-complete-mode-map (kbd "<tab>") 'yas-next-field)
 
 ;;@@====================== DIRED
+
+
+(add-hook 'dired-mode-hook (lambda ()
+			     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) 
+			     (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
+			     ))
+
 ;;(define-key dired-mode-map (kbd "C-q") 'dired-toggle-read-only)
+
 
 ;;@@====================== EWW | SHRFACE
 (with-eval-after-load 'eww
