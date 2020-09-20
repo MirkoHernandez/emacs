@@ -83,7 +83,7 @@
                                ("#+begin_quote" . ?»)
                                ("#+end_quote" . ?«)))))
     (turn-on-prettify-symbols-mode))
-
+(setq org-ellipsis "⤵")
 (add-hook 'org-mode-hook 'org-prettify-headers)
 
 ;; Org Headers
