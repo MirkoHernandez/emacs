@@ -136,7 +136,7 @@
 ;; (define-key global-map "M-;" 'exchange-point-and-mark)
 
 
-;;@============================= Focus
+;;@============================= Focus (outline, hs, Narrow)
 (global-set-key (kbd "C-1") 'widen)
 (global-set-key (kbd "C-2") 'narrow-to-defun)
 (global-set-key (kbd "C-3") 'narrow-to-region)
@@ -145,6 +145,7 @@
 (global-set-key (kbd "<M-down>") 'outline-show-all)
 (global-set-key (kbd "<M-right>") 'outline-toggle-children)
 (global-set-key (kbd "<M-left>") 'outline-toggle-children)
+(global-set-key (kbd "<C-S-tab>") 'outline-show-branches)
 
 (define-key  global-map [C-S-right] 'hs-show-block)
 (define-key  global-map [C-S-left] 'hs-hide-block)

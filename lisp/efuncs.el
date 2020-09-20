@@ -90,6 +90,15 @@ extensions included in the keys of HASH-TABLE"
 	(find-file file)
       (error "Unable to find a corresponding file"))))
 
+
+;;@============================= ORG
+(defun my/org-tree-open-in-right-frame ()
+  (interactive)
+  (split-window-right)
+  (org-tree-to-indirect-buffer)
+  (windmove-right))
+
+
 ;;@============================= EDITING
 (defun indent-or-complete ()
   "Complete if point is at end of a word, otherwise indent line."

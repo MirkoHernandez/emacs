@@ -88,8 +88,15 @@
             (define-key neotree-mode-map (kbd "C-h") 'neotree-hide)))
 
 ;;@@====================== ORG
-(add-hook 'org-mode-hook (lambda ()
-			   (define-key org-mode-map (kbd "C-c u") 'org-up-elements)
+(add-hook 'org-mode-hook (lambda ()                    
+			   (define-key org-mode-map (kbd "<S-return>")
+			     '(menu-item "" nil
+					 :filter (lambda (&optional _)
+						   (when(org-at-heading-p)
+						     #'my/org-tree-open-in-right-frame))))
+			   ;; 'my/org-tree-open-in-right-frame
+			     ;; :filter (lambda (&optional _) (unless (org-at-heading-p)))) 
+			   (define-key org-mode-map (kbd "C-c u") 'org-up-element)
 			   (define-key org-mode-map (kbd "C-c e") 'org-texinfo-export-to-info)
 			   (define-key org-mode-map (kbd "C-c w") 'unpackaged/org-refile-to-datetree)
 			   (define-key org-mode-map (kbd "C-c b") (lambda ()  (interactive)
