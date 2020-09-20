@@ -32,6 +32,9 @@
 ;; LIBS
 ;;  user32.lib gdi32.lib winmm.lib;
 
+
+(setq compilation-ask-about-save nil)
+
 (defun compile-handmade(day run)
   (let (
 	(libs15  " user32.lib gdi32.lib ")
