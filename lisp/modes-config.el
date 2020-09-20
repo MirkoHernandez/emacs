@@ -46,6 +46,49 @@
 ;; (require   'smex)
 ;; (smex-initialize)
 
+;;@============================= AVY
+;; (funcall  avy-translate-char-function (read-key))
+
+;; (defvar avy-translate-char-function #'my-read-char)
+
+;; Replace original avy-read with version that respects input method.
+(defun avy-read (tree display-fn cleanup-fn)
+  "Select a leaf from TREE using consecutive `read-key'.
+
+DISPLAY-FN should take CHAR and LEAF and signify that LEAFs
+associated with CHAR will be selected if CHAR is pressed.  This is
+commonly done by adding a CHAR overlay at LEAF position.
+
+CLEANUP-FN should take no arguments and remove the effects of
+multiple DISPLAY-FN invocations."
+  
+  (catch 'done
+    (setq avy-current-path "")
+    (while tree
+      (let ((avy--leafs nil))
+        (avy-traverse tree
+                      (lambda (path leaf)
+                        (push (cons path leaf) avy--leafs)))
+        (dolist (x avy--leafs)
+          (funcall display-fn (car x) (cdr x))))
+      ;; (let ((char (funcall avy-translate-char-function (read-key)))
+      (let ((char (read-char "char: " t))
+            window
+            branch)
+        (funcall cleanup-fn)
+        (if (setq window (avy-mouse-event-window char))
+            (throw 'done (cons char window))
+          (if (setq branch (assoc char tree))
+              (progn
+                ;; Ensure avy-current-path stores the full path prior to
+                ;; exit so other packages can utilize its value.
+                (setq avy-current-path
+                      (concat avy-current-path (string (avy--key-to-char char))))
+                (if (eq (car (setq tree (cdr branch))) 'leaf)
+                    (throw 'done (cdr tree))))
+            (funcall avy-handler-function char)))))))
+
+
 ;;@============================= IVY
 (ivy-mode)
 
@@ -158,9 +201,9 @@
 			      (diff-hl-mode t)))
 
 ;;@============================= KEYCHORD
-(key-chord-mode 1)
-(defvar key-chord-two-keys-delay 0.1)   ; 0.05 or 0.1
-(defvar key-chord-one-key-delay 0.08)
+;; (key-chord-mode 1)
+;; (defvar key-chord-two-keys-delay 0.1)   ; 0.05 or 0.1
+;; (defvar key-chord-one-key-delay 0.08)
 
 ;;@============================= JAVASCRIPT
 (require 'js-comint)
@@ -236,11 +279,22 @@
 (setq python-mode-hook nil)
 
 
-;;@============================= ORG
+;;@============================= Org
 (setq org-modules '(org-bbdb org-bibtex org-docview org-gnus org-habit org-drill org-info org-irc org-mhe org-rmail org-w3m))
 (eval-after-load "org" '(add-to-list 'org-modules 'org-timer))
 (setq org-src-tab-acts-natively t)
-(setq org-edit-src-content-indentation 0)
+
+(setq org-edit-src-content-indentation 0) ;; source block indentation
+
+;; Exporting
+(setq org-latex-packages-alist '(("margin=1cm" "geometry" nil))) 
+
+(setq org-babel-default-header-args '())
+
+;; add default arguments to use when evaluating a source block
+(add-to-list 'org-babel-default-header-args
+             '(:noweb . "yes"))
+
 
 (setq org-todo-keywords ;; with utf8 characters.
       '((sequence "☛ TODO" "|" "✔ DONE")
@@ -251,6 +305,9 @@
 (setq org-log-into-drawer t)
 
 (add-hook 'org-mode-hook (lambda ()
+			   (setq org-list-end-re "^[ 	]*
+")
+
 			   (setq default-justification 'full)
 			   (turn-on-auto-fill)
 			   ;; (smartparens-mode)
@@ -391,7 +448,7 @@ _r_ Point to Register
   ("5" paredit-open-round)
   ("a" crux-move-beginning-of-line)
   ("e" move-end-of-line)
-  ("i" helm-imenu)
+  ("i" helm-imenu :exit t)
   ("SPC" nil "quit"))
 
 (defhydra hydra-ibuffer-main (:color pink :hint nil)
