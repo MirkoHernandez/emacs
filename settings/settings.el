@@ -83,7 +83,7 @@
 
 (set-default 'truncate-lines t)
 (show-paren-mode)
-(setq abbrev-file-name (concat emacs-root "emacs/lisp/abbrevs"))
+(setq abbrev-file-name (concat emacs-root "emacs/abbrevs/abbrevs"))
 (setq default-justification 'full)
 (setq kill-whole-line t)
 (delete-selection-mode 1)

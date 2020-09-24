@@ -1,18 +1,3 @@
-;;@============================= DISABLE SCROLL, MENU AND  TOOLBAR
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
-;;@============================= MAXIMIZE WINDOW ON STARTUP
-;; (defun fullscreen ()
-  ;; (interactive)
-  ;; (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         ;; '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-;; (if (display-graphic-p)
-;; (fullscreen)))
-
-;; (w32-send-sys-command 61488)
-(toggle-frame-fullscreen)
 
 ;;@============================= CURSOR
 (blink-cursor-mode 0) 
@@ -68,7 +53,7 @@
 
 
 ;;@============================= FRINGES
-(fringe-mode (quote (3 . 1))) ;; Set fringe style to 'minimal
+(fringe-mode (quote (9 . 1))) ;; Set fringe style to 'minimal
 
 ;;@============================= ORG HEADERS
 (defun org-prettify-headers ()

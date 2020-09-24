@@ -68,7 +68,7 @@
 (global-set-key [f8] 'my-switch-to-previous-buffer)
 (global-set-key [f7] 'switch-to-prev-buffer)
 
-(global-set-key (kbd "\C-x3") 'split-window-right-other-window)
+(global-set-key (kbd "\C-x3") 'my/split-window-right-other-window)
 
 (global-set-key (kbd "C-S-j") 'goto-primary-file)
 (global-set-key (kbd "C-S-h") 'goto-secondary-file)
