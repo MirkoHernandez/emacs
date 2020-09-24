@@ -2,6 +2,8 @@ org
 tmp
 packages
 desktop
-lisp/misc.el
-lisp/custom.el
+settings/misc.el
+settings/custom.el
 snippets/work
+misc.el
+custom.el
