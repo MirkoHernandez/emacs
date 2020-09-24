@@ -7,6 +7,8 @@
 
 ;;@============================= C Configuration.
 (setq compilation-skip-threshold 2)
+(setq compilation-ask-about-save nil)
+
 
 (setq c-basic-offset 8)
 
@@ -28,13 +30,6 @@
   )
 
 (add-hook 'c-mode-common-hook 'c-config-hook)
-
-(defun my-autoindent-c ()
-  ""
-  (interactive)
-  (when (executable-find "indent")
-    (shell-command (concat "indent -kr -cli0 -cbi0 -ss -i8 -ip8 -ppi 2 --line-length185 "
-			   (buffer-file-name) ))))
 
 ;;@============================= FONTIFICATION
 (font-lock-add-keywords 'c-mode

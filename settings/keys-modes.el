@@ -2,8 +2,12 @@
 ;;@@====================== HYDRA
 (global-set-key (kbd "M-r") 'hydra-replace/body)
 (global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
-(global-set-key (kbd "M-i") 'hydra-navigation/body)
+(global-set-key (kbd "C-l") 'hydra-navigation/body)
+(global-set-key (kbd "C-d") 'hydra-delete/body)
 (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+
+
+
 
 ;;@@====================== NEOTREE
 (global-set-key (kbd "C-h") 'neotree)
@@ -144,7 +148,7 @@
 	    (paredit-mode 1)
             (define-key racket-mode-map (kbd "C-c r") 'racket-run)
             (define-key racket-mode-map (kbd "C-x e") 'racket-send-last-sexp)))
-
+			
 ;;@@====================== SCHEME
 (defun scheme-outline-bindings ()
   "sets shortcut bindings for outline minor mode"
