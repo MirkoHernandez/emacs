@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: hydra-header
+# key: hh
+# --
+_$1_ $2
