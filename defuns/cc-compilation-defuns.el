@@ -437,3 +437,11 @@
 	     (create-compile-string
 	      (buffer-name-no-extension)
 	      "cpp windows multiple winlibs" ))))
+;;@============================= COMPILE
+
+(defun recompile-quietly ()
+  "Re-compile without changing the window configuration."
+  (interactive)
+  (save-window-excursion
+    (recompile)))
+
