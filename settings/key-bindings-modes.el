@@ -7,6 +7,7 @@
 (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
 (global-set-key (kbd "M-a") 'hydra-align/body)
 (global-set-key (kbd "<apps>") 'hydra-perspective/body)
+(global-set-key (kbd "<menu>") 'hydra-perspective/body)
 
 ;;@@====================== NEOTREE
 (global-set-key (kbd "C-h") 'neotree)
