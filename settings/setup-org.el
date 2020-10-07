@@ -35,6 +35,7 @@
 (setq org-log-into-drawer t)
 
 (add-hook 'org-mode-hook (lambda ()
+			   ;; Just one newline to separate lists.
 			   (setq org-list-end-re "^[ 	]*
 ")
 
@@ -47,8 +48,23 @@
 			   ;; (set-face-attribute 'org-level-1 t :height 1.9 )
 			   ;; (set-face-attribute 'org-level-2 t :height 1.3 )
 			   (org-bullets-mode 1)))
-;; Refile
-(setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
 
-;; LOOKS
+;;@============================= Refile
+(defun opened-org-files ()
+  "Return the list of org files currently opened in emacs"
+  (delq nil
+        (mapcar (lambda (x)
+                  (if (and (buffer-file-name x)
+                           (string-match "\\.org$"
+                                         (buffer-file-name x)))
+                      (buffer-file-name x)))
+                (buffer-list))))
+
+(setq org-refile-targets '((opened-org-files :maxlevel . 4)))
+;; (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+
+
+;;@============================= Appereance
 (set-face-attribute 'bold nil :height 130 :foreground "deep sky blue")
+
+
