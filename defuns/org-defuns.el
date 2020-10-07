@@ -66,3 +66,41 @@ search whole subtree."
            (message "Unable to refile! %s" err))))
 
 
+;;@============================= Import files to src blocks
+(defun get-string-from-file(filepath)
+  "Return filepath's file content as a string."
+  (with-temp-buffer
+    (insert-file-contents filepath)
+    (buffer-string)))
+
+(defun file-to-src-block (mode file)
+  (concat "#+NAME: " (file-name-nondirectory file)   "
+#+BEGIN_SRC " mode" 
+"
+(get-string-from-file file)
+"
+#+END_SRC\n")
+  )
+
+(defun import-files-to-src-blocks (folder mode extension level)
+  (let* ((txt "\n")
+	 (files (directory-files-recursively folder extension t (lambda (subdir) ;; ugly little hack to recursively generate the correct org header.
+								  (setq txt  (concat txt  level " " (file-name-nondirectory subdir) "\n"
+										     (import-files-to-src-blocks subdir mode extension (concat level "*" ))))
+								  nil
+								  ))))
+    (concat txt (when (equal level "**") "*  \n")
+	    (mapconcat
+	     (lambda (src)
+	       (file-to-src-block mode src))
+	     files
+	     "\n"
+	     ))))
+
+(defun my/folder-to-src-blocks (folder mode extension)
+  (interactive "DFolder: \nsMode: \nsExtension: ")
+  (insert 
+   (import-files-to-src-blocks folder mode extension "**")))
+
+
+
