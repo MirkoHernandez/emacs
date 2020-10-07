@@ -33,6 +33,7 @@
     (async-shell-command
      command)))
 
+;;@============================= Launch Emacs
 
 (defun launch-separate-emacs-in-terminal ()
   (suspend-emacs "fg ; emacs -nw"))
@@ -78,12 +79,3 @@
     (switch-to-buffer (get-buffer-create bufname))
     (emacs-lisp-mode)
     ))
-;;@============================= COMPILE
-
-
-(defun recompile-quietly ()
-  "Re-compile without changing the window configuration."
-  (interactive)
-  (save-window-excursion
-    (recompile)))
-

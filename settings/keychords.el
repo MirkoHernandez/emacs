@@ -1,4 +1,4 @@
-;;;@============================= KEYCHORD CONFIG 
+;;@============================= KEYCHORD CONFIG 
 (defvar key-chord-two-keys-delay 0.05	; 0.05 or 0.1
   "Max time delay between two key press to be considered a key chord.")
 
