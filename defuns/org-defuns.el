@@ -65,6 +65,13 @@ search whole subtree."
              (org-paste-subtree))
            (message "Unable to refile! %s" err))))
 
+;;@============================= Refile
+(defun my/refile (file headline &optional arg)
+  (let ((pos (save-excursion
+               (find-file file)
+               (org-find-exact-headline-in-buffer headline))))
+    (org-refile arg nil (list headline file nil pos)))
+  (switch-to-buffer (current-buffer)))
 
 ;;@============================= Import files to src blocks
 (defun get-string-from-file(filepath)
