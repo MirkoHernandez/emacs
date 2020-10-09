@@ -64,7 +64,7 @@
 
 
 
-;;@============================= BUFFER
+;;@============================= Buffer
 (defun create-scratch-buffer nil
   "create a new scratch buffer to work in. (could be *scratch* - *scratchX*)"
   (interactive)
@@ -79,3 +79,40 @@
     (switch-to-buffer (get-buffer-create bufname))
     (emacs-lisp-mode)
     ))
+;;@============================= sdcv
+(defun sdcv-insert-entry (word link)
+  "Inserts definition of word at point."
+  (interactive "sWord: \nsLink: ")
+  (save-excursion 
+  (let ((result (shell-command-to-string (concat "sdcv " word)) ))
+    (setq result (replace-regexp-in-string "^Found.*$" "" result))
+    (setq result (replace-regexp-in-string "^-->WordNet.*$" "" result))
+    (setq result (replace-regexp-in-string (concat "^-->"  word)
+					       (if (string= "" link)
+						   (concat "[[" word "]]")
+						 (concat word  " [[" link "]]"))  result))
+    (insert result))))
+
+(defun sdcv-look-word-at-point ()
+  "Looks word at point."
+  (interactive)
+  (let ((word  (thing-at-point 'word))) 
+  (with-current-buffer (get-buffer-create "*SDCV*")
+    (setq buffer-read-only nil)
+    (erase-buffer)
+    (insert (shell-command-to-string (concat "sdcv " word)))
+    (switch-to-buffer (current-buffer))
+    (Info-mode)
+    (beginning-of-buffer))))
+
+(defun sdcv-look-word (word)
+  "Look definition of word using sdcv."
+  (interactive "sWord:")
+  (with-current-buffer (get-buffer-create "*SDCV*")
+    (setq buffer-read-only nil)
+    (erase-buffer)
+    (insert (shell-command-to-string (concat "sdcv " word)))
+    (switch-to-buffer (current-buffer))
+    (Info-mode)
+    (beginning-of-buffer)))
+
