@@ -1,4 +1,7 @@
 ;;@============================= GLOBAL KEYBINDINGS
+;;@@#===================== PROJECTILE
+(global-set-key (kbd "C-c p") 'projectile-find-file)
+
 ;;@@====================== HYDRA
 (global-set-key (kbd "M-r") 'hydra-replace/body)
 (global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
@@ -159,7 +162,12 @@
 	    (paredit-mode 1)
             (define-key racket-mode-map (kbd "C-c r") 'racket-run)
             (define-key racket-mode-map (kbd "C-x e") 'racket-send-last-sexp)))
-			
+
+;;@@====================== EMACS LISP
+ (add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (define-key emacs-lisp-mode-map (kbd   "C-c C-b") 'eval-buffer)))
+
 ;;@@====================== SCHEME
 (defun scheme-outline-bindings ()
   "sets shortcut bindings for outline minor mode"
