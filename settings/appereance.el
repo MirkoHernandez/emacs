@@ -35,12 +35,13 @@
 
 
 ;;@============================= MODELINE
-(moody-replace-mode-line-buffer-identification)
-(moody-replace-vc-mode)
-
+(when (display-graphic-p)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
 
 ;;@============================= FRINGES
-(fringe-mode (quote (9 . 1))) ;; Set fringe style to 'minimal
+(when (display-graphic-p)
+  (fringe-mode (quote (9 . 1)))) ;; Set fringe style to 'minimal
 
 ;;@============================= ORG HEADERS
 (defun org-prettify-headers ()
