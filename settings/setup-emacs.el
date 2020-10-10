@@ -93,7 +93,6 @@
   (let ((desktop-load-locked-desktop "ask"))
     (desktop-read)
     (desktop-save-mode 1)))
-(desktop-read)
 
 ;;@============================= TERMINAL
 ;; (unless  (display-graphic-p)
