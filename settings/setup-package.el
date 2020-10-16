@@ -27,18 +27,24 @@
 	;; ido-completing-read+
 	;; general
 ;	key-chord
-	avy
-	projectile
-	ivy
-	flx
-	counsel
-	counsel-projectile
-	which-key
-	helm
 	hydra
 	crux
+;; Completion
+	ivy
+	counsel
+	flx
+	helm
+;;@ Utilities	
+	which-key
+	keyfreq
+;;@ Workspaces
 	persp-mode
-;;@ Navegation	
+	projectile
+	counsel-projectile
+	treemacs
+	treemacs-projectile
+;;@ Navegation
+	avy
 	smartscan
 	swiper
 	neotree 
@@ -46,7 +52,6 @@
 	helm-ag
 	peep-dired
 ;;@ Misc
-	keyfreq
 	typing
 	darkroom
 	exec-path-from-shell
