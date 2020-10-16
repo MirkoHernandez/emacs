@@ -39,6 +39,42 @@
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
+(setq mode-line-cleaner-alist
+  `((auto-complete-mode . "")
+    (yas-minor-mode-major-mode . "")
+    (yas-minor-mode . "")
+    (ivy-mode . "")
+    (rainbow-mode . "")
+    (paredit-mode . " π")
+    (outline-mode . "")
+    (outline-minor-mode . "")
+    (hs-minor-mode . "")
+    (which-key-mode . "")
+    (eldoc-mode . "")
+    (abbrev-mode . "")
+    ;; Major modes
+    (lisp-interaction-mode . "λ")
+    (hi-lock-mode . "")
+    (python-mode . "Py")
+    (emacs-lisp-mode . "EL")
+    (nxhtml-mode . "nx")))
+
+
+(defun clean-mode-line ()
+  (interactive)
+  (cl-loop for cleaner in mode-line-cleaner-alist
+        do (let* ((mode (car cleaner))
+                  (mode-str (cdr cleaner))
+                  (old-mode-str (cdr (assq mode minor-mode-alist))))
+             (when old-mode-str
+               (setcar old-mode-str mode-str))
+             ;; major mode
+             (when (eq mode major-mode)
+	       (setq mode-name mode-str)))))
+(add-hook 'after-change-major-mode-hook 'clean-mode-line)
+
+
+
 ;;@============================= FRINGES
 (when (display-graphic-p)
   (fringe-mode (quote (9 . 1)))) ;; Set fringe style to 'minimal
