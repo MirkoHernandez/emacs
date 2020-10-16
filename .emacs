@@ -52,6 +52,7 @@
 (load-library "setup-magit")
 (load-library "setup-yasnippets")
 (load-library "setup-perspective")
+(load-library "setup-utils")
 
 ;;@============================= Programming Modes  Setup
 (load-library "setup-prog")
@@ -76,4 +77,3 @@
 (load-library "misc")
 ;;@============================= Shell
 ;; (shell)
-
