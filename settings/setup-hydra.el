@@ -38,11 +38,12 @@
 (defhydra hydra-bookmarks (:color blue :hint nil)
   "
 ^Set^                                      ^Jump^                         ^Insert^
--------------------------------------------------------------------------------------
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 _m_ Set Bookmark                        _j_ Jump to Register         _i_ Insert Register
 _w_ Window Configuration to Register    _b_ Jump to Bookmark
 _x_ Copy to Register
 _r_ Point to Register
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 "
   ("b" counsel-bookmark)
   ("i" insert-register)
@@ -67,13 +68,14 @@ _r_ Point to Register
 				  :foreign-keys warn 
 				  :timeout 1.2)
   "
-| _C-l_ recenter      | _h_ left word          | _p_ beginning  of defun |
-| _r_ recenter cursor | _l_ right word         | _n_ end of defun        |
-| _a_ go to word      | _K_ previous line      | _S-k_ scroll up         |
-| _s_ go to subword   | _J_ next line          | _S-j_ scroll down       |
-| _d_ down list       | _k_ previous paragraph | _g_ beginning of buffer |
-| _u_ up list         | _j_ next paragraph     | _G_ end of buffer       |
-
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+ _C-l_ recenter      | _h_ left word          | _p_ beginning  of defun |
+ _r_ recenter cursor | _l_ right word         | _n_ end of defun        |
+ _a_ go to word      | _K_ previous line      | _S-k_ scroll up         |
+ _s_ go to subword   | _J_ next line          | _S-j_ scroll down       |
+ _d_ down list       | _k_ previous paragraph | _g_ beginning of buffer |
+ _u_ up list         | _j_ next paragraph     | _G_ end of buffer       |
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 "
   ("a" avy-goto-word-1 nil )
   ("s" avy-goto-word-or-subword-1 nil)
@@ -131,11 +133,11 @@ _r_ Point to Register
 (defhydra hydra-ibuffer-main (:color pink :hint nil)
   "
  ^Navigation^ | ^Mark^        | ^Actions^        | ^View^
--^----------^-+-^----^--------+-^-------^--------+-^----^-------
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
   ^ ^         | _m_: mark     | _D_: delete      | _g_: refresh
  _RET_: visit | _u_: unmark   | _S_: save        | _s_: sort
   ^ ^         | _*_: specific | _a_: all actions | _/_: filter
--^----------^-+-^----^--------+-^-------^--------+-^----^-------
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 "
   ;; ("j" ibuffer-forward-line)
   ;; ("k" ibuffer-backward-line)
@@ -223,6 +225,7 @@ _r_ Point to Register
 ;;@============================= Dired
 (defhydra hydra-dired (:hint nil :color pink)
   "
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 _+_ mkdir          _v_iew           _m_ark             _(_ details        _i_nsert-subdir    wdired
 _C_opy             _O_ view other   _U_nmark all       _)_ omit-mode      _$_ hide-subdir    C-x C-q : edit
 _D_elete           _o_pen other     _u_nmark           _l_ redisplay      _w_ kill-subdir    C-c C-c : commit
@@ -232,8 +235,8 @@ _S_ymlink          ^ ^              _F_ind marked      _._ toggle hydra   \\ fly
 _r_sync            ^ ^              ^ ^                ^ ^                _?_ summary
 _z_ compress-file  _A_ find regexp
 _Z_ compress       _Q_ repl regexp
-
 T - tag prefix
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 "
   ("\\" dired-do-ispell)
   ("(" dired-hide-details-mode)
@@ -279,8 +282,10 @@ T - tag prefix
 
 (defhydra hydra-align (:foreign-keys warn )
   "
- | _r_ regex          | _t_ org table    | _i_ insert row |
- | _j_ move cell down | _k_ move cell up |                |
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+ _r_ regex          | _t_ org table    | _i_ insert row 
+ _j_ move cell down | _k_ move cell up |                
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 "
   ("r" align-regexp nil :exit t )
   ("t" org-table-align  nil :exit t)
@@ -296,9 +301,11 @@ T - tag prefix
 
 (defhydra hydra-perspective ( )
   "
- | _<app>_ switch to last     | _n_ next     | _a_ add buffer    |
- | _b_ switch buffer          | _p_ previous | _r_ remove buffer |
- | _s_ switch/new perspective |              |                   |
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+ _<app>_ switch to last     | _n_ next     | _a_ add buffer    |
+ _b_ switch buffer          | _p_ previous | _r_ remove buffer |
+ _s_ switch/new perspective |              |                   |
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 "
   ("<app>" persp-switch-last nil :exit t )
   ("s" persp-switch  nil :exit t)
