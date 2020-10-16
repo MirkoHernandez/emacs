@@ -42,6 +42,10 @@
 (setq set-mark-command-repeat-pop t)
 
 
+;;@============================= WHICH FUNCTION
+(require 'which-func)
+(which-func-mode 1)
+
 ;;@============================= TEMPLATES
 (auto-insert-mode) 
 ;; (setq auto-insert-directory (concat emacs-root "emacs/templates/"))
