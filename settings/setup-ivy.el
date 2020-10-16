@@ -11,12 +11,18 @@
 (setq ivy-re-builders-alist
       '((swiper . ivy--regex-plus)
 	(swiper-isearch . ivy--regex-plus)
-        (t      .  ivy--regex-ignore-order))) 
+        (t      .  ivy--regex-fuzzy))) 
 
 (setq ivy-display-style 'fancy)
 (setq ivy-extra-directories nil) ;; ignore  folder ( . and  ..) entries  for counsel-find-file.
 (setq ivy-use-ignore-default 'always) ;; always ingore buffers
 (setq ivy-ignore-buffers '("^\*")) ;; Ignore some buffers in `ivy-switch-buffer'
+
+;; Fix weird color blending in describe functions 
+(custom-set-faces
+ '(ivy-highlight-face ((t (:background "#383b31"))))
+ '(ivy-current-match ((t (:foreground "#2299FF")))))
+
 
 (ivy-set-actions
  'counsel-find-file
