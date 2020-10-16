@@ -74,7 +74,7 @@
 (global-set-key (kbd "\C-x3") 'my/split-window-right-other-window)
 
 (global-set-key (kbd "C-S-j") 'goto-primary-file)
-(global-set-key (kbd "C-S-h") 'goto-secondary-file)
+;; (global-set-key (kbd "C-S-h") 'goto-secondary-file)
 
 ;; (global-set-key (kbd "C-8") 'backward-sexp)
 ;; (global-set-key (kbd "C-9") 'forward-sexp)
