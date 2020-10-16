@@ -4,8 +4,6 @@
 ;; (setq dabbrev-upcase-means-case-search t)
 
 
-;;@============================= IBUFFER
-(setq ibuffer-default-sorting-mode 'major-mode)
 
 ;;@============================= IDO-UBIQUITOUS
 ;; (ido-ubiquitous-mode 1)
@@ -86,10 +84,6 @@ multiple DISPLAY-FN invocations."
 
 
 
-;;@============================= PROJECTILE
-(projectile-global-mode t)
-
-
 ;;@============================= COMMON LISP
 (setq inferior-lisp-program "sbcl")
 
@@ -110,19 +104,6 @@ multiple DISPLAY-FN invocations."
 ;; git clone git://github.com/pft/gimpmode.git
 (load-if-exists (concat emacs-root  "emacs/packages/gimpmode/gimp-init.el"))
 
-;;@============================= KEYFREQ
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
-
-(setq keyfreq-excluded-commands
-      '(self-insert-command
-        org-self-insert-command
-	dired
-	))
-;;@============================= WHICH-KEY
-(require 'which-key)
-(which-key-mode)
 
 ;;@============================= FLYCHECK
 ;; (set-face-attribute 'flycheck-error
@@ -134,13 +115,4 @@ multiple DISPLAY-FN invocations."
 		    ;; :underline
 		    ;; '(:color "orange" :style line))
 
-;;@============================= HELM
-(setf helm-boring-buffer-regexp-list '("\\` " "\\*helm" "\\*helm-mode"
-				       "\\*Help" "\\*Buffer " 
-                                       "\\*Echo Area" "\\*Minibuf" "\\*monky-cmd-process\\*"
-                                       "\\*epc con" "\\*Compile-Log\\*" "\\*monky-process\\*"
-                                       "\\*CEDET CScope\\*" "\\*Messages\\*" "\\*Flycheck error"
-                                       "\\*.+(.+)" "elpa/.+" "tramp/.+"
-                                       "\\*Gofmt Errors\\*" "\\*autopep8"
-                                       "\\*magit-process:" "\\*magit-diff:" "\\*anaconda-mode\\*"))
 
