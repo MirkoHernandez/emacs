@@ -1,6 +1,6 @@
 ;;@============================= GLOBAL KEYBINDINGS
 ;;@@#===================== PROJECTILE
-(global-set-key (kbd "C-c p") 'projectile-find-file)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;;@@====================== HYDRA
 (global-set-key (kbd "M-r") 'hydra-replace/body)
@@ -12,8 +12,10 @@
 (global-set-key (kbd "<apps>") 'hydra-perspective/body)
 (global-set-key (kbd "<menu>") 'hydra-perspective/body)
 
-;;@@====================== NEOTREE
-(global-set-key (kbd "C-h") 'neotree)
+;;@@====================== TREEMACS
+(global-set-key (kbd "C-S-h") 'treemacs-add-and-display-current-project)
+(global-set-key (kbd "C-h") 'treemacs)
+
 ;;@@====================== MULTIPLE  CURSORS:
 ;; Rebind emacs Defaults
 (global-set-key (kbd "C-S-o") 'mc/mark-next-like-this)
