@@ -46,6 +46,8 @@
 (require 'which-func)
 (which-func-mode 1)
 
+;;@============================= SKELETOR
+(skeletor-init-with-git nil) 
 ;;@============================= TEMPLATES
 (auto-insert-mode) 
 ;; (setq auto-insert-directory (concat emacs-root "emacs/templates/"))

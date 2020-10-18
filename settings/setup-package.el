@@ -60,6 +60,7 @@
 	engine-mode
 	shrface
 ;;@ Programming
+	skeletor
 	rainbow-mode
 	flycheck
 	expand-region
