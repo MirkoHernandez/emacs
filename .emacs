@@ -56,7 +56,7 @@
 
 ;;@============================= Programming Modes  Setup
 (load-library "setup-prog")
-(load-library "setup-emacs-lisp")
+(load-library "setup-elisp")
 (load-library "setup-cc")
 ;; (load-library "setup-go")
 ;; (load-library "setup-html")
