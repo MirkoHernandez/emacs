@@ -299,23 +299,22 @@ T - tag prefix
 
 ;;@============================= Perspective
 
-(defhydra hydra-perspective ( )
+(defhydra hydra-perspective  ()  
   "
-――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
- _<app>_ switch to last     | _n_ next     | _a_ add buffer    |
- _b_ switch buffer          | _p_ previous | _r_ remove buffer |
- _s_ switch/new perspective |              |                   |
-――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+ |_<app>_ switch to last     | _n_ next       | _a_ add buffer    |
+ |_b_ switch buffer          | _p_ previous   | _r_ remove buffer |
+ |_s_ switch/new perspective | _P_ projectile |                   |
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 "
   ("<app>" persp-switch-last nil :exit t )
   ("s" persp-switch  nil :exit t)
   ("b" persp-switch-to-buffer*  nil :exit t)
   ("n" persp-next  nil )
   ("p" persp-prev nil)
+  ("P" projectile-persp-switch-project nil)
   ("a" persp-add-buffer  nil )
   ("r" persp-remove-buffer nil)
   ("<right>"  my/persp-next-buffer nil)
   ("<left>"   my/persp-previous-buffer nil)
     ("q" nil "quit"))
-
-
