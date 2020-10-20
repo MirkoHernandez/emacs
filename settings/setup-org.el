@@ -28,6 +28,7 @@
 (setq org-todo-keywords ;; with utf8 characters.
       '((sequence "⚑ TODO"  "|" "✔ DONE")
 	(sequence "⚑ DEADLINE" "|")
+	(sequence "⚑ Habit" "|")
 	(sequence "⚑ Project" "|"  "FINISHED")
 	(sequence "⚑ Scheduled" "|")
 	(sequence "|" "✘ CANCELED")))
