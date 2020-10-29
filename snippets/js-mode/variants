@@ -1,0 +1,11 @@
+#name : variants
+#key: variants
+# --
+ variants: [
+	{ name: "$1",
+	  context: {
+	     $2: {
+	    } 
+	  }
+	}
+    ]
