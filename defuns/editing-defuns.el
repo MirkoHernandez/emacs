@@ -2,28 +2,17 @@
 (setq primary-ext-table
       #s(hash-table size 20 data (
 				  ;; Angular
-				  "\\.module.ts$"   (".component.ts") 
-				  "\\.component.ts$"   (".html") 
-				  "\\.component.html$"   (".ts") 
-				  "\\.component.scss$"   (".ts") 
+				  "\\.module.ts$"   (".model.ts" ".component.ts") 
+				  "\\.component.ts$"   (".model.ts" ".html") 
+				  "\\.component.html$"   (".component.scss" ".ts") 
+				  "\\.component.scss$"   (".component.html" ".ts") 
 				  ;; C/C++
 				  "\\.c$\\|\\.cpp$"   (".h") 
 				  "\\.h$" (".c" ".cpp")
 				  ;; Fractal
 				  "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"   (".scss")
-				  "\\.scss$"   (".hbs" ".mustache" ".twig" ".nunj")
+				  "\\.scss$"   (".config.json" ".config.js" ".config.yaml" ".config.yml" ".hbs" ".mustache" ".twig" ".nunj")
 				  "\\.js$\\|\\.json$\\|\\.yaml$\\|\\.yml$"   (".hbs" ".mustache" ".twig" ".nunj" ))))
-(setq secondary-ext-table
-      #s(hash-table size 20 data (
-				  ;; Angular
-				  "\\.component.ts$"   (".model.ts") 
-				  "\\.component.html$"   (".component.scss") 
-				  "\\.component.scss$"   (".component.html")
-				  ;; Fractal
-				  "\\.hbs$\\|\\.mustache$\\|\\.twig$\\|\\.nunj"   (".config.json" ".config.js" ".config.yaml" ".config.yml") 
-				  "\\.scss$"   (".config.json" ".config.js" ".config.yaml" ".config.yml") 
-				  )))
-
 ;;@============================= FOCUS
 (defun my/hs-toggle-hide ()
   (interactive)
@@ -62,7 +51,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;;@ Find corresponding files
 (defun get-corresponding-file-extension (file hash-table)
-   "Returns the  corresponding extensions if  FILE as one  of the
+   "Returns the  corresponding extensions if  FILE has one  of the
 extensions included in the keys of HASH-TABLE"
     (let ((new-file nil))
     (maphash (lambda (key value)
@@ -91,18 +80,6 @@ extensions included in the keys of HASH-TABLE"
     (if file
 	(find-file file)
       (error "Unable to find a corresponding file"))))
-
-(defun goto-secondary-file ()
-  "Go to  the secondary file that corresponds to the current buffer"
-  (interactive)
-  (let* ((extensions  (get-corresponding-file-extension  (replace-regexp-in-string "<.*" ""  (buffer-name))
-							 secondary-ext-table)) 
-	 (file (find-corresponding-file (buffer-name) extensions)))
-    (if file
-	(find-file file)
-      (error "Unable to find a corresponding file"))))
-
-
 
 ;;@============================= EDITING
 (defun indent-or-complete ()
