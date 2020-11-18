@@ -23,7 +23,14 @@
 (defengine stack-overflow
   "https://stackoverflow.com/search?q=%s"
   :keybinding "s"
-  :docstring "Search Stack-Overflow")
+  :docstring "Search Stack-Overflow:")
+
+(defengine mdn
+  "https://developer.mozilla.org/en-US/search?q=%s"
+  :keybinding "c"
+  :docstring "Search mdn:")
+
+
 ;;@============================= EWW
 (setq browse-url-browser-function 'eww-browse-url)
 (setq shr-inhibit-images t)
