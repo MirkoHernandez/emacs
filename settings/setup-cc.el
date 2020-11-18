@@ -16,7 +16,7 @@
   (outline-minor-mode)
   (hs-minor-mode)
   (flycheck-mode)
-  (smartparens-mode)
+  ;; (smartparens-mode)
   ;; Kernel Coding Style
   (setq c-default-style "k&r"
 	c-basic-offset 8
