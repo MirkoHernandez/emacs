@@ -49,6 +49,7 @@
 (load-library "setup-ivy")
 (load-library "setup-ediff")
 (load-library "setup-engine")
+(load-library "setup-html")
 (load-library "setup-magit")
 (load-library "setup-yasnippets")
 (load-library "setup-perspective")
@@ -74,6 +75,7 @@
     (load file)))
 
 ;;@============================= Misc
-(load-library "misc")
+(load (concat emacs-root "emacs/misc.el"))
+
 ;;@============================= Shell
 ;; (shell)
