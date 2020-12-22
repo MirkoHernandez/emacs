@@ -18,12 +18,23 @@
 ;; Exporting
 (setq org-latex-packages-alist '(("margin=1cm" "geometry" nil))) 
 
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("cache=false" "minted")))
+
+(setq org-latex-minted-options
+     '(("breaklines" ) ("obeytabs" "true") ("tabsize" "2")))
+
+
+(setq org-latex-pdf-process
+      '("pdflatex --shell-escape -output-directory %o %f"
+	"pdflatex --shell-escape -output-directory %o %f"
+	"pdflatex --shell-escape -output-directory %o %f"))
+
 (setq org-babel-default-header-args '())
 
 ;; add default arguments to use when evaluating a source block
 (add-to-list 'org-babel-default-header-args
              '(:noweb . "yes"))
-
 
 (setq org-todo-keywords ;; with utf8 characters.
       '((sequence "⚑ TODO"  "|" "✔ DONE")
