@@ -5,13 +5,13 @@
 ;;@@====================== HYDRA
 (global-set-key (kbd "M-r") 'hydra-replace/body)
 (global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
-(global-set-key (kbd "C-l") 'hydra-navigation/body)
+;; (global-set-key (kbd "C-l") 'hydra-navigation/body)
 (global-set-key (kbd "C-d") 'hydra-delete/body)
 (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
 (global-set-key (kbd "M-a") 'hydra-align/body)
 (global-set-key (kbd "<apps>") 'hydra-perspective/body)
 (global-set-key (kbd "<menu>") 'hydra-perspective/body)
-
+	
 ;;@@====================== TREEMACS
 (global-set-key (kbd "C-S-h") 'treemacs-add-and-display-current-project)
 (global-set-key (kbd "C-h") 'treemacs)
@@ -24,6 +24,10 @@
 (global-set-key (kbd "C-(") 'sp-wrap-round)
 (global-set-key (kbd "C-{") 'sp-wrap-curly)
 (global-set-key (kbd "C-]") 'sp-wrap-square)
+;;@@====================== SCSS
+(add-hook 'scss-mode-hook (lambda ()
+			     (define-key scss-mode-map (kbd "M-.")  'xref-find-definitions)))
+
 
 ;;@@====================== YASNIPPETS
 (global-set-key (kbd "C-x y v") 'yas-visit-snippet-file)

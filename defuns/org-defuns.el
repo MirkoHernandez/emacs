@@ -73,6 +73,8 @@ search whole subtree."
     (org-refile arg nil (list headline file nil pos)))
   (switch-to-buffer (current-buffer)))
 
+
+
 ;;@============================= Import files to src blocks
 (defun get-string-from-file(filepath)
   "Return filepath's file content as a string."
@@ -99,7 +101,8 @@ search whole subtree."
     (concat txt (when (equal level "**") "*  \n")
 	    (mapconcat
 	     (lambda (src)
-	       (file-to-src-block mode src))
+	       (unless (file-directory-p src) 
+		 (file-to-src-block mode src)))
 	     files
 	     "\n"
 	     ))))

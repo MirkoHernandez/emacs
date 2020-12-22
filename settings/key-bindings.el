@@ -31,7 +31,7 @@
 ;;@============================= Navigation
 ;; (global-set-key "\C-r" 'swiper-isearch-backward)
 (global-set-key (kbd "M-o") 'other-window)
-;; (global-set-key (kbd "M-i") 'helm-imenu)
+(global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "M-g") 'goto-line)
 ;; Files
 (global-set-key (kbd "M-f") 'helm-find-files)
