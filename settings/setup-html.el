@@ -18,6 +18,7 @@
 ;; Fix HTML folding
 (dolist (mode '(sgml-mode
                 html-mode
+		handlebars-mode
                 html-erb-mode))
   (add-to-list 'hs-special-modes-alist
                (list mode

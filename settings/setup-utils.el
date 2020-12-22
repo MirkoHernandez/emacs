@@ -30,6 +30,16 @@
 (counsel-projectile-mode t)
 (setq projectile-sort-order 'default)
 
+;;@============================= TREEMACS
+
+;; (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
+
+(with-eval-after-load 'treemacs
+  (defun treemacs-ignore-some-files (file _)
+    (string= file "node_modules"))
+  (push #'treemacs-ignore-some-files treemacs-ignored-file-predicates))
+
+
 
 ;;@============================= IBUFFER
 (setq ibuffer-default-sorting-mode 'major-mode)
