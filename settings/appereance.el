@@ -1,4 +1,3 @@
-
 ;;@============================= CURSOR
 (blink-cursor-mode 0) 
 
@@ -29,8 +28,10 @@
 (set-cursor-color "#40FF40")
 
 ;;@============================= FONT
-(add-to-list 'default-frame-alist '(font . "Liberation Mono-11.5"))
-(set-face-attribute 'default t :font "Liberation Mono-11.5")
+(when (member "Liberation Mono" (font-family-list))
+  (add-to-list 'default-frame-alist '(font . "Liberation Mono-11.5"))
+  (set-face-attribute 'default nil :font "Liberation Mono-11.5"))
+
 ;;@============================= MOUSE
 
 
