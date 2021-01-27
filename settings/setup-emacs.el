@@ -76,7 +76,7 @@
 
 
 ;;@============================= DESKTOP
-(desktop-change-dir (concat emacs-root "emacs/tmp/desktop"))
+;; (desktop-change-dir (concat emacs-root "emacs/tmp/desktop"))
 (setq desktop-dirname             (concat emacs-root "emacs/tmp/desktop") 
       desktop-base-file-name      "emacs.desktop"
       desktop-base-lock-name      "lock"
