@@ -39,6 +39,7 @@
 	keyfreq
 ;;@ Workspaces
 	persp-mode
+	perspective
 	projectile
 	counsel-projectile
 	treemacs
