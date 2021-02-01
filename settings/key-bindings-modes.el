@@ -1,17 +1,46 @@
 ;;@============================= GLOBAL KEYBINDINGS
+
+;;@@#===================== SEQUENCES
+
+;; Replace
+(define-prefix-command  'my-replace-map)
+(global-set-key (kbd "M-r") 'my-replace-map)
+(progn
+
+  (define-key my-replace-map (kbd "r") 'query-replace-in-region)
+  (define-key my-replace-map (kbd "b") 'query-replace-regexp)
+  (define-key my-replace-map (kbd ".") (lambda nil "Doc" (interactive)
+					 (setq current-prefix-arg '(4)) ; C-u
+					 (call-interactively 'smartscan-symbol-replace)))
+  (which-key-add-key-based-replacements  "M-r ." "Replace Symbol in defun")
+  (define-key my-replace-map (kbd ",") 'smartscan-symbol-replace)
+  )
+;; Bookmarks
+(define-prefix-command  'my-bookmarks-map)
+(global-set-key (kbd "<f2>") 'my-bookmarks-map)
+(progn
+  (define-key my-bookmarks-map (kbd "b") 'helm-bookmark)
+  (define-key my-bookmarks-map (kbd "i") 'insert-register)
+  (define-key my-bookmarks-map (kbd "j") 'jump-to-register)
+  (define-key my-bookmarks-map (kbd "r") 'point-to-register)
+  (define-key my-bookmarks-map (kbd "m") 'bookmark-set)
+  (define-key my-bookmarks-map (kbd "w") 'window-configuration-to-register)
+  (define-key my-bookmarks-map (kbd "x") 'copy-to-register)
+  )
+
 ;;@@#===================== PROJECTILE
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;;@@====================== HYDRA
-(global-set-key (kbd "M-r") 'hydra-replace/body)
-(global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
+;; (global-set-key (kbd "M-r") 'hydra-replace/body)
+;; (global-set-key (kbd "<f2>") 'hydra-bookmarks/body)
 ;; (global-set-key (kbd "C-l") 'hydra-navigation/body)
-(global-set-key (kbd "C-d") 'hydra-delete/body)
-(global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
-(global-set-key (kbd "M-a") 'hydra-align/body)
-(global-set-key (kbd "<apps>") 'hydra-perspective/body)
-(global-set-key (kbd "<menu>") 'hydra-perspective/body)
-	
+;; (global-set-key (kbd "C-d") 'hydra-delete/body)
+;; (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+;; (global-set-key (kbd "M-a") 'hydra-align/body)
+;; (global-set-key (kbd "<apps>") 'hydra-perspective/body)
+;; (global-set-key (kbd "<menu>") 'hydra-perspective/body)
+
 ;;@@====================== TREEMACS
 (global-set-key (kbd "C-S-h") 'treemacs-add-and-display-current-project)
 (global-set-key (kbd "C-h") 'treemacs)
@@ -26,7 +55,7 @@
 (global-set-key (kbd "C-]") 'sp-wrap-square)
 ;;@@====================== SCSS
 (add-hook 'scss-mode-hook (lambda ()
-			     (define-key scss-mode-map (kbd "M-.")  'xref-find-definitions)))
+			    (define-key scss-mode-map (kbd "M-.")  'xref-find-definitions)))
 
 
 ;;@@====================== YASNIPPETS
@@ -85,23 +114,24 @@
   (define-key eww-mode-map (kbd "C-t") 'shrface-toggle-bullets)
   (define-key eww-mode-map (kbd "C-j") 'shrface-next-headline)
   (define-key eww-mode-map (kbd "C-k") 'shrface-previous-headline)
-  (define-key eww-mode-map (kbd "C-i") 'shrface-links-counsel) ; or 'shrface-links-helm
-  (define-key eww-mode-map (kbd "C-o") 'shrface-headline-counsel)) ; or 'shrface-headline-helm
+  (define-key eww-mode-map (kbd "C-i") 'shrface-links-helm) ; or 'shrface-links-helm
+  (define-key eww-mode-map (kbd "C-o") 'shrface-headline-helm)) ; or 'shrface-headline-helm
 
 ;;@============================= MODES  KEYBINDINGS
 ;;@@====================== IVY COUNSEL
-(add-hook 'ivy-mode-hook (lambda ()
-			   (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-backward-kill-word)
-			   (define-key ivy-minibuffer-map (kbd "C-o") 'dabbrev-expand)))
+(when nil 
+  (add-hook 'ivy-mode-hook (lambda ()
+			     (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-backward-kill-word)
+			     (define-key ivy-minibuffer-map (kbd "C-o") 'dabbrev-expand)))
 
-(add-hook 'counsel-mode-hook (lambda ()                    
-			       (with-eval-after-load 'counsel
-				 (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t)))
-				   (define-key ivy-minibuffer-map done #'ivy-alt-done)
-				   (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory)
-				   ))))
+  (add-hook 'counsel-mode-hook (lambda ()                    
+				 (with-eval-after-load 'counsel
+				   (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t)))
+				     (define-key ivy-minibuffer-map done #'ivy-alt-done)
+				     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory)
+				     ))))
 
-                           
+  )
 ;;@@====================== HELM
 ;; (global-set-key (kbd "M-i") 'helm-imenu)
 ;; (global-set-key (kbd "M-b") 'helm-buffers-list)
@@ -119,7 +149,7 @@
 						   (when(org-at-heading-p)
 						     #'my/org-tree-open-in-right-frame))))
 			   ;; 'my/org-tree-open-in-right-frame
-			     ;; :filter (lambda (&optional _) (unless (org-at-heading-p)))) 
+			   ;; :filter (lambda (&optional _) (unless (org-at-heading-p)))) 
 			   (define-key org-mode-map (kbd "C-c u") 'org-up-element)
 			   (define-key org-mode-map (kbd "C-c e") 'org-texinfo-export-to-info)
 			   (define-key org-mode-map (kbd "C-c w") 'unpackaged/org-refile-to-datetree)
@@ -135,10 +165,10 @@
 
 
 ;;@@====================== HELP MODE
- (add-hook 'help-mode-hook
-	   (lambda ()
-	     (define-key help-mode-map (kbd "q") (lambda() (interactive) (quit-window t)))
-	     ))
+(add-hook 'help-mode-hook
+	  (lambda ()
+	    (define-key help-mode-map (kbd "q") (lambda() (interactive) (quit-window t)))
+	    ))
 
 ;;@============================= PROGRAMMING MODES KEYBINDINGS
 ;;@@====================== GO
@@ -150,7 +180,7 @@
                            (define-key js2-mode-map  (kbd "C-x C-e") 'js-send-last-sexp)))
 ;;@@====================== PYTHON
 (add-hook 'python-mode-hook (lambda ()
-                           (define-key python-mode-map  (kbd "C-x C-e") 'python-shell-send-defun)))
+                              (define-key python-mode-map  (kbd "C-x C-e") 'python-shell-send-defun)))
 ;;@@====================== C
 (add-hook 'c-mode-common-hook (lambda ()
 				(define-key c-mode-base-map  (kbd "C-<tab>") 'c-indent-defun)
@@ -163,14 +193,14 @@
 ;; (define-key compilation-mode-map  "q" 'kill-buffer-and-window )))
 
 ;;@@====================== RACKET
- (add-hook 'racket-mode-hook
+(add-hook 'racket-mode-hook
           (lambda ()
 	    (paredit-mode 1)
             (define-key racket-mode-map (kbd "C-c r") 'racket-run)
             (define-key racket-mode-map (kbd "C-x e") 'racket-send-last-sexp)))
 
 ;;@@====================== EMACS LISP
- (add-hook 'emacs-lisp-mode-hook
+(add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (define-key emacs-lisp-mode-map (kbd   "C-c C-b") 'eval-buffer)))
 

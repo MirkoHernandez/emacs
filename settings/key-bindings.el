@@ -3,7 +3,7 @@
 ;;; Code:
 ;;@============================= M-x
 ;; (global-set-key (kbd "<C-m>") 'smex)
-(global-set-key (kbd "M-x") 'counsel-M-x)
+;; (global-set-key (kbd "M-x") 'counsel-M-x)
 
 ;;@============================= Rebind Emacs defaults
 (global-set-key "\C-x\C-b" 'ibuffer-other-window)
@@ -15,11 +15,11 @@
 
 ;;@============================= Rebind  using Modes
 (global-set-key "\C-b" 'persp-switch-to-buffer)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "C-x r b") 'counsel-bookmark)
-(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-(global-set-key "\C-s" 'swiper-isearch)
+;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+;; (global-set-key (kbd "C-x r b") 'counsel-bookmark)
+;; (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+;; (global-set-key "\C-s" 'swiper-isearch)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;;@============================= Modes
@@ -92,7 +92,7 @@
 (global-set-key (kbd "M-l") 'fix-word-downcase)
 (global-set-key (kbd "M-c") 'fix-word-capitalize)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
-(global-set-key (kbd "M-y") 'counsel-yank-pop)
+;; (global-set-key (kbd "M-y") 'counsel-yank-pop)
 (global-set-key (kbd "M-u") 'undo)
 (global-set-key (kbd "<f12>") 'repeat)
 (global-set-key (kbd "S-<f12>") 'repeat-complex-command) 
