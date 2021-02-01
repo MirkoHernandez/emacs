@@ -94,12 +94,12 @@
 			   (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-backward-kill-word)
 			   (define-key ivy-minibuffer-map (kbd "C-o") 'dabbrev-expand)))
 
-(with-eval-after-load 'counsel
-  (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t)))
-    (define-key ivy-minibuffer-map done #'ivy-alt-done)
-    (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory)
-    ))
-
+(add-hook 'counsel-mode-hook (lambda ()                    
+			       (with-eval-after-load 'counsel
+				 (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t)))
+				   (define-key ivy-minibuffer-map done #'ivy-alt-done)
+				   (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory)
+				   ))))
 
                            
 ;;@@====================== HELM
