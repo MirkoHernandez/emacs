@@ -19,7 +19,7 @@
 (load-theme 'gruvbox-dark-medium t)
 
 ;;@============================= HL-LINE
-(global-hl-line-mode 1)
+(global-hl-line-mode t)
 (set-face-background 'hl-line "midnight blue")
 ;;@============================= BEACON
 (beacon-mode 1)
@@ -100,34 +100,16 @@
 (custom-theme-set-faces 'user
 			`(org-default ((t (:foreground "lightskyblue"))))
                         `(org-level-2 ((t (:foreground "lightskyblue"))))
+			`(org-target ((t (:foreground "#fe8019"))))
 			`(org-tag ((t (:foreground "#2ec09c")))))
 
 ;; Org markers
 (setq org-hide-emphasis-markers t)
 
 ;; hide link  "<< >>" characters 
-(defcustom org-hidden-links-additional-re "\\(<<\\)[[:alnum:]]+\\(>>\\)"
-  "Regular expression that matches strings where the invisible-property of the sub-matches 1 and 2 is set to org-link."
-  :type '(choice (const :tag "Off" nil) regexp)
-  :group 'org-link)
+(defun org-add-my-extra-fonts ()
+  "Add alert and overdue fonts."
+  (add-to-list 'org-font-lock-extra-keywords '("\\(<<\\)\\([^\n\r\t]+\\)\\(>>\\)" (1 '(face org-target invisible t)) (2 'org-target t) (3 '(face org-target invisible t))) t)
+  )
 
-(make-variable-buffer-local 'org-hidden-links-additional-re)
-
-(defun org-activate-hidden-links-additional (limit)
-  "Put invisible-property org-link on strings matching `org-hide-links-additional-re'."
-  (if org-hidden-links-additional-re
-      (re-search-forward org-hidden-links-additional-re limit t)
-    (goto-char limit)
-    nil))
-
-(defun org-hidden-links-hook-function ()
-  "Add rule for `org-activate-hidden-links-additional' to `org-font-lock-extra-keywords'.
-You can include this function in `org-font-lock-set-keywords-hook'."
-  (add-to-list 'org-font-lock-extra-keywords
-	       '(org-activate-hidden-links-additional
-		 (1 '(face org-target invisible org-link))
-                (2 '(face org-target invisible org-link)))))
-
-(add-hook 'org-font-lock-set-keywords-hook #'org-hidden-links-hook-function)
-
-
+(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
