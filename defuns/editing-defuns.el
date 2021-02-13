@@ -36,6 +36,14 @@
 
 ;;@============================= NAVEGATION
 
+;;@ Movement
+(defun beginning-of-line-or-end-of-line ()
+  "move to beginning of line, or end of line"
+  (interactive)
+  (if (bolp)
+      (end-of-line)
+    (beginning-of-line)))
+
 ;;@ switching buffers
 (defun my/toggle-recent-buffer ()
    "Switch to previously open buffer.
@@ -192,6 +200,17 @@ With argument ARG, do this that many times."
  (interactive)
  (insert "="))
 
+(defun previous-blank-line ()
+  "Moves to the previous line containing nothing but whitespace."
+  (interactive)
+  (search-backward-regexp "^[ \t]*\n" nil t ))
+
+(defun next-blank-line ()
+  "Moves to the next line containing nothing but whitespace."
+  (interactive)
+  (forward-line)
+  (search-forward-regexp "^[ \t]*\n" nil t)
+  (forward-line -1))
 
 ;;@============================= SNIPPET Helpers
 ;; TODO: - Refactor into a reusable snippets framework.
