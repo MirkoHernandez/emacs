@@ -1,6 +1,6 @@
 ;;@============================= GLOBAL KEYBINDINGS
 
-;;@@#===================== SEQUENCES
+;;@@====================== SEQUENCES
 
 ;; Replace
 (define-prefix-command  'my-replace-map)
@@ -15,6 +15,21 @@
   (which-key-add-key-based-replacements  "M-r ." "Replace Symbol in defun")
   (define-key my-replace-map (kbd ",") 'smartscan-symbol-replace)
   )
+
+;; Navigation
+(define-prefix-command  'my-navigation-map)
+(global-set-key (kbd "M-i") 'my-navigation-map)
+(progn
+  (define-key my-navigation-map (kbd "i") 'imenu)
+  (define-key my-navigation-map (kbd "b") 'bookmark-jump)
+  (define-key my-navigation-map (kbd "f") 'projectile-find-file)
+  (define-key my-navigation-map (kbd "o") 'find-file)
+  (define-key my-navigation-map (kbd "p") 'projectile-switch-project)
+  (define-key my-navigation-map (kbd "s") 'ag)
+  (define-key my-navigation-map (kbd "u") 'switch-to-buffer)
+  (define-key my-navigation-map (kbd ",") 'pop-global-mark)
+  (define-key my-navigation-map (kbd "m") 'magit))
+
 ;; Bookmarks
 (define-prefix-command  'my-bookmarks-map)
 (global-set-key (kbd "<f2>") 'my-bookmarks-map)
@@ -25,10 +40,9 @@
   (define-key my-bookmarks-map (kbd "r") 'point-to-register)
   (define-key my-bookmarks-map (kbd "m") 'bookmark-set)
   (define-key my-bookmarks-map (kbd "w") 'window-configuration-to-register)
-  (define-key my-bookmarks-map (kbd "x") 'copy-to-register)
-  )
+  (define-key my-bookmarks-map (kbd "x") 'copy-to-register))
 
-;;@@#===================== PROJECTILE
+;;@@====================== PROJECTILE
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;;@@====================== HYDRA
@@ -67,7 +81,7 @@
 (global-set-key (kbd "C-x y a") 'aya-create)
 (global-set-key (kbd "C-x y e") 'aya-expand)
 ;;@@====================== EXPAND REGION
-(global-set-key (kbd "M-;") 'er/expand-region) 
+(global-set-key (kbd "C-;") 'er/expand-region) 
 ;; (global-set-key (kbd "C") 'er/contract-region)
 
 ;;@@====================== COMPANY MODE 
@@ -83,8 +97,8 @@
 ;; (define-key global-map (kbd "C-;") 'iedit-mode)
 
 ;;@@====================== SMARTSCAN
-(define-key global-map (kbd "M-p") 'smartscan-symbol-go-backward)
-(define-key global-map (kbd "M-n") 'smartscan-symbol-go-forward)
+;; (define-key global-map (kbd "M-p") 'smartscan-symbol-go-backward)
+;; (define-key global-map (kbd "M-n") 'smartscan-symbol-go-forward)
 
 ;;@@====================== AUTOCOMPLETE
 (define-key ac-menu-map (kbd "M-n") 'ac-next)
@@ -132,9 +146,6 @@
 				     ))))
 
   )
-;;@@====================== HELM
-;; (global-set-key (kbd "M-i") 'helm-imenu)
-;; (global-set-key (kbd "M-b") 'helm-buffers-list)
 
 ;;@@====================== NEOTREE
 (add-hook 'neotree-mode-hook

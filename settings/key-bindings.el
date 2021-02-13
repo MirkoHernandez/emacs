@@ -28,10 +28,14 @@
 (global-set-key (kbd "S-<f5>") 'recompile-quietly)
 
 
+;;@============================= IComplete
+(define-key icomplete-fido-mode-map  (kbd "C-p") 'icomplete-backward-completions)
+(define-key icomplete-fido-mode-map  (kbd "C-n") 'icomplete-forward-completions)
+
 ;;@============================= Navigation
 ;; (global-set-key "\C-r" 'swiper-isearch-backward)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-i") 'helm-imenu)
+;; (global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "M-g") 'goto-line)
 ;; Files
 (global-set-key (kbd "M-f") 'helm-find-files)
@@ -41,13 +45,25 @@
 (global-set-key (kbd "C-x <left>") 'my/persp-previous-buffer) 
 
 ;; Movement
-(global-set-key (kbd "C-;") 'View-back-to-mark)
+(global-set-key (kbd "M-m") 'View-back-to-mark)
 (global-set-key (kbd "C-:") 'exchange-point-and-mark)
 
 (global-set-key (kbd "C-f") 'avy-goto-word-or-subword-1)
 
+(define-key global-map [C-up] 'previous-blank-line)
+(define-key global-map [C-down] 'next-blank-line)
+(global-set-key (kbd "M-p") 'previous-blank-line)
+(global-set-key (kbd "M-n") 'next-blank-line)
+
+(global-set-key (kbd "M-k") 'previous-line)
+(global-set-key (kbd "M-j") 'next-line)
+(global-set-key (kbd "M-l") 'right-word)
+(global-set-key (kbd "M-h") 'left-word)
+
+(global-set-key (kbd "M-;") 'beginning-of-line-or-end-of-line)
+
+
 (global-set-key (kbd "C-S-u") 'backward-up-list)
-(global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 
 (global-set-key (kbd "C-x e") 'beginning-of-buffer)
@@ -89,13 +105,13 @@
 
 ;;@============================= Editing
 (global-set-key (kbd "M-U") 'fix-word-upcase)
-(global-set-key (kbd "M-l") 'fix-word-downcase)
+;; (global-set-key (kbd "M-l") 'fix-word-downcase)
 (global-set-key (kbd "M-c") 'fix-word-capitalize)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 ;; (global-set-key (kbd "M-y") 'counsel-yank-pop)
 (global-set-key (kbd "M-u") 'undo)
-(global-set-key (kbd "<f12>") 'repeat)
-(global-set-key (kbd "S-<f12>") 'repeat-complex-command) 
+(global-set-key (kbd "C-z") 'Repeat)
+(global-set-key (kbd "C-Z") 'repeat-complex-command)
 (global-set-key (kbd "C-o") 'dabbrev-expand)
 
 (global-set-key (kbd "<S-return>") 'crux-smart-open-line)
@@ -129,7 +145,9 @@
 (global-set-key (kbd "C-k") 'kill-line)
 (global-set-key (kbd "C-S-k") 'crux-kill-line-backwards)
 
-(global-set-key (kbd "M-k") 'kill-this-buffer)
+;; (global-set-key (kbd "M-k") 'kill-this-buffer)
+(global-set-key (kbd "M-0") 'kill-this-buffer)
+
 (global-set-key (kbd "<M-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 ;; (global-set-key "\C-w" 'backward-kill-word-or-selection)
