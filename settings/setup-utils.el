@@ -5,16 +5,6 @@
 (setq which-key-sort-order 'which-key-prefix-then-key-order)
 
 
-;;@============================= HELM
-(setf helm-boring-buffer-regexp-list '("\\` " "\\*helm" "\\*helm-mode"
-				       "\\*Help" "\\*Buffer " 
-                                       "\\*Echo Area" "\\*Minibuf" "\\*monky-cmd-process\\*"
-                                       "\\*epc con" "\\*Compile-Log\\*" "\\*monky-process\\*"
-                                       "\\*CEDET CScope\\*" "\\*Messages\\*" "\\*Flycheck error"
-                                       "\\*.+(.+)" "elpa/.+" "tramp/.+"
-                                       "\\*Gofmt Errors\\*" "\\*autopep8"
-                                       "\\*magit-process:" "\\*magit-diff:" "\\*anaconda-mode\\*"))
-
 ;;@============================= KEYFREQ
 (require 'keyfreq)
 (keyfreq-mode 1)
@@ -27,7 +17,7 @@
 
 ;;@============================= PROJECTILE
 (projectile-mode +1)
-(counsel-projectile-mode t)
+;; (counsel-projectile-mode nil)
 (setq projectile-sort-order 'default)
 
 ;;@============================= TREEMACS
