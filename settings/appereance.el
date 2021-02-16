@@ -96,6 +96,9 @@
 (setq org-ellipsis "⤵")
 (add-hook 'org-mode-hook 'org-prettify-headers)
 
+;; fontify code in code blocks
+(setq org-src-fontify-natively t)
+
 ;; Org Headers
 (custom-theme-set-faces 'user
 			`(org-default ((t (:foreground "lightskyblue"))))
@@ -103,13 +106,25 @@
 			`(org-target ((t (:foreground "#fe8019"))))
 			`(org-tag ((t (:foreground "#2ec09c")))))
 
+
+;; Different noweb markers. 
+;; org-babel-noweb-wrap-start: "<<<"
+;; org-babel-noweb-wrap-end: ">>>"
+
 ;; Org markers
 (setq org-hide-emphasis-markers t)
-
-;; hide link  "<< >>" characters 
+;; hide target  "<< >>" characters (different font for  noweb references  in  code blocks).
 (defun org-add-my-extra-fonts ()
   "Add alert and overdue fonts."
-  (add-to-list 'org-font-lock-extra-keywords '("\\(<<\\)\\([^\n\r\t]+\\)\\(>>\\)" (1 '(face org-target invisible t)) (2 'org-target t) (3 '(face org-target invisible t))) t)
+  (add-to-list 'org-font-lock-extra-keywords
+	       '("\\(<<\\)\\([^\n\r\t]+\\)\\(>>\\)"
+		 (1 '(face org-target invisible t))
+		 (2 'org-target t) (3 '(face org-target invisible t))) t)
+  (add-to-list 'org-font-lock-extra-keywords
+	       '("^\\(<<\\)\\([^\n\r\t]+\\)\\(>>\\)$"
+		 (1 '(face org-default visible t))
+		 (2 'org-default t) (3 '(face org-default visible t))) t)
+  
+  
   )
-
 (add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
