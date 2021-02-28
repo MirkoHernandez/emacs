@@ -29,9 +29,12 @@
 
 
 ;;@============================= IComplete
-(define-key icomplete-fido-mode-map  (kbd "C-p") 'icomplete-backward-completions)
-(define-key icomplete-fido-mode-map  (kbd "C-n") 'icomplete-forward-completions)
-
+(eval-after-load "minibuffer"
+  '(progn
+     (define-key minibuffer-local-map  (kbd "<return>") 'icomplete-force-complete-and-exit)
+     (define-key icomplete-minibuffer-map  (kbd "C-p") 'icomplete-backward-completions)
+     (define-key icomplete-minibuffer-map  (kbd "C-n") 'icomplete-forward-completions)))
+  
 ;;@============================= Navigation
 ;; (global-set-key "\C-r" 'swiper-isearch-backward)
 (global-set-key (kbd "M-o") 'other-window)

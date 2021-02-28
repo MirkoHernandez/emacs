@@ -12,7 +12,6 @@
 (setq helm-ff-guess-ffap-urls nil)
 
 ;;@============================= ICOMPLETE
-(fido-mode -1)
 (icomplete-mode t)
 (icomplete-vertical-mode t) ; IComplete vertical mode
 
