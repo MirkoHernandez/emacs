@@ -16,6 +16,7 @@
 	dired))
 
 ;;@============================= PROJECTILE
+(require 'projectile)
 (projectile-mode +1)
 ;; (counsel-projectile-mode nil)
 (setq projectile-sort-order 'default)

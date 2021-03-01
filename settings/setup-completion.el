@@ -12,6 +12,7 @@
 (setq helm-ff-guess-ffap-urls nil)
 
 ;;@============================= ICOMPLETE
+(require 'icomplete-vertical)
 (icomplete-mode t)
 (icomplete-vertical-mode t) ; IComplete vertical mode
 
