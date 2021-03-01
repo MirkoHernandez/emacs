@@ -1,7 +1,4 @@
-;;@============================= GLOBAL KEYBINDINGS
-
-;;@@====================== SEQUENCES
-
+;;@============================= SEQUENCES
 ;; Replace
 (define-prefix-command  'my-replace-map)
 (global-set-key (kbd "M-r") 'my-replace-map)
@@ -34,7 +31,7 @@
 (define-prefix-command  'my-bookmarks-map)
 (global-set-key (kbd "<f2>") 'my-bookmarks-map)
 (progn
-  (define-key my-bookmarks-map (kbd "b") 'helm-bookmark)
+  (define-key my-bookmarks-map (kbd "b") 'helm-bookmarks)
   (define-key my-bookmarks-map (kbd "i") 'insert-register)
   (define-key my-bookmarks-map (kbd "j") 'jump-to-register)
   (define-key my-bookmarks-map (kbd "r") 'point-to-register)
@@ -42,6 +39,7 @@
   (define-key my-bookmarks-map (kbd "w") 'window-configuration-to-register)
   (define-key my-bookmarks-map (kbd "x") 'copy-to-register))
 
+;;@============================= GLOBAL KEYBINDINGS
 ;;@@====================== PROJECTILE
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
@@ -112,6 +110,7 @@
 
 (add-hook 'dired-mode-hook (lambda ()
 			     ;;(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+			     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 			     (define-key dired-mode-map "." 'hydra-dired/body)
 			     (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
 			     ))
@@ -130,6 +129,8 @@
   (define-key eww-mode-map (kbd "C-k") 'shrface-previous-headline)
   (define-key eww-mode-map (kbd "C-i") 'shrface-links-helm) ; or 'shrface-links-helm
   (define-key eww-mode-map (kbd "C-o") 'shrface-headline-helm)) ; or 'shrface-headline-helm
+
+
 
 ;;@============================= MODES  KEYBINDINGS
 ;;@@====================== IVY COUNSEL

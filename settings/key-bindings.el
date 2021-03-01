@@ -15,12 +15,12 @@
 
 ;;@============================= Rebind  using Modes
 (global-set-key "\C-b" 'persp-switch-to-buffer)
-;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> f") 'helpful-callable)
+(global-set-key (kbd "<f1> v") 'helpful-variable)
 ;; (global-set-key (kbd "C-x r b") 'counsel-bookmark)
 ;; (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
 ;; (global-set-key "\C-s" 'swiper-isearch)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-f") 'find-file)
 
 ;;@============================= Modes
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -32,16 +32,24 @@
 (eval-after-load "minibuffer"
   '(progn
      (define-key minibuffer-local-map  (kbd "<return>") 'icomplete-force-complete-and-exit)
+     (define-key minibuffer-local-map  (kbd "<tab>") 'icomplete-force-complete)
+     (define-key icomplete-minibuffer-map  (kbd "C-j") 'icomplete-force-complete)
      (define-key icomplete-minibuffer-map  (kbd "C-p") 'icomplete-backward-completions)
+     (define-key icomplete-minibuffer-map  (kbd "<up>") 'icomplete-backward-completions)
+     (define-key icomplete-minibuffer-map  (kbd "<left>") 'icomplete-backward-completions)
+     (define-key icomplete-minibuffer-map  (kbd "<down>") 'icomplete-forward-completions)
+     (define-key icomplete-minibuffer-map  (kbd "<right>") 'icomplete-forward-completions)
+     (define-key icomplete-minibuffer-map  (kbd "C-l") 'icomplete-fido-backward-updir)
      (define-key icomplete-minibuffer-map  (kbd "C-n") 'icomplete-forward-completions)))
-  
+
+
 ;;@============================= Navigation
 ;; (global-set-key "\C-r" 'swiper-isearch-backward)
 (global-set-key (kbd "M-o") 'other-window)
 ;; (global-set-key (kbd "M-i") 'helm-imenu)
 (global-set-key (kbd "M-g") 'goto-line)
 ;; Files
-(global-set-key (kbd "M-f") 'helm-find-files)
+(global-set-key (kbd "M-f") 'find-file)
 (global-set-key (kbd "C-c f") 'helm-ag)
 (global-set-key (kbd "C-x C-r") 'helm-recentf) 
 (global-set-key (kbd "C-x <right>") 'my/persp-next-buffer) 
